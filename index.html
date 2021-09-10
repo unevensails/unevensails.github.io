@@ -145,6 +145,76 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/09/10/sql%E6%B3%A8%E5%85%A53/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="unevensails's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/10/sql%E6%B3%A8%E5%85%A53/" class="post-title-link" itemprop="url">sql注入3--异或</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-10 21:03:31 / 修改时间：21:04:42" itemprop="dateCreated datePublished" datetime="2021-09-10T21:03:31+08:00">2021-09-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>异或注入</strong></p>
+<blockquote>
+<p>当我们尝试sql注入时，发现union，and都被过滤了，就可以考虑使用异或注入</p>
+</blockquote>
+<p>异或运算规则</p>
+<blockquote>
+<p>相同为0，不同为1</p>
+</blockquote>
+<p>判断关键字过滤</p>
+<blockquote>
+<p>id=1’^(length(‘union’)!=0)–+ 界面返回正常则说明 length(‘union’)!=0正确，即union被过滤</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/09/10/sql%E6%B3%A8%E5%85%A52--%E7%9B%B2%E6%B3%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -526,7 +596,7 @@ windows中：%0a、&amp;、|、%1a
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
