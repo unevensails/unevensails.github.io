@@ -145,6 +145,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/09/27/vulnhub--DC1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="unevensails's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/27/vulnhub--DC1/" class="post-title-link" itemprop="url">vulnhub--DC1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-27 21:14:24 / 修改时间：21:15:02" itemprop="dateCreated datePublished" datetime="2021-09-27T21:14:24+08:00">2021-09-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一.信息收集<br>扫存活主机</p>
+<blockquote>
+<p>arp-scan -l</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/492d714e57c945179f4289e7161a7429.png" alt="请添加图片描述"><br>扫描靶场开放端口</p>
+<blockquote>
+<p>nnap -sS -v 192.168.111.130</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/a446bbbe52ca478bbf314259e384944a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_17,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">查看80端口<br><img src="https://img-blog.csdnimg.cn/73d7d50724444b5e8afbb914cd0968e1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">二.漏洞利用<br>msf攻击<br><img src="https://img-blog.csdnimg.cn/6f8604ab863042f1836b63a435c6b196.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br><img src="https://img-blog.csdnimg.cn/77e6fc462a5b4402b1502da4d59ea089.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>拿到meterpreter以后查看当前目录，发现flag1.txt,cat得到flag1</p>
+<p><img src="https://img-blog.csdnimg.cn/a3e0e6faa61f40bb9ada90420aff7822.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>根据flag1的提示百度，得到Drupal的数据库配置文件在sites/default/settings.php<br><img src="https://img-blog.csdnimg.cn/29b334365aa54da28e3ccdd97457e6c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">cat setting.php得到flag2.txt<br><img src="https://img-blog.csdnimg.cn/dd76dde38f694a81b2e8d22fa7de3845.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来可以从mysql入手，先溢出提权，得到一个交互式shell</p>
+<blockquote>
+<p>python -c ‘import pty;pty.spawn(“/bin/sh”)’</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/1be0fbd6b8c94c46b8ac1c03c972cc7f.png" alt="请添加图片描述"><br>再根据已知用户密码连接mysql</p>
+<blockquote>
+<p>mysql -udbuser -pR0ck3t</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/08758b6fdea04bec905ddb7b9e72639f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来show库show表<img src="https://img-blog.csdnimg.cn/7e17e76a39c441e6812934dd43336375.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>在show表的时候发现users表<br><img src="https://img-blog.csdnimg.cn/61470950b1b64256a6da1696f2e3a5fc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/09/14/xss%E6%94%BB%E5%87%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -766,7 +842,7 @@ windows中：%0a、&amp;、|、%1a
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

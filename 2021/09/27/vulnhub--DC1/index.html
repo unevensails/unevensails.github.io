@@ -20,19 +20,32 @@
     var CONFIG = {"hostname":"unevensails.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="异或注入  当我们尝试sql注入时，发现union，and都被过滤了，就可以考虑使用异或注入  异或运算规则  相同为0，不同为1  判断关键字过滤  id&#x3D;1’^(length(‘union’)!&#x3D;0)–+ 界面返回正常则说明 length(‘union’)!&#x3D;0正确，即union被过滤">
+  <meta name="description" content="一.信息收集扫存活主机  arp-scan -l  扫描靶场开放端口  nnap -sS -v 192.168.111.130  查看80端口二.漏洞利用msf攻击拿到meterpreter以后查看当前目录，发现flag1.txt,cat得到flag1 根据flag1的提示百度，得到Drupal的数据库配置文件在sites&#x2F;default&#x2F;settings.phpcat setting.php得到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql注入3--异或">
-<meta property="og:url" content="http://unevensails.github.io/2021/09/10/sql%E6%B3%A8%E5%85%A53--%E5%BC%82%E6%88%96/index.html">
+<meta property="og:title" content="vulnhub--DC1">
+<meta property="og:url" content="http://unevensails.github.io/2021/09/27/vulnhub--DC1/index.html">
 <meta property="og:site_name" content="unevensails&#39;s blog">
-<meta property="og:description" content="异或注入  当我们尝试sql注入时，发现union，and都被过滤了，就可以考虑使用异或注入  异或运算规则  相同为0，不同为1  判断关键字过滤  id&#x3D;1’^(length(‘union’)!&#x3D;0)–+ 界面返回正常则说明 length(‘union’)!&#x3D;0正确，即union被过滤">
+<meta property="og:description" content="一.信息收集扫存活主机  arp-scan -l  扫描靶场开放端口  nnap -sS -v 192.168.111.130  查看80端口二.漏洞利用msf攻击拿到meterpreter以后查看当前目录，发现flag1.txt,cat得到flag1 根据flag1的提示百度，得到Drupal的数据库配置文件在sites&#x2F;default&#x2F;settings.phpcat setting.php得到">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-10T13:03:31.000Z">
-<meta property="article:modified_time" content="2021-09-10T13:04:42.986Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/492d714e57c945179f4289e7161a7429.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a446bbbe52ca478bbf314259e384944a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_17,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/73d7d50724444b5e8afbb914cd0968e1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6f8604ab863042f1836b63a435c6b196.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/77e6fc462a5b4402b1502da4d59ea089.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a3e0e6faa61f40bb9ada90420aff7822.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/29b334365aa54da28e3ccdd97457e6c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/dd76dde38f694a81b2e8d22fa7de3845.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1be0fbd6b8c94c46b8ac1c03c972cc7f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/08758b6fdea04bec905ddb7b9e72639f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7e17e76a39c441e6812934dd43336375.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/61470950b1b64256a6da1696f2e3a5fc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2021-09-27T13:14:24.000Z">
+<meta property="article:modified_time" content="2021-09-27T13:15:02.244Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/492d714e57c945179f4289e7161a7429.png">
 
-<link rel="canonical" href="http://unevensails.github.io/2021/09/10/sql%E6%B3%A8%E5%85%A53--%E5%BC%82%E6%88%96/">
+<link rel="canonical" href="http://unevensails.github.io/2021/09/27/vulnhub--DC1/">
 
 
 <script id="page-configurations">
@@ -45,7 +58,7 @@
   };
 </script>
 
-  <title>sql注入3--异或 | unevensails's blog</title>
+  <title>vulnhub--DC1 | unevensails's blog</title>
   
 
 
@@ -150,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/09/10/sql%E6%B3%A8%E5%85%A53--%E5%BC%82%E6%88%96/">
+    <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/09/27/vulnhub--DC1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          sql注入3--异或
+          vulnhub--DC1
         </h1>
 
         <div class="post-meta">
@@ -174,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-10 21:03:31 / 修改时间：21:04:42" itemprop="dateCreated datePublished" datetime="2021-09-10T21:03:31+08:00">2021-09-10</time>
+              <time title="创建时间：2021-09-27 21:14:24 / 修改时间：21:15:02" itemprop="dateCreated datePublished" datetime="2021-09-27T21:14:24+08:00">2021-09-27</time>
             </span>
 
           
@@ -188,18 +201,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>异或注入</strong></p>
+        <p>一.信息收集<br>扫存活主机</p>
 <blockquote>
-<p>当我们尝试sql注入时，发现union，and都被过滤了，就可以考虑使用异或注入</p>
+<p>arp-scan -l</p>
 </blockquote>
-<p>异或运算规则</p>
+<p><img src="https://img-blog.csdnimg.cn/492d714e57c945179f4289e7161a7429.png" alt="请添加图片描述"><br>扫描靶场开放端口</p>
 <blockquote>
-<p>相同为0，不同为1</p>
+<p>nnap -sS -v 192.168.111.130</p>
 </blockquote>
-<p>判断关键字过滤</p>
+<p><img src="https://img-blog.csdnimg.cn/a446bbbe52ca478bbf314259e384944a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_17,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">查看80端口<br><img src="https://img-blog.csdnimg.cn/73d7d50724444b5e8afbb914cd0968e1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">二.漏洞利用<br>msf攻击<br><img src="https://img-blog.csdnimg.cn/6f8604ab863042f1836b63a435c6b196.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br><img src="https://img-blog.csdnimg.cn/77e6fc462a5b4402b1502da4d59ea089.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>拿到meterpreter以后查看当前目录，发现flag1.txt,cat得到flag1</p>
+<p><img src="https://img-blog.csdnimg.cn/a3e0e6faa61f40bb9ada90420aff7822.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>根据flag1的提示百度，得到Drupal的数据库配置文件在sites/default/settings.php<br><img src="https://img-blog.csdnimg.cn/29b334365aa54da28e3ccdd97457e6c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">cat setting.php得到flag2.txt<br><img src="https://img-blog.csdnimg.cn/dd76dde38f694a81b2e8d22fa7de3845.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来可以从mysql入手，先溢出提权，得到一个交互式shell</p>
 <blockquote>
-<p>id=1’^(length(‘union’)!=0)–+ 界面返回正常则说明 length(‘union’)!=0正确，即union被过滤</p>
+<p>python -c ‘import pty;pty.spawn(“/bin/sh”)’</p>
 </blockquote>
+<p><img src="https://img-blog.csdnimg.cn/1be0fbd6b8c94c46b8ac1c03c972cc7f.png" alt="请添加图片描述"><br>再根据已知用户密码连接mysql</p>
+<blockquote>
+<p>mysql -udbuser -pR0ck3t</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/08758b6fdea04bec905ddb7b9e72639f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来show库show表<img src="https://img-blog.csdnimg.cn/7e17e76a39c441e6812934dd43336375.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>在show表的时候发现users表<br><img src="https://img-blog.csdnimg.cn/61470950b1b64256a6da1696f2e3a5fc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
 
     </div>
 
@@ -215,13 +234,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/10/sql%E6%B3%A8%E5%85%A52--%E7%9B%B2%E6%B3%A8/" rel="prev" title="sql注入2--盲注">
-      <i class="fa fa-chevron-left"></i> sql注入2--盲注
+    <a href="/2021/09/14/xss%E6%94%BB%E5%87%BB/" rel="prev" title="xss攻击">
+      <i class="fa fa-chevron-left"></i> xss攻击
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/09/12/sql%E6%B3%A8%E5%85%A54--%E7%BB%95%E8%BF%87/" rel="next" title="sql注入4--绕过">
-      sql注入4--绕过 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
