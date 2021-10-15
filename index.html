@@ -145,6 +145,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/10/15/c1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="unevensails's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/15/c1/" class="post-title-link" itemprop="url">vulnhub--DC3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-15 09:20:35 / 修改时间：09:21:57" itemprop="dateCreated datePublished" datetime="2021-10-15T09:20:35+08:00">2021-10-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>老规矩，先arp扫存活主机</p>
+<p><img src="https://img-blog.csdnimg.cn/920797be2d274feca55d280cdcd21e02.png" alt="在这里插入图片描述"><br>发现80端口开放，进行访问</p>
+<p><img src="https://img-blog.csdnimg.cn/a39fed502e944abb8e283e1358b12d9e.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7396a3db08904135b8fd00580dfe50e4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>得知这次只有一个flag，我们只需要拿到root权限就能拿到flag<br>由于没有任何提示，我们先尝试用dirsearch扫描目录，发现readme.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/0b1182928f234f10969229eaa29fffd0.png" alt="在这里插入图片描述"></p>
+<p>访问readme.txt，可以知道该网站cms为joomla</p>
+<p><img src="https://img-blog.csdnimg.cn/9b9a98bb8c824ee8ae66c7ba3b1d2a98.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>尝试用msf攻击</p>
+<p><img src="https://img-blog.csdnimg.cn/13026bbd593b4111be859451f2c4584c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>试了几个漏洞都没啥用，这时候看wp才知道要用searchspliot</p>
+<blockquote>
+<p>“searchsploit”是一个用于Exploit-DB的命令行搜索工具，可以帮助我们查找渗透模块。<br>Exploit-DB是一个漏洞库，Kali Linux中保存了一个该漏洞库的拷贝，利用上面提到的命令就可以查找需要的渗透模块，它将搜索所有的漏洞和shellcode而且该漏洞库是保存在本地的，在没有网络的情况下也可以使用。<br>基本搜索方法就是searchsploit+可能包含漏洞的软件/系统等等，对应回显存在的漏洞和用于渗透的脚本。</p>
+</blockquote>
+<p>先查看Joomla版本</p>
+<p><img src="https://img-blog.csdnimg.cn/5ae4124c7c084c8d8f4e6742c4dc9413.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>用searchspliot查询joomla该版本漏洞，发现sql注入漏洞</p>
+<p><img src="https://img-blog.csdnimg.cn/4b17531b808c4caf88250c004b163745.png" alt="在这里插入图片描述"><br>接下来就是用sqlmap跑库跑表</p>
+<p>sqlmap -u “url” –dbms mysql –dbs<br><img src="https://img-blog.csdnimg.cn/ebb06045ded24322ba62b63228ea4463.png" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joomladb –tables<br><img src="https://img-blog.csdnimg.cn/a1c0d10beef24cef98884d23f8e8bde3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joolmladb -T ‘#__users’ –columns </p>
+<p><img src="https://img-blog.csdnimg.cn/d97afa99859246c0a03cc1cee1a1b12c.png" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joomladb -T ‘#__users’ -C name,password –dump</p>
+<p>得到hash加密过的密码<br><img src="https://img-blog.csdnimg.cn/d0daaad8b0284f7c87f80af75ed3bba3.png" alt="在这里插入图片描述"><br>接下来用John破解密码<br>john the ripper是一款本地密码破解工具，可以从我们上面生成的shadow文件（密码散列）中破解出密码。破解时间取决于密码的复杂程度以及破解模式。</p>
+<p>破解得到admin的密码为snoopy<br>登录网站发现啥也没有，猜测网站应该有后台，重新用dirsearch扫描得到/administrator,访问登录成功</p>
+<p><img src="https://img-blog.csdnimg.cn/2a19c2e354a64b3bada973c8b1f401f5.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>在extensions中找到大量php文件，尝试创建一个新的php文件进行访问</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/10/07/vulnhub--DC2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -996,7 +1073,7 @@ windows中：%0a、&amp;、|、%1a
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
