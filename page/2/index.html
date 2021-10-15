@@ -22,26 +22,26 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="unevensails&#39;s blog">
-<meta property="og:url" content="http://unevensails.github.io/archives/2021/07/index.html">
+<meta property="og:url" content="http://unevensails.github.io/page/2/index.html">
 <meta property="og:site_name" content="unevensails&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://unevensails.github.io/archives/2021/07/">
+<link rel="canonical" href="http://unevensails.github.io/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | unevensails's blog</title>
+  <title>unevensails's blog</title>
   
 
 
@@ -139,51 +139,85 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/07/14/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 11 篇日志。 继续努力。</span>
-      </div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="unevensails's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/14/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">反序列化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-14 22:08:28" itemprop="dateCreated datePublished" datetime="2021-07-14T22:08:28+08:00">2021-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-10 17:14:27" itemprop="dateModified" datetime="2021-09-10T17:14:27+08:00">2021-09-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+          <p>一、基本概念</p>
+<p>1、序列化和反序列化的定义：</p>
+<pre><code>(1)Java序列化就是指把Java对象转换为字节序列的过程
+    Java反序列化就是指把字节序列恢复为Java对象的过程。
+</code></pre>
+<p>   (2)序列化最重要的作用：在传递和保存对象时.保证对象的完整性和可传递性。对象转换为有序字节流,以便在网络上传输或者保存在本地文件中。<br>       反序列化的最重要的作用：根据字节流中保存的对象状态及描述信息，通过反序列化重建对象。<br>   总结：核心作用就是对象状态的保存和重建。（整个过程核心点就是字节流中所保存的对象状态及描述信息）</p>
+<p>反序列化中magic 方法     功能<br>__construct()     类构造器<br>__destruct()     类的析构器<br>__sleep()                     执行 serialize() 时，先会调用这个函数<br>__wakeup()     执行 unserialize() 时，先会调用这个函数<br>__toString()     类被当成字符串时的回应方法</p>
+<p>参考文章链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/tree_ifconfig/article/details/82766587">https://blog.csdn.net/tree_ifconfig/article/details/82766587</a></p>
+
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-14T22:08:28+08:00"
-              content="2021-07-14">
-          07-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/14/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" itemprop="url">
-            <span itemprop="name">反序列化</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
-
-
-    </div>
-  </div>
   
   
   
 
+
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 

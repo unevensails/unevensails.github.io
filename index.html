@@ -159,7 +159,87 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/15/c1/" class="post-title-link" itemprop="url">vulnhub--DC3</a>
+            <a href="/2021/10/15/c1/" class="post-title-link" itemprop="url">vulnhub--DC4</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-15 09:23:27 / 修改时间：09:24:04" itemprop="dateCreated datePublished" datetime="2021-10-15T09:23:27+08:00">2021-10-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>老规矩，先arp扫存活主机</p>
+<p><img src="https://img-blog.csdnimg.cn/e3badf646c904c53bcf7867d9a758084.png"><br>nmap扫端口</p>
+<p><img src="https://img-blog.csdnimg.cn/d9b46eebe3c34ce7bb81df78461ab38a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>发现开放80，浏览器尝试访问</p>
+<p><img src="https://img-blog.csdnimg.cn/fff6cc03dd6c4938b24e116fe00c35d2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>看样子应该要bp爆破密码，网上搜了一下，在kali的/usr/share/john/password.lst里面存在一些适合爆破的密码，可以把它当作bp字典</p>
+<p><img src="https://img-blog.csdnimg.cn/664470d5c0604d6da330b9d0f832115c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>跑了半天，得到密码happy,成功登录</p>
+<p><img src="https://img-blog.csdnimg.cn/6c24d7723d2d4503847f6dc628fa0d86.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>有个command，点进去发现能查询一些用户信息，尝试用bp截获修改</p>
+<p><img src="https://img-blog.csdnimg.cn/de108f76914449de8c7148c1571e6aa4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>果然有命令注入漏洞,在jim的backups目录中发现一个字典</p>
+<p><img src="https://img-blog.csdnimg.cn/3cb550b9a2cf496d994ca9e6240131fa.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><img src="https://img-blog.csdnimg.cn/b5901c7bbab042a185ee74e42c52c565.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<p>加上前面nmap扫到的ssh端口，让我们联想到了刷dc-2的时候用过的hydra爆破<br>先将用户和字典写入kali新创建的usr.txt和pass.txt中,用hydra爆破,获得jim密码</p>
+<blockquote>
+<p>hydra -L usr.txt -P pass.txt ssh://192.168.111.135 -vV -o hydra.sh</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/343cb436ef394bba9fb08935e6b18b78.png"><br>用ssh登录jim登录成功</p>
+<p><img src="https://img-blog.csdnimg.cn/c10d5526cd7a4b94a99ecfb3f873a696.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16"><br>找了半天，只找到一封root写给jim的信</p>
+<p><img src="https://img-blog.csdnimg.cn/c0aecd7175d44c4bbd370eeadbd42836.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16"><br>发现无法使用sudo命令，接下来就没有思路了，看了其他师傅的wp才知道线索在/var/mail里</p>
+<p><img src="https://img-blog.csdnimg.cn/9a7b3e993f3f408ab89f40c59e1a3d40.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>找到charles的密码，ssh登录成功</p>
+<p><img src="https://img-blog.csdnimg.cn/66bd9d51ab5041c38be111dbbb25c3a1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16"><br>使用sudo命令试试<img src="https://img-blog.csdnimg.cn/112bd25fa4e84180b4b77ba9861d6cec.png"><br>发现/usr/bin/teehee可以使用root权限，使用teehee提权</p>
+<blockquote>
+<p>echo “john::0:0:::/bin/bash” | sudo teehee -a /etc/passwd</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/8c2d336b73b944b3a4f7a6d99810fa42.png">提权成功，在root目录找到flag</p>
+<p><img src="https://img-blog.csdnimg.cn/2c7822d2abba4ead974b0289b24158f4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/10/15/vulnhub--DC3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="unevensails's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/15/vulnhub--DC3/" class="post-title-link" itemprop="url">vulnhub--DC3</a>
         </h2>
 
         <div class="post-meta">
@@ -935,80 +1015,11 @@ windows中：%0a、&amp;、|、%1a
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://unevensails.github.io/2021/07/14/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="unevensails's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/14/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">反序列化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-14 22:08:28" itemprop="dateCreated datePublished" datetime="2021-07-14T22:08:28+08:00">2021-07-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-10 17:14:27" itemprop="dateModified" datetime="2021-09-10T17:14:27+08:00">2021-09-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一、基本概念</p>
-<p>1、序列化和反序列化的定义：</p>
-<pre><code>(1)Java序列化就是指把Java对象转换为字节序列的过程
-    Java反序列化就是指把字节序列恢复为Java对象的过程。
-</code></pre>
-<p>   (2)序列化最重要的作用：在传递和保存对象时.保证对象的完整性和可传递性。对象转换为有序字节流,以便在网络上传输或者保存在本地文件中。<br>       反序列化的最重要的作用：根据字节流中保存的对象状态及描述信息，通过反序列化重建对象。<br>   总结：核心作用就是对象状态的保存和重建。（整个过程核心点就是字节流中所保存的对象状态及描述信息）</p>
-<p>反序列化中magic 方法     功能<br>__construct()     类构造器<br>__destruct()     类的析构器<br>__sleep()                     执行 serialize() 时，先会调用这个函数<br>__wakeup()     执行 unserialize() 时，先会调用这个函数<br>__toString()     类被当成字符串时的回应方法</p>
-<p>参考文章链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/tree_ifconfig/article/details/82766587">https://blog.csdn.net/tree_ifconfig/article/details/82766587</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1073,7 +1084,7 @@ windows中：%0a、&amp;、|、%1a
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
