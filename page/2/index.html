@@ -155,6 +155,65 @@
     
     
     <article
+  id="post-sql注入3--异或"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/10/sql%E6%B3%A8%E5%85%A53--%E5%BC%82%E6%88%96/"
+    >sql注入3--异或</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/10/sql%E6%B3%A8%E5%85%A53--%E5%BC%82%E6%88%96/" class="article-date">
+  <time datetime="2021-09-10T13:03:31.000Z" itemprop="datePublished">2021-09-10</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>异或注入</strong></p>
+<blockquote>
+<p>当我们尝试sql注入时，发现union，and都被过滤了，就可以考虑使用异或注入</p>
+</blockquote>
+<p>异或运算规则</p>
+<blockquote>
+<p>相同为0，不同为1</p>
+</blockquote>
+<p>判断关键字过滤</p>
+<blockquote>
+<p>id=1’^(length(‘union’)!=0)–+ 界面返回正常则说明 length(‘union’)!=0正确，即union被过滤</p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-sql注入2--盲注"
   class="article article-type-post"
   itemscope
@@ -776,7 +835,9 @@ windows中：%0a、&amp;、|、%1a
 </script>
  
 <!-- CanvasBackground -->
-
+ 
+<script src="/js/dz.js"></script>
+ 
 <script>
   if (window.mermaid) {
     mermaid.initialize({ theme: "forest" });
