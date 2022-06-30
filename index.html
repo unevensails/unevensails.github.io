@@ -155,6 +155,123 @@
     
     
     <article
+  id="post-vi编辑器常用命令"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/06/30/vi%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+    >vi编辑器常用命令</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/06/30/vi%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2022-06-30T11:31:16.000Z" itemprop="datePublished">2022-06-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kali/">kali</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h4 id="输入模式下的操作命令"><a href="#输入模式下的操作命令" class="headerlink" title="输入模式下的操作命令"></a>输入模式下的操作命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">i,I     插入：插入文字到光标之后</span><br><span class="line"></span><br><span class="line">a,A  增加：插入文字到光标之前</span><br><span class="line"></span><br><span class="line">o,O  插入新的一行：o插入光标的下一行；O插入光标的上一行</span><br><span class="line"></span><br><span class="line">r,R   取代：r会取代光标所在的那个字符；R会一直取代光标所在的文字，直到按下ESC为止</span><br><span class="line"></span><br><span class="line">ESC  退出编辑模式，回到一般模式中</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h4><h5 id="翻页"><a href="#翻页" class="headerlink" title="翻页"></a>翻页</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Page Down或Ctrl+B 向下翻动一整页内容</span><br><span class="line"></span><br><span class="line">Page Up 或Ctrl+B 向上翻动一整页内容</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="行内快速跳转"><a href="#行内快速跳转" class="headerlink" title="行内快速跳转"></a>行内快速跳转</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Home键或“^&quot;、数字“0” 跳转至行首</span><br><span class="line"></span><br><span class="line">End键或“$&quot; 跳转到行尾</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="行间快速跳转"><a href="#行间快速跳转" class="headerlink" title="行间快速跳转"></a>行间快速跳转</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1G 跳转到文件首部</span><br><span class="line"></span><br><span class="line">G   跳转到文件的末尾行</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">G 跳转到文件中的第<span class="comment">#行</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="行号显示"><a href="#行号显示" class="headerlink" title="行号显示"></a>行号显示</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:set nu 在编辑器中显示行号</span><br><span class="line"></span><br><span class="line">:set nonu 取消编辑器中的行号显示</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="复制、粘贴、删除"><a href="#复制、粘贴、删除" class="headerlink" title="复制、粘贴、删除"></a>复制、粘贴、删除</h4><h5 id="剪切"><a href="#剪切" class="headerlink" title="剪切"></a>剪切</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x或Del 删除光标处的单个字符</span><br><span class="line"></span><br><span class="line">dd 删除当前光标所在行</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">dd 删除从光标开始的<span class="comment">#行内容</span></span></span><br><span class="line"></span><br><span class="line">d^ 删除从光标到行首的所有字符</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">d$</span><span class="bash"> 删除从光标到行尾的所有字符</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yy 复制当前整行的内容到剪贴板</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">yy 复制从光标处开始的<span class="comment">#行内容</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p 将剪贴板的内容粘贴到光标位置之后</span><br><span class="line"></span><br><span class="line">P 粘贴到光标位置处之前</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="文件内容查找"><a href="#文件内容查找" class="headerlink" title="文件内容查找"></a>文件内容查找</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/word 从上而下在文件中查找字符串“word”</span><br><span class="line"></span><br><span class="line">?word 从下而上在文件中查找字符串“word”</span><br><span class="line"></span><br><span class="line">n 定位下一个匹配的被查找字符串</span><br><span class="line"></span><br><span class="line">N 定位上一个匹配的被查找字符串</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="撤销编辑及保存退出"><a href="#撤销编辑及保存退出" class="headerlink" title="撤销编辑及保存退出"></a>撤销编辑及保存退出</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">u 按一次取消最近的一次操作，多次重复按u键，恢复已进行的多步操作</span><br><span class="line"></span><br><span class="line">U 用于取消对当前行所做的所有编辑</span><br><span class="line"></span><br><span class="line">ZZ 保存当前的文件内容并退出vi编辑器</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="保存文件及退出vi编辑器"><a href="#保存文件及退出vi编辑器" class="headerlink" title="保存文件及退出vi编辑器"></a>保存文件及退出vi编辑器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:w 保存文件</span><br><span class="line">:w /root/newfile 另存为其他文件</span><br><span class="line">:q 未修改退出</span><br><span class="line">:q! 放弃对文件内容的修改，并退出vi</span><br><span class="line">:wq 保存文件退出vi</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="打开新文件或读入其他文件内容"><a href="#打开新文件或读入其他文件内容" class="headerlink" title="打开新文件或读入其他文件内容"></a>打开新文件或读入其他文件内容</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:e ~/intsall.log 打开新的文件进行编辑</span><br><span class="line">:r /etc/filesystems 在当前文件中读入其他文件内容</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="搜索与替换"><a href="#搜索与替换" class="headerlink" title="搜索与替换"></a>搜索与替换</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/word 向光标之后查找名为word1的字符串</span><br><span class="line"></span><br><span class="line">:n1,n2s/word1/word2/g 在第n1行与n2行之间寻找word1字符串，并将该字符串取代为word2</span><br><span class="line"></span><br><span class="line">:1,$s/word1/word2/g 从第一行到最后一行寻找word1字符串，并将该字符串取代为word2</span><br><span class="line"></span><br><span class="line">:1,$s/word1/word2/gc 从第一行到最后一行寻找word1字符串，并将该字符串取代为word2。并且在取代前显示提示字符给使用者确认是否要取代</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="块选择功能"><a href="#块选择功能" class="headerlink" title="块选择功能"></a>块选择功能</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">v 字符选择，会将光标经过的地方反白选择</span><br><span class="line"></span><br><span class="line">V 行选择，会将光标经过的行反向选择</span><br><span class="line"></span><br><span class="line">Ctrl+v 快选择，可以用长方形的方式选择数据</span><br><span class="line"></span><br><span class="line">y 复制反白的地方</span><br><span class="line"></span><br><span class="line">d 将反白的地方删除</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="多文本编辑功能"><a href="#多文本编辑功能" class="headerlink" title="多文本编辑功能"></a>多文本编辑功能</h4><h5 id="vim-多个文件"><a href="#vim-多个文件" class="headerlink" title="vim 多个文件"></a>vim 多个文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:n 编辑下一个文件</span><br><span class="line"></span><br><span class="line">:N 编辑上一关文件</span><br><span class="line"></span><br><span class="line">:files 列出当前vim打开的文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="vim-文件"><a href="#vim-文件" class="headerlink" title="vim 文件"></a>vim 文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:sp 另外一个文件的路径及文件名 打开另一个文件</span><br><span class="line"></span><br><span class="line">ctrl+两次按w 窗口切换</span><br></pre></td></tr></table></figure>
+
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali%E5%91%BD%E4%BB%A4/" rel="tag">kali命令</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-linux常用命令"
   class="article article-type-post"
   itemscope
@@ -881,102 +998,6 @@
 </blockquote>
 <p><img src="https://img-blog.csdnimg.cn/402ba509eff3410781bc9acde6242ed8.png" alt="在这里插入图片描述">成功获得root权限<br><img src="https://img-blog.csdnimg.cn/73e590d60f1045fa93cf2e2991e445cf.png" alt="在这里插入图片描述"><br>在root目录中找到最后一个flag</p>
 <p><img src="https://img-blog.csdnimg.cn/fe16e0b2c4f94db797ae691d1a6245f6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-vulnhub--DC1"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/27/vulnhub--DC1/"
-    >vulnhub--DC1</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/27/vulnhub--DC1/" class="article-date">
-  <time datetime="2021-09-27T13:14:24.000Z" itemprop="datePublished">2021-09-27</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>一.信息收集<br>扫存活主机</p>
-<blockquote>
-<p>arp-scan -l</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/492d714e57c945179f4289e7161a7429.png" alt="请添加图片描述"><br>扫描靶场开放端口</p>
-<blockquote>
-<p>nnap -sS -v 192.168.111.130</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/a446bbbe52ca478bbf314259e384944a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_17,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">查看80端口</p>
-<p><img src="https://img-blog.csdnimg.cn/73d7d50724444b5e8afbb914cd0968e1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">二.漏洞利用<br>msf攻击</p>
-<p><img src="https://img-blog.csdnimg.cn/6f8604ab863042f1836b63a435c6b196.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br><img src="https://img-blog.csdnimg.cn/77e6fc462a5b4402b1502da4d59ea089.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>拿到meterpreter以后查看当前目录，发现flag1.txt,cat得到flag1</p>
-<p><img src="https://img-blog.csdnimg.cn/a3e0e6faa61f40bb9ada90420aff7822.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>根据flag1的提示百度，得到Drupal的数据库配置文件在sites/default/settings.php</p>
-<p><img src="https://img-blog.csdnimg.cn/29b334365aa54da28e3ccdd97457e6c9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述">cat setting.php得到flag2.txt</p>
-<p><img src="https://img-blog.csdnimg.cn/dd76dde38f694a81b2e8d22fa7de3845.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来可以从mysql入手，先溢出提权，得到一个交互式shell</p>
-<blockquote>
-<p>python -c ‘import pty;pty.spawn(“/bin/sh”)’</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/1be0fbd6b8c94c46b8ac1c03c972cc7f.png" alt="请添加图片描述"><br>再根据已知用户密码连接mysql</p>
-<blockquote>
-<p>mysql -udbuser -pR0ck3t</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/08758b6fdea04bec905ddb7b9e72639f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>接下来show库show表<br><img src="https://img-blog.csdnimg.cn/7e17e76a39c441e6812934dd43336375.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>在show表的时候发现users表</p>
-<p><img src="https://img-blog.csdnimg.cn/61470950b1b64256a6da1696f2e3a5fc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
-<p>发现用户密码被hash加密了，百度查找后了解到Drupal的加密脚本在根目录的scripts中，可以生成一个密码来重置管理员密码。<br>加密脚本</p>
-<blockquote>
-<p>./scripts/password-hash.sh 333333</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/c0e14b63b42f40ecba5f408e3483dfd0.png" alt="请添加图片描述"></p>
-<p>更新管理员密码</p>
-<p><img src="https://img-blog.csdnimg.cn/6c85b659f7cd435f943016d6cef2c089.png" alt="请添加图片描述"><br>接下来就可以用密码登录网站了，在content中找到flag3</p>
-<p><img src="https://img-blog.csdnimg.cn/cddaa49c228042c787a415895ffa261b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>发现关键词passwd，进入ect目录查看，果然有passwd</p>
-<p><img src="https://img-blog.csdnimg.cn/16f8df12d9c3443481846f5c80d8ec94.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_17,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>打开发现flag4在home目录中，进入/home/flag4目录中找到flag4.txt文件</p>
-<p><img src="https://img-blog.csdnimg.cn/d20a28e9d8784c7e8e4a7319474d34b2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>刚开始看了flag4提示没有头绪，后来看了其他大佬的wp才知道能用suid提权</p>
-<blockquote>
-<p>suid的作用：用于执行文件，以文件的拥有者的身份运行该文件。     chmod u+s  文件名</p>
-</blockquote>
-<p>以下命令可以发现系统上运行的所有SUID可执行文件。</p>
-<blockquote>
-<p> find / -perm -u=s -type f 2&gt;/dev/null<br> find / -user root -perm-4000 -print 2&gt;/dev/null<br>    find / -user root -perm -4000 -exec ls -ldb {} ;</p>
-</blockquote>
-<p>发现find命令有root权限</p>
-<p><img src="https://img-blog.csdnimg.cn/58fdf228bbcb43d48a50b4e67d257009.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_12,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
-<p>用find提权,成功获得root权限</p>
-<blockquote>
-<p>find / name flag4 -exec “/bin/sh” ;</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/49bc72c3d860401aaefdf4b1352d0de8.png" alt="请添加图片描述"></p>
-<p>打开root目录发现最后一个flag</p>
-<p><img src="https://img-blog.csdnimg.cn/5957076410d74b2aada0b10fd7dc29cb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
  
       <!-- reward -->
       
