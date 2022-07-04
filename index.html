@@ -220,12 +220,9 @@
 <p>格式：<u>lifan(</u>登录名): <u>x</u>(口令):<u>1000</u>(UID):<u>1000</u>(GID):<u>lifan</u>(注释):<u>/home/lifan</u>(主目录):<u>/bin/bash</u>(登录shell)</p>
 <h4 id="用户账号文件–shadow"><a href="#用户账号文件–shadow" class="headerlink" title="用户账号文件–shadow"></a>用户账号文件–shadow</h4><p>文件位置：/etc/shadow</p>
 <p>格式：<u>lifan</u>(用户账号的名称):<u>$6$fqD3P4oEiS4Evv9Y$zVVsaz0PMbP8T6ZFX/TQIp/aDG9jViZwTvTiYuwI5lnQpahbKJM/B4QZbviEZBCEjrgyIKUQ1gLFAusJyOT.w.</u>(加密密码):<u>19174</u>(最后一次修改时间):<u>0</u>(最小修改时间间隔):<u>99999</u>(密码有效期):<u>7</u>(密码需要变更前的警告天数): (密码过期后的宽限时间):   (账号失效时间): (保留字段)</p>
-<!--加密密码不能手工修改，否则系统会无法识别密码导致密码失效-->
-
-<!--最后一次修改时间的数值代表的是天-->
-
-<!--密码失效期默认值为99999，密码过期后的宽限时间、账号失效时间、一般默认为空、保留字段目前未使用-->
-
+<p>&lt;–加密密码不能手工修改，否则系统会无法识别密码导致密码失效–&gt;</p>
+<p>&lt;–最后一次修改时间的数值代表的是天–&gt;</p>
+<p>&lt;–密码失效期默认值为99999，密码过期后的宽限时间、账号失效时间、一般默认为空、保留字段目前未使用–&gt;</p>
 <h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><h5 id="useradd"><a href="#useradd" class="headerlink" title="useradd"></a>useradd</h5><p>格式：useradd [参数] 用户名</p>
 <table>
 <thead>
@@ -340,10 +337,7 @@
 <td>指定要更改的组名</td>
 </tr>
 </tbody></table>
-<!--修改用户组名字的前提是拥有该名字的组存在-->
-
-
-
+<p>&lt;–修改用户组名字的前提是拥有该名字的组存在–&gt;</p>
 <h4 id="设置-更改用户口令–passwd"><a href="#设置-更改用户口令–passwd" class="headerlink" title="设置/更改用户口令–passwd"></a>设置/更改用户口令–passwd</h4><p>格式：passwd [参数] 用户名</p>
 <table>
 <thead>
@@ -438,18 +432,14 @@
 </tr>
 </tbody></table>
 <h4 id="设置文件-目录的权限–chmod"><a href="#设置文件-目录的权限–chmod" class="headerlink" title="设置文件/目录的权限–chmod"></a>设置文件/目录的权限–chmod</h4><p>格式1：chmod [ugoa] [+-=] [rwx] 文件或目录</p>
-<!--u、g、o、a分别表示属主、属组、其他用户、所有用户-->
-
-<!--+、-、=分别表示增加、去除、设置权限-->
-
-<!--r、w、x分别表示读取、写入、可执行-->
-
+<p>&lt;–u、g、o、a分别表示属主、属组、其他用户、所有用户–&gt;</p>
+<p>&lt;–+、-、=分别表示增加、去除、设置权限–&gt;</p>
+<p>&lt;–r、w、x分别表示读取、写入、可执行–&gt;</p>
 <p>格式2：chmod [三位八进制数] 文件或目录</p>
 <h4 id="设置文件-目录的归属–chown"><a href="#设置文件-目录的归属–chown" class="headerlink" title="设置文件/目录的归属–chown"></a>设置文件/目录的归属–chown</h4><p>格式1：chown [属主] [文件或目录]</p>
 <p>格式2：chown[:属组] [文件或目录]</p>
 <p>格式3：chown [属主:属组] [文件或目录]</p>
-<!--chmod和chown都可以用-R参数递归修改指定目录下所有文件、子目录的权限-->
-
+<p>&lt;–chmod和chown都可以用-R参数递归修改指定目录下所有文件、子目录的权限–&gt;</p>
 <h4 id="特殊权限访问"><a href="#特殊权限访问" class="headerlink" title="特殊权限访问"></a>特殊权限访问</h4><p>SUID：设定时，文件执行将以文件拥有者身份执行，而非普通用户的身份</p>
 <p>SGID：与前者相同，当文件被执行时，将以文件的组的身份来执行，而不是一般的用户身份</p>
 <p>设置SUID：chmod u+s [文件]</p>
