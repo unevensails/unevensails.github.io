@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Archives |  unevensails&#39;s blog</title>
+      <title> unevensails&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -53,252 +53,198 @@
       
     <main class="content on">
       <section class="outer">
-  
-  
-  <article class="articles">
-    
-    
-    <h1 class="page-type-title">Archives</h1>
-    
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2022" class="archive-year">2022</a>
+  <article
+  id="post-kali登录ftp服务"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+     
+    <div class="article-meta">
+      <a href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/" class="article-date">
+  <time datetime="2022-07-11T10:13:13.707Z" itemprop="datePublished">2022-07-11</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">147</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/" class="archive-article-date">
-  <time datetime="2022-07-11T10:13:13.707Z" itemprop="datePublished">07/11</time>
-</a>
       
 
-    </header>
-    
-    
-  </div>
-</article>
-      
+
+
   
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/02/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="archive-article-date">
-  <time datetime="2022-07-02T05:59:01.000Z" itemprop="datePublished">07/02</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/02/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
-    >linux用户管理</a> 
-</h2>
+  <p>ftp服务器：centos7</p>
+<p>主机：kali</p>
+<p>登录ftp服务器</p>
+<p><img src="https://img-blog.csdnimg.cn/bae8ab4b7fac46fc962538455827a4d7.png"><br>ftp上传文件</p>
+<p>查看当前路径文件<br><img src="https://img-blog.csdnimg.cn/116d8c507bc84704b1c82587cd7c6bb4.png"><br>切换到该路径<br><img src="https://img-blog.csdnimg.cn/d1bce3cab1724792a78105b164647f00.png"><br>上传文件<br><img src="https://img-blog.csdnimg.cn/5ac696623a90426ea59ece304d23dd33.png"><br>发现成功上传<br><img src="https://img-blog.csdnimg.cn/d8f9fc39391d459e8a2198d7a25ca120.png"><br>下载文件，成功下载<br><img src="https://img-blog.csdnimg.cn/c8b37eb3df9f4fe090f39e1dca644851.png"><br>实操时遇到的问题<br><img src="https://img-blog.csdnimg.cn/c1a4a05ae5ae4a50b04a773d649d098a.png"><br>解决方法：把selinux关掉(setenforce 0)</p>
+<p><img src="https://img-blog.csdnimg.cn/c714cb1393e04bd0beff266a6c10afea.png"><br>解决方法：</p>
+<p>先查看FTP状态命令:<br>service vsftpd status</p>
+<p>如果FTP未开启，需要开启FTP，开启FTP命令：<br>service vsftpd start</p>
+<p><img src="https://img-blog.csdnimg.cn/72792fa493f446b49d1d2ab1d8e8c1e9.png"></p>
+<p>解决方法：</p>
+<p>先查看该路径有没有该文件，如果有，则提权</p>
+<p>chmod 777 /2.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/8428e886fdd045d895e82937a0792a32.png"><br>解决方法：</p>
+<p>修改vsftpd.conf文件<br>local_enable=YES</p>
+<p>重启服务</p>
+<p>service vsftpd restart</p>
  
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/30/vi%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  <time datetime="2022-06-30T11:31:16.000Z" itemprop="datePublished">06/30</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/06/30/vi%E7%BC%96%E8%BE%91%E5%99%A8%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
-    >vi编辑器常用命令</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/30/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  <time datetime="2022-06-30T05:01:41.000Z" itemprop="datePublished">06/30</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/06/30/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
-    >linux常见命令</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/29/%E7%B2%98%E6%BB%9E%E9%94%AE%E5%90%8E%E9%97%A8%E6%BC%8F%E6%B4%9E/" class="archive-article-date">
-  <time datetime="2022-06-29T12:11:37.000Z" itemprop="datePublished">06/29</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/06/29/%E7%B2%98%E6%BB%9E%E9%94%AE%E5%90%8E%E9%97%A8%E6%BC%8F%E6%B4%9E/"
-    >粘滞键后台漏洞</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-  
-  </div>
-  </div>
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2021" class="archive-year">2021</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/12/13/html/" class="archive-article-date">
-  <time datetime="2021-12-13T11:36:20.000Z" itemprop="datePublished">12/13</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/12/13/html/"
-    >html</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/12/05/css/" class="archive-article-date">
-  <time datetime="2021-12-05T12:31:31.000Z" itemprop="datePublished">12/05</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/12/05/css/"
-    >css</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/11/23/kali%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5/" class="archive-article-date">
-  <time datetime="2021-11-23T13:38:24.000Z" itemprop="datePublished">11/23</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/11/23/kali%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5/"
-    >kali网络连接失败</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/11/23/xshell%E8%BF%9E%E6%8E%A5%E5%88%B0kali/" class="archive-article-date">
-  <time datetime="2021-11-23T12:53:52.000Z" itemprop="datePublished">11/23</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/11/23/xshell%E8%BF%9E%E6%8E%A5%E5%88%B0kali/"
-    >xshell连接到kali(桥接模式）</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/10/15/vulnhub--DC4/" class="archive-article-date">
-  <time datetime="2021-10-15T01:23:27.000Z" itemprop="datePublished">10/15</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/10/15/vulnhub--DC4/"
-    >vulnhub--DC4</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
+      <!-- reward -->
       
     </div>
-  </div>
-  
-  
-
-  
-  <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">下一页</a>
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/07/02/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">linux用户管理</div>
+      </a>
+    
   </nav>
-  
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -447,6 +393,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link

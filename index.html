@@ -155,6 +155,58 @@
     
     
     <article
+  id="post-kali登录ftp服务"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+     
+    <div class="article-meta">
+      <a href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/" class="article-date">
+  <time datetime="2022-07-11T10:13:13.707Z" itemprop="datePublished">2022-07-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>ftp服务器：centos7</p>
+<p>主机：kali</p>
+<p>登录ftp服务器</p>
+<p><img src="https://img-blog.csdnimg.cn/bae8ab4b7fac46fc962538455827a4d7.png"><br>ftp上传文件</p>
+<p>查看当前路径文件<br><img src="https://img-blog.csdnimg.cn/116d8c507bc84704b1c82587cd7c6bb4.png"><br>切换到该路径<br><img src="https://img-blog.csdnimg.cn/d1bce3cab1724792a78105b164647f00.png"><br>上传文件<br><img src="https://img-blog.csdnimg.cn/5ac696623a90426ea59ece304d23dd33.png"><br>发现成功上传<br><img src="https://img-blog.csdnimg.cn/d8f9fc39391d459e8a2198d7a25ca120.png"><br>下载文件，成功下载<br><img src="https://img-blog.csdnimg.cn/c8b37eb3df9f4fe090f39e1dca644851.png"><br>实操时遇到的问题<br><img src="https://img-blog.csdnimg.cn/c1a4a05ae5ae4a50b04a773d649d098a.png"><br>解决方法：把selinux关掉(setenforce 0)</p>
+<p><img src="https://img-blog.csdnimg.cn/c714cb1393e04bd0beff266a6c10afea.png"><br>解决方法：</p>
+<p>先查看FTP状态命令:<br>service vsftpd status</p>
+<p>如果FTP未开启，需要开启FTP，开启FTP命令：<br>service vsftpd start</p>
+<p><img src="https://img-blog.csdnimg.cn/72792fa493f446b49d1d2ab1d8e8c1e9.png"></p>
+<p>解决方法：</p>
+<p>先查看该路径有没有该文件，如果有，则提权</p>
+<p>chmod 777 /2.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/8428e886fdd045d895e82937a0792a32.png"><br>解决方法：</p>
+<p>修改vsftpd.conf文件<br>local_enable=YES</p>
+<p>重启服务</p>
+<p>service vsftpd restart</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-linux用户管理"
   class="article article-type-post"
   itemscope
@@ -1160,72 +1212,6 @@
 </blockquote>
 <p><img src="https://img-blog.csdnimg.cn/8c2d336b73b944b3a4f7a6d99810fa42.png">提权成功，在root目录找到flag</p>
 <p><img src="https://img-blog.csdnimg.cn/2c7822d2abba4ead974b0289b24158f4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-vulnhub--DC3"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/10/15/vulnhub--DC3/"
-    >vulnhub--DC3</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/10/15/vulnhub--DC3/" class="article-date">
-  <time datetime="2021-10-15T01:20:35.000Z" itemprop="datePublished">2021-10-15</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>老规矩，先arp扫存活主机</p>
-<p><img src="https://img-blog.csdnimg.cn/920797be2d274feca55d280cdcd21e02.png" alt="在这里插入图片描述"><br>发现80端口开放，进行访问</p>
-<p><img src="https://img-blog.csdnimg.cn/a39fed502e944abb8e283e1358b12d9e.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7396a3db08904135b8fd00580dfe50e4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>得知这次只有一个flag，我们只需要拿到root权限就能拿到flag<br>由于没有任何提示，我们先尝试用dirsearch扫描目录，发现readme.txt</p>
-<p><img src="https://img-blog.csdnimg.cn/0b1182928f234f10969229eaa29fffd0.png" alt="在这里插入图片描述"></p>
-<p>访问readme.txt，可以知道该网站cms为joomla</p>
-<p><img src="https://img-blog.csdnimg.cn/9b9a98bb8c824ee8ae66c7ba3b1d2a98.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
-<p>尝试用msf攻击</p>
-<p><img src="https://img-blog.csdnimg.cn/13026bbd593b4111be859451f2c4584c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>试了几个漏洞都没啥用，这时候看wp才知道要用searchspliot</p>
-<blockquote>
-<p>“searchsploit”是一个用于Exploit-DB的命令行搜索工具，可以帮助我们查找渗透模块。<br>Exploit-DB是一个漏洞库，Kali Linux中保存了一个该漏洞库的拷贝，利用上面提到的命令就可以查找需要的渗透模块，它将搜索所有的漏洞和shellcode而且该漏洞库是保存在本地的，在没有网络的情况下也可以使用。<br>基本搜索方法就是searchsploit+可能包含漏洞的软件/系统等等，对应回显存在的漏洞和用于渗透的脚本。</p>
-</blockquote>
-<p>先查看Joomla版本</p>
-<p><img src="https://img-blog.csdnimg.cn/5ae4124c7c084c8d8f4e6742c4dc9413.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>用searchspliot查询joomla该版本漏洞，发现sql注入漏洞</p>
-<p><img src="https://img-blog.csdnimg.cn/4b17531b808c4caf88250c004b163745.png" alt="在这里插入图片描述"><br>接下来就是用sqlmap跑库跑表</p>
-<p>sqlmap -u “url” –dbms mysql –dbs<br><img src="https://img-blog.csdnimg.cn/ebb06045ded24322ba62b63228ea4463.png" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joomladb –tables<br><img src="https://img-blog.csdnimg.cn/a1c0d10beef24cef98884d23f8e8bde3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joolmladb -T ‘#__users’ –columns </p>
-<p><img src="https://img-blog.csdnimg.cn/d97afa99859246c0a03cc1cee1a1b12c.png" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joomladb -T ‘#__users’ -C name,password –dump</p>
-<p>得到hash加密过的密码<br><img src="https://img-blog.csdnimg.cn/d0daaad8b0284f7c87f80af75ed3bba3.png" alt="在这里插入图片描述"><br>接下来用John破解密码<br>john the ripper是一款本地密码破解工具，可以从我们上面生成的shadow文件（密码散列）中破解出密码。破解时间取决于密码的复杂程度以及破解模式。</p>
-<p>破解得到admin的密码为snoopy<br>登录网站发现啥也没有，猜测网站应该有后台，重新用dirsearch扫描得到/administrator,访问登录成功</p>
-<p><img src="https://img-blog.csdnimg.cn/2a19c2e354a64b3bada973c8b1f401f5.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>在extensions中找到大量php文件，尝试创建一个新的php文件进行访问</p>
  
       <!-- reward -->
       
