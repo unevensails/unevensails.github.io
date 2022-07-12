@@ -155,6 +155,103 @@
     
     
     <article
+  id="post-css"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/12/05/css/"
+    >css</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/12/05/css/" class="article-date">
+  <time datetime="2021-12-05T12:31:31.000Z" itemprop="datePublished">2021-12-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="导入方式"><a href="#导入方式" class="headerlink" title="导入方式"></a>导入方式</h2><p>css三种导入方式：<u>行内模式，内部模式，外部模式</u></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--内部样式--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">        <span class="selector-tag">h1</span>&#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">color</span>:green;</span></span><br><span class="line"><span class="css">        &#125;</span></span><br><span class="line"><span class="css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--外部样式--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;main.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--优先级：就近原则--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--行内样式--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">style</span>=<span class="string">&quot;co&quot;</span>&gt;</span>这不是标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><blockquote>
+<p>作用：选择页面上的某一个或某一类元素</p>
+</blockquote>
+<h3 id="基础选择器"><a href="#基础选择器" class="headerlink" title="基础选择器"></a>基础选择器</h3><p><strong>标签选择器</strong>：会选择到页面上所有这个标签的元素</p>
+<p><strong>类选择器 class</strong>：选择所有class属性一致的标签</p>
+<p>格式：./类名{}</p>
+<p>好处：可以多个标签归类，是同一个class可以复用</p>
+<p><strong>id选择器</strong>：id必须保证全局唯一</p>
+<p>格式：#id{}</p>
+<p><strong>优先级</strong></p>
+<blockquote>
+<p>id&gt;class&gt;标签</p>
+</blockquote>
+<h3 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h3><p><strong>后代选择器</strong>：在某个元素后面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">body p&#123;</span><br><span class="line">    background:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>子选择器</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bady&gt;p&#123;</span><br><span class="line">    backgournd:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>相邻兄弟选择器</strong>：选择元素相邻的一个元素（向下）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.active + p&#123;</span><br><span class="line">    backgound:green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>通用选择器</strong>：当前选中元素向下的所有兄弟元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.active~p&#123;</span><br><span class="line">    backgroud:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="结构伪类选择器"><a href="#结构伪类选择器" class="headerlink" title="结构伪类选择器"></a>结构伪类选择器</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">    <span class="comment">/*ul的第一个元素*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:first</span>-child&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background</span>:red;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">    <span class="comment">/*ul的最后一个元素*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:first</span>-child&#123;</span></span><br><span class="line"><span class="css">        backgroud:blue;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">    <span class="comment">/*选择当前p元素的父级元素的第一个*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">p</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background</span>:yellow;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">    <span class="comment">/*选择父元素下的p元素的第二个*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">p</span>:<span class="built_in">nth-of-typr</span>(<span class="number">2</span>)&#123;</span></span><br><span class="line"><span class="css">        background:green;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><p>= 绝对等于</p>
+<p>*= 包含这个元素</p>
+<p>^= 以这个开头</p>
+<p>$= 以这个结尾</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">    <span class="comment">/*存在id属性的元素 a[]&#123;&#125;*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">a</span><span class="selector-attr">[id]</span>&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background</span>:yellow;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">    <span class="comment">/*id=first的元素*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">a</span><span class="selector-attr">[id=first]</span>&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background</span>:red;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">    <span class="comment">/*class中有links的元素*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">a</span><span class="selector-attr">[class*=<span class="string">&quot;links&quot;</span>]</span>&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background</span>:blue;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">    <span class="comment">/*选中href中以http开头的元素*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">a</span><span class="selector-attr">[href^=http]</span>&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background</span>:green;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css">    <span class="comment">/*选中href中pdf结尾的元素*/</span></span></span><br><span class="line"><span class="css">    <span class="selector-tag">a</span><span class="selector-attr">[href$=pdf]</span>&#123;</span></span><br><span class="line"><span class="css">        <span class="attribute">background</span>:cyan;</span></span><br><span class="line"><span class="css">    &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/" rel="tag">css</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-kali网络连接失败"
   class="article article-type-post"
   itemscope
@@ -827,76 +924,6 @@
 <blockquote>
 <p>id=1’^(length(‘union’)!=0)–+ 界面返回正常则说明 length(‘union’)!=0正确，即union被过滤</p>
 </blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-sql注入2--盲注"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/10/sql%E6%B3%A8%E5%85%A52--%E7%9B%B2%E6%B3%A8/"
-    >sql注入2--盲注</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/10/sql%E6%B3%A8%E5%85%A52--%E7%9B%B2%E6%B3%A8/" class="article-date">
-  <time datetime="2021-09-10T12:30:49.000Z" itemprop="datePublished">2021-09-10</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>布尔盲注</p>
-<blockquote>
-<p>盲注和普通注入不同，普通注入查询正确会有返回值，而盲注只判断对错</p>
-</blockquote>
-<p>时间盲注</p>
-<blockquote>
-<p>添加条件语句判断是否执行了延迟</p>
-</blockquote>
-<p>报错盲注</p>
-<blockquote>
-<p>构造报错payload让信息通过报错信息回显出来，在查询不回显信息时，会答应错误信息</p>
-</blockquote>
-<p>盲注常用函数</p>
-<blockquote>
-<p>Length（）函数 返回字符串的长度<br>Substr（）截取字符串<br>Ascii（）返回字符的ascii码<br>sleep(n)：将程序挂起一段时间 n为n秒<br>if(expr1,expr2,expr3):判断语句如果第一个语句正确就执行第二个语句，如果错误执行第三个语句</p>
-</blockquote>
-<p>参考文章:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/vincy99/p/9642956.html">https://www.cnblogs.com/vincy99/p/9642956.html</a></p>
  
       <!-- reward -->
       
