@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>http协议 |  unevensails&#39;s blog</title>
+      <title>MySQL |  unevensails&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-http协议"
+  id="post-MySQL"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  http协议
+  MySQL
 </h1>
  
 
@@ -73,11 +73,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/07/12/http%E5%8D%8F%E8%AE%AE/" class="article-date">
-  <time datetime="2022-07-12T11:44:50.000Z" itemprop="datePublished">2022-07-12</time>
+      <a href="/2022/07/13/MySQL/" class="article-date">
+  <time datetime="2022-07-13T12:27:00.000Z" itemprop="datePublished">2022-07-13</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/web/">web</a>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
   </div>
   
 <div class="word_count">
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">724</span>
+            <span class="post-count">423</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -109,51 +109,54 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h4 id="web服务"><a href="#web服务" class="headerlink" title="web服务"></a>web服务</h4><p>C/S模型(客户/服务器模型)</p>
-<h4 id="http——超文本传输协议"><a href="#http——超文本传输协议" class="headerlink" title="http——超文本传输协议"></a>http——超文本传输协议</h4><p>端口：80</p>
-<p>http允许传输任意类型的数据对象</p>
-<h5 id="无连接"><a href="#无连接" class="headerlink" title="无连接"></a>无连接</h5><p>限制每次连接只处理一个请求,处理完客户请求并收到客户的应答就断开连接</p>
-<h5 id="单向性"><a href="#单向性" class="headerlink" title="单向性"></a>单向性</h5><p>服务端永远被动等待客户端的请求</p>
-<h5 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h5><p>协议对事务处理没有记忆能力</p>
-<p>注：为了解决无状态，出现了cookie和session</p>
-<h4 id="uri-url-urn之间的区别"><a href="#uri-url-urn之间的区别" class="headerlink" title="uri,url,urn之间的区别"></a>uri,url,urn之间的区别</h4><h5 id="uri"><a href="#uri" class="headerlink" title="uri"></a>uri</h5><p>统一资源标识符</p>
-<p>纯粹的句式结构</p>
-<h5 id="url"><a href="#url" class="headerlink" title="url"></a>url</h5><p>统一资源定位符</p>
-<p>由传送协议，服务器(ip或者域名)，端口号，请求资源路径，传递数据五个元素</p>
-<h5 id="urn"><a href="#urn" class="headerlink" title="urn"></a>urn</h5><p>统一资源名称</p>
-<p>对比url，少了最前面的协议</p>
-<p>urn是uri的子集</p>
-<h4 id="http请求方式"><a href="#http请求方式" class="headerlink" title="http请求方式"></a>http请求方式</h4><p>post,get,head,put,delete,trace</p>
-<p>get只用于读取数据</p>
-<p>head和get方法一样，不过服务器不传回资源的文本部分</p>
-<p>post向指定资源提交数据</p>
-<p>put向指定资源位置上传内容<br>delete请求服务器删除request-rui所标识的资源</p>
-<h5 id="get和post的区别"><a href="#get和post的区别" class="headerlink" title="get和post的区别"></a>get和post的区别</h5><p>get请求只能进行url编码，post支持多种编码方式</p>
-<p>get请求参数会被保留在浏览器历史记录，post参数不会被保留</p>
-<p>get请求在url中传送的参数有长度限制，post没有</p>
-<p>get比post更不安全，但get速度比post快</p>
-<h4 id="http请求报文"><a href="#http请求报文" class="headerlink" title="http请求报文"></a>http请求报文</h4><p>HTTP 请求报文由3部分组成：请求行+请求头+请求体</p>
-<h5 id="常见的HTTP报文头属性"><a href="#常见的HTTP报文头属性" class="headerlink" title="常见的HTTP报文头属性"></a>常见的HTTP报文头属性</h5><p>请求方式</p>
-<p>host 目标主机地址和端口</p>
-<p>connection 维护客户端和服务端的连接关系</p>
-<p>content-length http消息内容的传输长度</p>
-<p>accept 发送端希望接受的数据类型</p>
-<p>content-type 请求实体文档类型</p>
-<p>referer 源地址</p>
-<p>cookie</p>
-<p>当客户端访问服务器的时候，服务器都会生成一份cookie传输给客户端，客户端会自动把cookie保存，以后客户端每次访问服务器，都会</p>
-<p>自动的携带这份cookie</p>
-<p>session比cookie安全，都是标识用户身份</p>
-<h4 id="http响应报文"><a href="#http响应报文" class="headerlink" title="http响应报文"></a>http响应报文</h4><p>响应报文与请求报文一样,由三个部分组成：响应行,响应头,响应体</p>
-<h5 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h5><p>200 OK 表示成功</p>
-<p>303 重定向,把你重定向到其他页面</p>
-<p>304 资源并未修改,可以直接使用本地的缓存</p>
-<p>404 找不到页面(页面被删除或其他)</p>
-<p>500 服务端错误</p>
-<h5 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h5><p>Cache-Control 响应输出到客户端后,服务端通过该属性告诉客户端该怎么控制响应内容的缓存</p>
-<p>ETag 表示你请求资源的版本,如果该资源发生了变化,那么这个属性也会跟着变</p>
-<p>Location 在重定向中或者创建新资源时使用</p>
-<p>Set-Cookie 服务端可以设置客户端的cookie</p>
+  <h3 id="MySQL通用语法"><a href="#MySQL通用语法" class="headerlink" title="MySQL通用语法"></a>MySQL通用语法</h3><p>SQL语句可以单行或者多行书写，以分号结尾<br>可以用缩进和空格来增加语句的可读性<br>MySQL的SQL语句不分大小写</p>
+<h3 id="MySQL常用的数据类型"><a href="#MySQL常用的数据类型" class="headerlink" title="MySQL常用的数据类型"></a>MySQL常用的数据类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>整型</td>
+</tr>
+<tr>
+<td>double</td>
+<td>浮点型</td>
+</tr>
+<tr>
+<td>varchar</td>
+<td>字符串型</td>
+</tr>
+<tr>
+<td>date</td>
+<td>日期类型</td>
+</tr>
+</tbody></table>
+<h3 id="对数据库的增删改查"><a href="#对数据库的增删改查" class="headerlink" title="对数据库的增删改查"></a>对数据库的增删改查</h3><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p><img src="https://img-blog.csdnimg.cn/9318bc51bd4c463abad786b44ced9e3d.png"></p>
+<h4 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h4><p><img src="https://img-blog.csdnimg.cn/b391ebfb108d49338272f2d635ca3843.png"></p>
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p><img src="https://img-blog.csdnimg.cn/70598e8191494857af74b4802fe02084.png"></p>
+<h4 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h4><p><img src="https://img-blog.csdnimg.cn/a44d10f266764951b6f544a47ea91d95.png"></p>
+<h4 id="查看正在使用的数据库"><a href="#查看正在使用的数据库" class="headerlink" title="查看正在使用的数据库"></a>查看正在使用的数据库</h4><p><img src="https://img-blog.csdnimg.cn/5a736007687d427fa41ecdac592d277c.png"></p>
+<h3 id="对数据表的增删改查"><a href="#对数据表的增删改查" class="headerlink" title="对数据表的增删改查"></a>对数据表的增删改查</h3><h4 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h4><p><img src="https://img-blog.csdnimg.cn/05a216c816484c1eb026d9fc8a936f48.png"></p>
+<h4 id="查看当前数据库中的所有表"><a href="#查看当前数据库中的所有表" class="headerlink" title="查看当前数据库中的所有表"></a>查看当前数据库中的所有表</h4><p><img src="https://img-blog.csdnimg.cn/9169bf392d4843859f75fef388d3f6eb.png"></p>
+<h4 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构<img src="https://img-blog.csdnimg.cn/389668b94da04c1b983eb03e764fcc5a.png"></h4><p><img src="https://img-blog.csdnimg.cn/073452b183da471a9b948f4f9c4a824c.png"></p>
+<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><p><img src="https://img-blog.csdnimg.cn/6663aa56ce994af8a166136abf5dfd4f.png"></p>
+<h4 id="修改表添加列"><a href="#修改表添加列" class="headerlink" title="修改表添加列"></a>修改表添加列</h4><p><img src="https://img-blog.csdnimg.cn/e83174d97fd64250923f50f26ce0d4c1.png"></p>
+<h4 id="数据表插入数据"><a href="#数据表插入数据" class="headerlink" title="数据表插入数据"></a>数据表插入数据</h4><p><img src="https://img-blog.csdnimg.cn/bb540666606d4c31a04a5b815acf38ef.png"></p>
+<h4 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h4><p><img src="https://img-blog.csdnimg.cn/42e4950a34a94ae0910cdb695c6e931d.png"></p>
+<h3 id="查询方法"><a href="#查询方法" class="headerlink" title="查询方法"></a>查询方法</h3><h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><p>最基础的查询语句就是由select和from组成<br><img src="https://img-blog.csdnimg.cn/e9193b856119464aacdd947dc51e897a.png"></p>
+<h5 id="字段别命名"><a href="#字段别命名" class="headerlink" title="字段别命名"></a>字段别命名</h5><p><img src="https://img-blog.csdnimg.cn/e7ee8832e641422ea7a539b254bfce8b.png"></p>
+<h5 id="where"><a href="#where" class="headerlink" title="where"></a>where</h5><p>用来判断数据,筛选数据（返回结果是1为true，0为false）<br><img src="https://img-blog.csdnimg.cn/313536d8738d48ebb8d33a8b61d90b58.png"></p>
+<h5 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h5><p>排序，根据某个字段进行升序或者降序排序(asc是升序,desc是降序)</p>
+<p><img src="https://img-blog.csdnimg.cn/522906873b7a4c4fa423a9f2d996d023.png"></p>
+<h5 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h5><p>limit子句是一种限制结果的语句，用来做数据分页的</p>
+<h6 id="限制长度"><a href="#限制长度" class="headerlink" title="限制长度"></a>限制长度</h6><p><img src="https://img-blog.csdnimg.cn/28dc8da294e245e0819cbaf5b873beba.png"></p>
+<h6 id="限制起始位置和长度-主要用来实现数据的分页"><a href="#限制起始位置和长度-主要用来实现数据的分页" class="headerlink" title="限制起始位置和长度(主要用来实现数据的分页)"></a>限制起始位置和长度(主要用来实现数据的分页)</h6><p>limit  起始位置,长度</p>
+<p><img src="https://img-blog.csdnimg.cn/336b37f525f14ecaae490920da756406.png"></p>
+<h5 id="select语句中各关键字的先后顺序"><a href="#select语句中各关键字的先后顺序" class="headerlink" title="select语句中各关键字的先后顺序"></a>select语句中各关键字的先后顺序</h5><p><u>from&gt;on&gt;join</u>(table部分——形成表)&gt;<u>where&gt;group by&gt;having + 聚合函数</u>(filter部分——过滤条件)&gt;<u>select&gt;distinct&gt;&gt;order by&gt;limit</u>(查询语句部分——展示)</p>
+<h4 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h4><p>去重，将查询出来重复结果去除<br><img src="https://img-blog.csdnimg.cn/98c449d46fe14fe884dbb1bcecf63f41.png"><br>注：distinct关键字只能写在select子句的第一个字段前面，否则报错，若有多个字段，则只有多个字段的值都相同的情况才会被认为是重复记录，distinct才会生效</p>
  
       <!-- reward -->
       
@@ -218,12 +221,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/07/12/http%E5%8D%8F%E8%AE%AE/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/07/13/MySQL/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL%E5%91%BD%E4%BB%A4/" rel="tag">MySQL命令</a></li></ul>
 
     </footer>
   </div>
@@ -231,19 +234,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/07/13/MySQL/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            MySQL
-          
-        </div>
-      </a>
     
-    
-      <a href="/2022/07/11/%E5%A4%8D%E7%8E%B0%E6%BC%8F%E6%B4%9E--msf%E7%AF%87/" class="article-nav-link">
+      <a href="/2022/07/12/http%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">复现漏洞--msf篇</div>
+        <div class="article-nav-title">http协议</div>
       </a>
     
   </nav>
