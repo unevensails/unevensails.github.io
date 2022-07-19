@@ -275,12 +275,6 @@
 <p>常用于if语句，使用方法和布尔盲注一样</p>
 <h5 id="如爆库长度"><a href="#如爆库长度" class="headerlink" title="如爆库长度"></a>如爆库长度</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(length(database())&gt;10,1,sleep(5))   //错误则浏览器沉睡5秒，正确则快速返回</span><br></pre></td></tr></table></figure>
 
-<h4 id="注释符失效"><a href="#注释符失效" class="headerlink" title="注释符失效"></a>注释符失效</h4><h5 id="使用-号失效"><a href="#使用-号失效" class="headerlink" title="使用#号失效"></a>使用#号失效</h5><p>​    有时发现执行的sql语句中没有#号</p>
-<p>​    原因是url中#号是用来指导浏览器动作的（例如锚点），对服务器端完全无用。</p>
-<p>​    所以，HTTP请求中不包括#</p>
-<p>​    将#号改成url的编码%23就可以了</p>
-<h5 id="使用–失效"><a href="#使用–失效" class="headerlink" title="使用–失效"></a>使用–失效</h5><p>​    使用– （有个空格），在传输过程中空格会被忽略，同样导致无法注释，所以在get请求传参注入时才会使用–+的方式来闭合，因为+会被解释成空格。</p>
-<p>​    在注入时我们除了使用–+外，也可以使用–’来完成sql注入语句</p>
 <h5 id="盲注常用函数"><a href="#盲注常用函数" class="headerlink" title="盲注常用函数"></a>盲注常用函数</h5><blockquote>
 <p>Length（）函数 返回字符串的长度<br>Substr（）截取字符串<br>Ascii（）返回字符的ascii码<br>sleep(n)：将程序挂起一段时间 n为n秒<br>if(expr1,expr2,expr3):判断语句如果第一个语句正确就执行第二个语句，如果错误执行第三个语句</p>
 </blockquote>
