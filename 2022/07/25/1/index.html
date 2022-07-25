@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>xss攻击 |  unevensails&#39;s blog</title>
+      <title>文件包含 |  unevensails&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-xss攻击"
+  id="post-1"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  xss攻击
+  文件包含
 </h1>
  
 
@@ -73,8 +73,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/09/14/xss%E6%94%BB%E5%87%BB/" class="article-date">
-  <time datetime="2021-09-14T12:35:56.000Z" itemprop="datePublished">2021-09-14</time>
+      <a href="/2022/07/25/1/" class="article-date">
+  <time datetime="2022-07-25T00:42:01.000Z" itemprop="datePublished">2022-07-25</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">349</span>
+            <span class="post-count">509</span>
         </span>
     </span>
 
@@ -109,26 +109,31 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>xss(跨站脚本攻击)</p>
-<blockquote>
-<p>xss是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要强调的是，xss不仅仅限于JavaScript，还包括flash等其他脚本语言。根据恶意代码是否存储在服务意识中，xss可以分为存储型的xss和反射型的xss。</p>
+  <h4 id="漏洞产生原因"><a href="#漏洞产生原因" class="headerlink" title="漏洞产生原因"></a>漏洞产生原因</h4><p>文件包含函数加载的参数没有经过过滤或者严格的定义，可以被用户控制，包含其他恶意文件，导致了执行了非预期的代码。</p>
+<h4 id="文件包含常用函数"><a href="#文件包含常用函数" class="headerlink" title="文件包含常用函数"></a>文件包含常用函数</h4><p>include():找不到被包含的文件时会产生致命错误，并停止脚本运行</p>
+<p>require():找不到被包含的错误时只会产生警告，脚本将继续运行</p>
+<p>include_once():与include()类似，唯一区别是如果该文件中的代码已经被包含，则不会再次包含</p>
+<p>require_once():与require()类似，唯一区别是如果该文件中的代码已经被包含，则不会再次包含</p>
+<h4 id="文件包含分类"><a href="#文件包含分类" class="headerlink" title="文件包含分类"></a>文件包含分类</h4><h5 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h5><p>本地文件包含就是通过浏览器包含web服务器上的文件，这种漏洞是因为浏览器包含文件时没有进行严格过滤允许遍历目录的字符注入浏览器并执行</p>
+<h5 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h5><p>如果PHP的配置选项allow_url_include、allow_url_fopen状态为ON的话，则include/require函数是可以加载远程文件的，这种漏洞被称为远程文件包含漏洞</p>
+<p>注：本地文件包含与远程文件包含有着相同的原理，但前者只能包含本地服务器上存在的文件，而后者可以包含远程服务器上的文件</p>
+<h4 id="常见的敏感信息路径"><a href="#常见的敏感信息路径" class="headerlink" title="常见的敏感信息路径"></a>常见的敏感信息路径</h4><h5 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h5><blockquote>
+<p>c:\boot.ini // 查看系统版本</p>
+<p>c:\windows\system32\inetsrv\MetaBase.xml // IIS配置文件</p>
+<p>c:\windows\repair\sam // 存储Windows系统初次安装的密码</p>
+<p>c:\ProgramFiles\mysql\my.ini // MySQL配置</p>
+<p>c:\ProgramFiles\mysql\data\mysql\user.MYD // MySQL root密码</p>
+<p>c:\windows\php.ini // php 配置信息</p>
 </blockquote>
-<h4 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h4><p>存储型，反射型，DOM型</p>
-<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p>存储型:常出现在信息修改添加等地方，导致恶意代码被存储在数据库中，每当被攻击者访问到后就会触发执行；<br>反射型：常出现在url中，一般需要攻击者提前构造好恶意链接，欺骗用户点击，触发攻击代码；<br>DOM型：攻击代码在url中，然后输出在了浏览器的DOM节点中。简单比较会发现，存储和反射都是经过服务器，而DOM是纯前端。<br>修复：对输入数据进行Html Encode 处理，白名单过滤，过滤JavaScript 事件的标签，开启http-only，装WAF等。</p>
-<h4 id="常用xss攻击方式"><a href="#常用xss攻击方式" class="headerlink" title="常用xss攻击方式"></a>常用xss攻击方式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(<span class="number">123</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>onerror事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">#</span> <span class="attr">onerror</span>=<span class="string">alert(123)</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>超链接事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">javascript:alert(123)</span>&gt;</span>baidu.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>鼠标移动事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">#</span> <span class="attr">onmouseover</span>=<span class="string">alert(123)</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
-
-<p> 鼠标点击事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">onclick</span>=<span class="string">alert(123)</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<h5 id="Linux-Unix系统"><a href="#Linux-Unix系统" class="headerlink" title="Linux/Unix系统"></a>Linux/Unix系统</h5><blockquote>
+<p>/etc/passwd // 账户信息</p>
+<p>/etc/shadow // 账户密码文件</p>
+<p>/usr/local/app/apache2/conf/httpd.conf // Apache2默认配置文件</p>
+<p>/usr/local/app/apache2/conf/extra/httpd-vhost.conf // 虚拟网站配置</p>
+<p>/usr/local/app/php5/lib/php.ini // PHP相关配置</p>
+<p>/etc/httpd/conf/httpd.conf // Apache配置文件</p>
+<p>/etc/my.conf // mysql 配置文件</p>
+</blockquote>
  
       <!-- reward -->
       
@@ -193,12 +198,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2021/09/14/xss%E6%94%BB%E5%87%BB/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/07/25/1/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xss%E6%94%BB%E5%87%BB/" rel="tag">xss攻击</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" rel="tag">文件包含</a></li></ul>
 
     </footer>
   </div>
@@ -206,19 +211,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/09/27/vulnhub--DC1/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            vulnhub--DC1
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/09/12/sql%E6%B3%A8%E5%85%A54--%E7%BB%95%E8%BF%87/" class="article-nav-link">
+      <a href="/2022/07/13/MySQL/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">sql注入4--绕过</div>
+        <div class="article-nav-title">MySQL</div>
       </a>
     
   </nav>

@@ -155,6 +155,91 @@
     
     
     <article
+  id="post-sql注入4--绕过"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/12/sql%E6%B3%A8%E5%85%A54--%E7%BB%95%E8%BF%87/"
+    >sql注入4--绕过</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/12/sql%E6%B3%A8%E5%85%A54--%E7%BB%95%E8%BF%87/" class="article-date">
+  <time datetime="2021-09-12T12:18:34.000Z" itemprop="datePublished">2021-09-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>注释符绕过</p>
+<blockquote>
+<p>单行注释：–+或–空格或#<br>多行注释：/ *多行注释内容 */</p>
+</blockquote>
+<p>大小写绕过</p>
+<blockquote>
+<p>常用于正则对大小写不敏感</p>
+</blockquote>
+<p>双写绕过</p>
+<blockquote>
+<p>在某些简单的waf中，select等只用replace()函数置换为空，这时可以用双写关键字绕过</p>
+</blockquote>
+<p>内联注释绕过</p>
+<blockquote>
+<p>内联注释就是把一些特有的仅在MYSQL上的语句放在/*!… */中，这样这些语句如果在其它数据库中是不会被执行，但在MYSQL中会执行。</p>
+</blockquote>
+<p>特殊编码绕过</p>
+<blockquote>
+<p>十六进制绕过<br>ascii绕过</p>
+</blockquote>
+<p>空格绕过</p>
+<blockquote>
+<p>注释符绕过空格：/**/<br>括号绕过空格：在MySQL中，括号是用来包围子查询的。因此，任何可以计算出结果的语句，都可以用括号包围起来。而括号的两端，可以没有多余的空格。(例：select(user())fromdual where(1=1)and(2=2))</p>
+</blockquote>
+<p>or and xor not绕过</p>
+<blockquote>
+<p>or = ||<br>and = &amp;&amp;<br>xor = |  #异或<br>not = !</p>
+</blockquote>
+<p>等于号绕过</p>
+<blockquote>
+<p>不加上通配符的like可以取代等于号<br>&lt;&gt;等价于!=,因此在前面再加一个!就相当于=</p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-sql注入3--异或"
   class="article article-type-post"
   itemscope

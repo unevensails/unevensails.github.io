@@ -155,6 +155,89 @@
     
     
     <article
+  id="post-粘滞键后门漏洞"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/06/29/%E7%B2%98%E6%BB%9E%E9%94%AE%E5%90%8E%E9%97%A8%E6%BC%8F%E6%B4%9E/"
+    >粘滞键后台漏洞</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/06/29/%E7%B2%98%E6%BB%9E%E9%94%AE%E5%90%8E%E9%97%A8%E6%BC%8F%E6%B4%9E/" class="article-date">
+  <time datetime="2022-06-29T12:11:37.000Z" itemprop="datePublished">2022-06-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E6%B8%97%E9%80%8F/">web渗透</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>前提：按5次shift键可以弹出粘滞键<br>开机过程中强制关机再重启，进入错误恢复界面</p>
+<p><img src="https://img-blog.csdnimg.cn/6b28d7243c1f4a7bb1e42385bc86c7e8.png"></p>
+<p>回车进入启动恢复界面，选项点击取消</p>
+<p><img src="https://img-blog.csdnimg.cn/9aab1853dbc54540ae835cecb4714af9.png"></p>
+<p>点击显示问题详细信息，拉到最下面点击那个txt文件</p>
+<p><img src="https://img-blog.csdnimg.cn/e1c2aee9b13347349681adbe2e730ed0.png"></p>
+<p>进入文件点击打开，在system32中找到sethc，cmd</p>
+<p><img src="https://img-blog.csdnimg.cn/52b34502cd854298beff98078d1c4872.png"></p>
+<p>做个备份，再将sethc删除</p>
+<p><img src="https://img-blog.csdnimg.cn/a3cab651359d4b5ba1ba84c67f9d42e9.png"></p>
+<p>将cmd也备份</p>
+<p><img src="https://img-blog.csdnimg.cn/7f56f175f137493aa4d1366f715bef5c.png"></p>
+<p>将cmd备份重命名为sethc</p>
+<p><img src="https://img-blog.csdnimg.cn/464ba98bfebe429eafb9fe171cbe730e.png"></p>
+<p>点击取消后回到启动恢复界面，点击完成，发现关机了</p>
+<p><img src="https://img-blog.csdnimg.cn/d3ba535be3f74a518edc4f9b96219f08.png"></p>
+<p>开机在登录界面按五次shift键，成功进入cmd</p>
+<p><img src="https://img-blog.csdnimg.cn/e68de0389d1e4179b3481cefa1fdeb04.png"></p>
+<p>创建新用户</p>
+<p><img src="https://img-blog.csdnimg.cn/374e296fcbb04519b8a1df17588477bd.png"></p>
+<p>更改用户名密码</p>
+<p><img src="https://img-blog.csdnimg.cn/548e8c92e20d41e1afa0feab354f9d3c.png"></p>
+<p>重新登录，输入修改过的密码后成功登录</p>
+<p><img src="https://img-blog.csdnimg.cn/fa3565c4f5234443a9e7ae14fcca5aa8.png"><img src="https://img-blog.csdnimg.cn/ff854f04960d4e7ebb785b1be8068645.png"></p>
+<p>接来下抹除痕迹，登录新注册的账户，将sethc删除</p>
+<p><img src="https://img-blog.csdnimg.cn/1902a86d612349f594eb3536a51ea8c8.png"></p>
+<p>回到原账户，将新账户删除，并将密码改回来</p>
+<p><img src="https://img-blog.csdnimg.cn/635d9dbe2db44422adef87bfec488dd9.png"><img src="https://img-blog.csdnimg.cn/e2039798dd2f492d941b3ef314ad07a5.png"></p>
+<p>重启</p>
+<p><img src="https://img-blog.csdnimg.cn/780e3300d02f48c992f167987cbb9bfe.png"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/win7/" rel="tag">win7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-html"
   class="article article-type-post"
   itemscope
@@ -847,14 +930,22 @@
 <blockquote>
 <p>xss是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要强调的是，xss不仅仅限于JavaScript，还包括flash等其他脚本语言。根据恶意代码是否存储在服务意识中，xss可以分为存储型的xss和反射型的xss。</p>
 </blockquote>
-<blockquote>
-<p>反射型(非持久):主要用于将恶意代码附加到URL地址的参数中，常用于盗取客户端cookie信息和钓鱼欺骗。</p>
-<p>储存型(持久型):攻击者将恶意代码注入到web服务器中并保存起来，只要客户端访问了相应的页面就会受到攻击。</p>
-</blockquote>
-<p>常见的xss攻击方法</p>
-<blockquote>
-<p>普通的XSS JavaScript注入<br>&lt; SCRIPT SRC=<a target="_blank" rel="noopener" href="http://www.org/XSS/xss.js&gt;">http://www.org/XSS/xss.js&gt;</a>&lt; SCRIPT&gt;<br>IMG标签XSS使用JavaScript命令<br>&lt; LMG SRC=<a target="_blank" rel="noopener" href="http://3w.org/XSS/xss.js/&gt;">http://3w.org/XSS/xss.js/&gt;</a><br>LMG无分号无引号<br>&lt;IMG SRC=javascript:alert(‘XSS’)&gt;<br>HTML编码(必须有分号) &lt;IMG<br>SRC=javascript:alert(“XSS”)&gt;</p>
-</blockquote>
+<h4 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h4><p>存储型，反射型，DOM型</p>
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p>存储型:常出现在信息修改添加等地方，导致恶意代码被存储在数据库中，每当被攻击者访问到后就会触发执行；<br>反射型：常出现在url中，一般需要攻击者提前构造好恶意链接，欺骗用户点击，触发攻击代码；<br>DOM型：攻击代码在url中，然后输出在了浏览器的DOM节点中。简单比较会发现，存储和反射都是经过服务器，而DOM是纯前端。<br>修复：对输入数据进行Html Encode 处理，白名单过滤，过滤JavaScript 事件的标签，开启http-only，装WAF等。</p>
+<h4 id="常用xss攻击方式"><a href="#常用xss攻击方式" class="headerlink" title="常用xss攻击方式"></a>常用xss攻击方式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(<span class="number">123</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>onerror事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">#</span> <span class="attr">onerror</span>=<span class="string">alert(123)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>超链接事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">javascript:alert(123)</span>&gt;</span>baidu.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>鼠标移动事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">#</span> <span class="attr">onmouseover</span>=<span class="string">alert(123)</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p> 鼠标点击事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">onclick</span>=<span class="string">alert(123)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
@@ -866,91 +957,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xss%E6%94%BB%E5%87%BB/" rel="tag">xss攻击</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-sql注入4--绕过"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/12/sql%E6%B3%A8%E5%85%A54--%E7%BB%95%E8%BF%87/"
-    >sql注入4--绕过</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/12/sql%E6%B3%A8%E5%85%A54--%E7%BB%95%E8%BF%87/" class="article-date">
-  <time datetime="2021-09-12T12:18:34.000Z" itemprop="datePublished">2021-09-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>注释符绕过</p>
-<blockquote>
-<p>单行注释：–+或–空格或#<br>多行注释：/ *多行注释内容 */</p>
-</blockquote>
-<p>大小写绕过</p>
-<blockquote>
-<p>常用于正则对大小写不敏感</p>
-</blockquote>
-<p>双写绕过</p>
-<blockquote>
-<p>在某些简单的waf中，select等只用replace()函数置换为空，这时可以用双写关键字绕过</p>
-</blockquote>
-<p>内联注释绕过</p>
-<blockquote>
-<p>内联注释就是把一些特有的仅在MYSQL上的语句放在/*!… */中，这样这些语句如果在其它数据库中是不会被执行，但在MYSQL中会执行。</p>
-</blockquote>
-<p>特殊编码绕过</p>
-<blockquote>
-<p>十六进制绕过<br>ascii绕过</p>
-</blockquote>
-<p>空格绕过</p>
-<blockquote>
-<p>注释符绕过空格：/**/<br>括号绕过空格：在MySQL中，括号是用来包围子查询的。因此，任何可以计算出结果的语句，都可以用括号包围起来。而括号的两端，可以没有多余的空格。(例：select(user())fromdual where(1=1)and(2=2))</p>
-</blockquote>
-<p>or and xor not绕过</p>
-<blockquote>
-<p>or = ||<br>and = &amp;&amp;<br>xor = |  #异或<br>not = !</p>
-</blockquote>
-<p>等于号绕过</p>
-<blockquote>
-<p>不加上通配符的like可以取代等于号<br>&lt;&gt;等价于!=,因此在前面再加一个!就相当于=</p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
 
     </footer>
   </div>
