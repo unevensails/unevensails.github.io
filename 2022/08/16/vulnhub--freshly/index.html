@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Archives: 2022 |  unevensails&#39;s blog</title>
+      <title>vulnhub--freshly |  unevensails&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -53,246 +53,235 @@
       
     <main class="content on">
       <section class="outer">
-  
-  
-  <article class="articles">
+  <article
+  id="post-vulnhub--freshly"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">2022</h1>
-    
-    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  vulnhub--freshly
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/08/16/vulnhub--freshly/" class="article-date">
+  <time datetime="2022-08-16T00:46:52.000Z" itemprop="datePublished">2022-08-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vulnhub/">vulnhub</a>
+  </div>
   
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2022" class="archive-year">2022</a>
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">345</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
-    <div class="archives">
       
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/16/vulnhub--freshly/" class="archive-article-date">
-  <time datetime="2022-08-16T00:46:52.000Z" itemprop="datePublished">08/16</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/08/16/vulnhub--freshly/"
-    >vulnhub--freshly</a> 
-</h2>
- 
 
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/03/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="archive-article-date">
-  <time datetime="2022-08-03T00:35:29.000Z" itemprop="datePublished">08/03</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/08/03/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"
-    >文件上传</a> 
-</h2>
- 
 
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/25/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="archive-article-date">
-  <time datetime="2022-07-25T00:42:01.000Z" itemprop="datePublished">07/25</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/25/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"
-    >文件包含</a> 
-</h2>
- 
 
-    </header>
-    
-    
-  </div>
-</article>
-      
   
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/13/MySQL/" class="archive-article-date">
-  <time datetime="2022-07-13T12:27:00.000Z" itemprop="datePublished">07/13</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/13/MySQL/"
-    >MySQL</a> 
-</h2>
+  <p>老规矩先arp扫存活主机</p>
+<p><img src="https://image.3001.net/images/20220815/1660552444_62fa04fcadbf723a4f6ea.png!small" alt="1660552444_62fa04fcadbf723a4f6ea.png!small"></p>
+<p>nmap扫端口</p>
+<p><img src="https://image.3001.net/images/20220815/1660552454_62fa05063c836fdf57316.png!small" alt="1660552454_62fa05063c836fdf57316.png!small"><br>可以看到该网站开放了80,443,8080端口，尝试访问80和8080端口</p>
+<p><img src="https://image.3001.net/images/20220815/1660552480_62fa05205a472489c8d98.png!small" alt="1660552480_62fa05205a472489c8d98.png!small"><br>80端口是一张图片，好像没啥用</p>
+<p><img src="https://image.3001.net/images/20220815/1660552505_62fa0539a3bead1963f13.png!small" alt="1660552505_62fa0539a3bead1963f13.png!small"><br>8080端口则是一个链接，点进去发现是一个wordpress网站<br>没看出啥，尝试扫目录</p>
+<p><img src="https://image.3001.net/images/20220815/1660554333_62fa0c5d5e38036c0e01a.png!small" alt="1660554333_62fa0c5d5e38036c0e01a.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660554408_62fa0ca8291e52a8f44d0.png!small" alt="1660554408_62fa0ca8291e52a8f44d0.png!small"></p>
+<p>发现wordpress后台，尝试爆破，没成功，试试御剑再扫</p>
+<p><img src="https://image.3001.net/images/20220815/1660553051_62fa075b5fb64c331b626.png!small" alt="1660553051_62fa075b5fb64c331b626.png!small"></p>
+<p>发现几个熟悉的目录，先看看/login.php</p>
+<p><img src="https://image.3001.net/images/20220815/1660553131_62fa07ab40334adcfad5c.png!small" alt="1660553131_62fa07ab40334adcfad5c.png!small"></p>
+<p>一个登录页面，任意输入,发现只会返回0，尝试万能密码1’ or 1=1#,发现返回1</p>
+<p><img src="https://image.3001.net/images/20220815/1660553269_62fa0835430fcd2138e93.png!small" alt="1660553269_62fa0835430fcd2138e93.png!small"></p>
+<p>由此可得存在post型sql注入，bp抓包保存为sql.txt文件，丢sqlmap里跑</p>
+<p>爆库：sqlmap -r sql.txt -dbs –batch</p>
+<p><img src="https://image.3001.net/images/20220815/1660553446_62fa08e6e1272deab9ab0.png!small" alt="1660553446_62fa08e6e1272deab9ab0.png!small"></p>
+<p>爆users表的时候发现users里面是空的，尝试爆login表</p>
+<p>爆表：python sqlmap.py -r sql.txt -D login -tables –batch</p>
+<p><img src="https://image.3001.net/images/20220815/1660553543_62fa0947a8d01579e7667.png!small" alt="1660553543_62fa0947a8d01579e7667.png!small"></p>
+<p>梭哈 python sqlmap.py -r sql.txt -D login -T users -dump –batch</p>
+<p><img src="https://image.3001.net/images/20220815/1660553698_62fa09e2592bbe9f671d8.png!small" alt="1660553698_62fa09e2592bbe9f671d8.png!small"></p>
+<p>到处尝试了一下账号密码，好像还是没啥用。。。</p>
+<p>接着看其他的库，最后在wordpress8080库里面找到了后台密码</p>
+<p><img src="https://image.3001.net/images/20220815/1660554047_62fa0b3fd7146f08cf84c.png!small" alt="1660554047_62fa0b3fd7146f08cf84c.png!small"></p>
+<p>成功登录后台</p>
+<p><img src="https://image.3001.net/images/20220815/1660554531_62fa0d2334db25d9b5def.png!small" alt="1660554531_62fa0d2334db25d9b5def.png!small"></p>
+<p>接下来就尝试寻找漏洞拿shell了</p>
+<p>用msfvenom生成反弹shell的木马</p>
+<p><img src="https://image.3001.net/images/20220815/1660554837_62fa0e554c7da21f2103a.png!small" alt="1660554837_62fa0e554c7da21f2103a.png!small"></p>
+<p>将木马写入404 template</p>
+<p><img src="https://image.3001.net/images/20220815/1660554974_62fa0ede612da52f52fe7.png!small" alt="1660554974_62fa0ede612da52f52fe7.png!small"></p>
+<p>msf反弹shell</p>
+<p>访问<a target="_blank" rel="noopener" href="http://192.168.56.104:8080/wordpress/wp-content/themes/twentythirteen/404.php%EF%BC%8C%E6%88%90%E5%8A%9F%E5%8F%8D%E5%BC%B9shell">http://192.168.56.104:8080/wordpress/wp-content/themes/twentythirteen/404.php，成功反弹shell</a></p>
+<p><img src="https://image.3001.net/images/20220815/1660555193_62fa0fb95b349cc810748.png!small" alt="1660555193_62fa0fb95b349cc810748.png!small"></p>
+<p>接着就是提权，尝试su root，发现居然可以直接切换，密码则是wordpress的后台密码</p>
+<p><img src="https://image.3001.net/images/20220815/1660555400_62fa10880c6ed827b5eb5.png!small" alt="1660555400_62fa10880c6ed827b5eb5.png!small"></p>
  
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/12/http%E5%8D%8F%E8%AE%AE/" class="archive-article-date">
-  <time datetime="2022-07-12T11:44:50.000Z" itemprop="datePublished">07/12</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/12/http%E5%8D%8F%E8%AE%AE/"
-    >http协议</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/%E5%A4%8D%E7%8E%B0%E6%BC%8F%E6%B4%9E--msf%E7%AF%87/" class="archive-article-date">
-  <time datetime="2022-07-11T11:04:12.000Z" itemprop="datePublished">07/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/11/%E5%A4%8D%E7%8E%B0%E6%BC%8F%E6%B4%9E--msf%E7%AF%87/"
-    >复现漏洞--msf篇</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/kali%E5%AE%9E%E7%8E%B0%E5%B1%80%E5%9F%9F%E7%BD%91arp%E6%AC%BA%E9%AA%97/" class="archive-article-date">
-  <time datetime="2022-07-11T10:57:03.000Z" itemprop="datePublished">07/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/11/kali%E5%AE%9E%E7%8E%B0%E5%B1%80%E5%9F%9F%E7%BD%91arp%E6%AC%BA%E9%AA%97/"
-    >kali实现局域网arp欺骗</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/" class="archive-article-date">
-  <time datetime="2022-07-11T10:42:03.000Z" itemprop="datePublished">07/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/11/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"
-    >ssh远程登录</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/" class="archive-article-date">
-  <time datetime="2022-07-11T10:31:36.000Z" itemprop="datePublished">07/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/"
-    >kali登录ftp服务</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/02/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="archive-article-date">
-  <time datetime="2022-07-02T05:59:01.000Z" itemprop="datePublished">07/02</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/02/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
-    >linux用户管理</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
+      <!-- reward -->
       
     </div>
-  </div>
-  
-  
-
-  
-  <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2022/page/2/">2</a><a class="extend next" rel="next" href="/archives/2022/page/2/">下一页</a>
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/08/16/vulnhub--freshly/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" rel="tag">内网渗透</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/08/03/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">文件上传</div>
+      </a>
+    
   </nav>
-  
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -441,6 +430,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link
