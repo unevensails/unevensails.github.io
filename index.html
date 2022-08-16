@@ -187,42 +187,42 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p>老规矩先arp扫存活主机</p>
-<p><img src="https://image.3001.net/images/20220815/1660552444_62fa04fcadbf723a4f6ea.png!small" alt="1660552444_62fa04fcadbf723a4f6ea.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660552444_62fa04fcadbf723a4f6ea.png!small"></p>
 <p>nmap扫端口</p>
-<p><img src="https://image.3001.net/images/20220815/1660552454_62fa05063c836fdf57316.png!small" alt="1660552454_62fa05063c836fdf57316.png!small"><br>可以看到该网站开放了80,443,8080端口，尝试访问80和8080端口</p>
-<p><img src="https://image.3001.net/images/20220815/1660552480_62fa05205a472489c8d98.png!small" alt="1660552480_62fa05205a472489c8d98.png!small"><br>80端口是一张图片，好像没啥用</p>
-<p><img src="https://image.3001.net/images/20220815/1660552505_62fa0539a3bead1963f13.png!small" alt="1660552505_62fa0539a3bead1963f13.png!small"><br>8080端口则是一个链接，点进去发现是一个wordpress网站<br>没看出啥，尝试扫目录</p>
-<p><img src="https://image.3001.net/images/20220815/1660554333_62fa0c5d5e38036c0e01a.png!small" alt="1660554333_62fa0c5d5e38036c0e01a.png!small"></p>
-<p><img src="https://image.3001.net/images/20220815/1660554408_62fa0ca8291e52a8f44d0.png!small" alt="1660554408_62fa0ca8291e52a8f44d0.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660552454_62fa05063c836fdf57316.png!small"><br>可以看到该网站开放了80,443,8080端口，尝试访问80和8080端口</p>
+<p><img src="https://image.3001.net/images/20220815/1660552480_62fa05205a472489c8d98.png!small"><br>80端口是一张图片，好像没啥用</p>
+<p><img src="https://image.3001.net/images/20220815/1660552505_62fa0539a3bead1963f13.png!small"><br>8080端口则是一个链接，点进去发现是一个wordpress网站<br>没看出啥，尝试扫目录</p>
+<p><img src="https://image.3001.net/images/20220815/1660554333_62fa0c5d5e38036c0e01a.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660554408_62fa0ca8291e52a8f44d0.png!small"></p>
 <p>发现wordpress后台，尝试爆破，没成功，试试御剑再扫</p>
-<p><img src="https://image.3001.net/images/20220815/1660553051_62fa075b5fb64c331b626.png!small" alt="1660553051_62fa075b5fb64c331b626.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660553051_62fa075b5fb64c331b626.png!small"></p>
 <p>发现几个熟悉的目录，先看看/login.php</p>
-<p><img src="https://image.3001.net/images/20220815/1660553131_62fa07ab40334adcfad5c.png!small" alt="1660553131_62fa07ab40334adcfad5c.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660553131_62fa07ab40334adcfad5c.png!small"></p>
 <p>一个登录页面，任意输入,发现只会返回0，尝试万能密码1’ or 1=1#,发现返回1</p>
-<p><img src="https://image.3001.net/images/20220815/1660553269_62fa0835430fcd2138e93.png!small" alt="1660553269_62fa0835430fcd2138e93.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660553269_62fa0835430fcd2138e93.png!small"></p>
 <p>由此可得存在post型sql注入，bp抓包保存为sql.txt文件，丢sqlmap里跑</p>
 <p>爆库：sqlmap -r sql.txt -dbs –batch</p>
-<p><img src="https://image.3001.net/images/20220815/1660553446_62fa08e6e1272deab9ab0.png!small" alt="1660553446_62fa08e6e1272deab9ab0.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660553446_62fa08e6e1272deab9ab0.png!small"></p>
 <p>爆users表的时候发现users里面是空的，尝试爆login表</p>
 <p>爆表：python sqlmap.py -r sql.txt -D login -tables –batch</p>
-<p><img src="https://image.3001.net/images/20220815/1660553543_62fa0947a8d01579e7667.png!small" alt="1660553543_62fa0947a8d01579e7667.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660553543_62fa0947a8d01579e7667.png!small"></p>
 <p>梭哈 python sqlmap.py -r sql.txt -D login -T users -dump –batch</p>
-<p><img src="https://image.3001.net/images/20220815/1660553698_62fa09e2592bbe9f671d8.png!small" alt="1660553698_62fa09e2592bbe9f671d8.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660553698_62fa09e2592bbe9f671d8.png!small"></p>
 <p>到处尝试了一下账号密码，好像还是没啥用。。。</p>
 <p>接着看其他的库，最后在wordpress8080库里面找到了后台密码</p>
-<p><img src="https://image.3001.net/images/20220815/1660554047_62fa0b3fd7146f08cf84c.png!small" alt="1660554047_62fa0b3fd7146f08cf84c.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660554047_62fa0b3fd7146f08cf84c.png!small"></p>
 <p>成功登录后台</p>
-<p><img src="https://image.3001.net/images/20220815/1660554531_62fa0d2334db25d9b5def.png!small" alt="1660554531_62fa0d2334db25d9b5def.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660554531_62fa0d2334db25d9b5def.png!small"></p>
 <p>接下来就尝试寻找漏洞拿shell了</p>
 <p>用msfvenom生成反弹shell的木马</p>
-<p><img src="https://image.3001.net/images/20220815/1660554837_62fa0e554c7da21f2103a.png!small" alt="1660554837_62fa0e554c7da21f2103a.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660554837_62fa0e554c7da21f2103a.png!small"></p>
 <p>将木马写入404 template</p>
-<p><img src="https://image.3001.net/images/20220815/1660554974_62fa0ede612da52f52fe7.png!small" alt="1660554974_62fa0ede612da52f52fe7.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660554974_62fa0ede612da52f52fe7.png!small"></p>
 <p>msf反弹shell</p>
 <p>访问<a target="_blank" rel="noopener" href="http://192.168.56.104:8080/wordpress/wp-content/themes/twentythirteen/404.php%EF%BC%8C%E6%88%90%E5%8A%9F%E5%8F%8D%E5%BC%B9shell">http://192.168.56.104:8080/wordpress/wp-content/themes/twentythirteen/404.php，成功反弹shell</a></p>
-<p><img src="https://image.3001.net/images/20220815/1660555193_62fa0fb95b349cc810748.png!small" alt="1660555193_62fa0fb95b349cc810748.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660555193_62fa0fb95b349cc810748.png!small"></p>
 <p>接着就是提权，尝试su root，发现居然可以直接切换，密码则是wordpress的后台密码</p>
-<p><img src="https://image.3001.net/images/20220815/1660555400_62fa10880c6ed827b5eb5.png!small" alt="1660555400_62fa10880c6ed827b5eb5.png!small"></p>
+<p><img src="https://image.3001.net/images/20220815/1660555400_62fa10880c6ed827b5eb5.png!small"></p>
  
       <!-- reward -->
       
