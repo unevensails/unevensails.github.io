@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Tag: kali |  unevensails&#39;s blog</title>
+      <title>msf联动cs |  unevensails&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -53,217 +53,199 @@
       
     <main class="content on">
       <section class="outer">
-  
-  
-  <article class="articles">
+  <article
+  id="post-msf联动cs"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">#&nbspkali</h1>
-    
-    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  msf联动cs
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/08/26/msf%E8%81%94%E5%8A%A8cs/" class="article-date">
+  <time datetime="2022-08-26T12:11:36.000Z" itemprop="datePublished">2022-08-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kali%E6%B8%97%E9%80%8F/">kali渗透</a>
+  </div>
   
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2022" class="archive-year">2022</a>
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">152</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
-    <div class="archives">
       
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/26/msf%E8%81%94%E5%8A%A8cs/" class="archive-article-date">
-  <time datetime="2022-08-26T12:11:36.000Z" itemprop="datePublished">08/26</time>
-</a>
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/08/26/msf%E8%81%94%E5%8A%A8cs/"
-    >msf联动cs</a> 
-</h2>
+  <p>环境：win7，kali<br>ip:192.168.168.129(win7)，192.168.43.191(kali)<br>先用msfvenom生成后门<br><img src="https://image.3001.net/images/20220826/1661513829_6308b0651daa0ea6efe7b.png!small"><br>启动metaspliot<br><img src="https://image.3001.net/images/20220826/1661513950_6308b0de3955a2884f989.png!small"><br>metaspliot设置侦听<br><img src="https://image.3001.net/images/20220826/1661514105_6308b179d4094e2fa0d07.png!small"><br>将木马传至win7，双击运行<br><img src="https://image.3001.net/images/20220826/1661514225_6308b1f1ef65e265d0832.png!small"><br>成功拿到shell<br><img src="https://image.3001.net/images/20220826/1661514342_6308b266f0d940070a71c.png!small"><br>接下来就是上线cs了<br>先在服务端kali开启cs服务<br><img src="https://image.3001.net/images/20220826/1661514562_6308b342e967f9e292213.png!small"><br>在win7打开cs的exe文件，输入服务端ip，端口，用户名，密码，点击连接<br><img src="https://image.3001.net/images/20220826/1661514674_6308b3b2a7478e1100c1e.png!small"><br>成功登录cs<br><img src="https://image.3001.net/images/20220826/1661514808_6308b438a9ed09905db1c.png!small"><br>接下来生成监听器，点击左上角的cobalt strike，选择listen<br><img src="https://image.3001.net/images/20220826/1661514915_6308b4a30e8e259bf0ada.png!small"><br>生成木马，点击左上角的attacks，选择packages-&gt;windows executable<br><img src="https://image.3001.net/images/20220826/1661515057_6308b53140d8d0f5517c4.png!small"><br>选择监听器<br><img src="https://image.3001.net/images/20220826/1661515201_6308b5c1a2bd42d24e59b.png!small"><br>选择木马生成位置<br><img src="https://image.3001.net/images/20220826/1661515264_6308b60043c4292e299de.png!small"><br>将木马传到靶机，双击运行，发现成功上线<br><img src="https://image.3001.net/images/20220826/1661515446_6308b6b65f2b15ffb4f88.png!small"><br><img src="https://image.3001.net/images/20220826/1661515635_6308b7731cdeb6fbf8ba7.png!small"></p>
  
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/%E5%A4%8D%E7%8E%B0%E6%BC%8F%E6%B4%9E--msf%E7%AF%87/" class="archive-article-date">
-  <time datetime="2022-07-11T11:04:12.000Z" itemprop="datePublished">07/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/11/%E5%A4%8D%E7%8E%B0%E6%BC%8F%E6%B4%9E--msf%E7%AF%87/"
-    >复现漏洞--msf篇</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/kali%E5%AE%9E%E7%8E%B0%E5%B1%80%E5%9F%9F%E7%BD%91arp%E6%AC%BA%E9%AA%97/" class="archive-article-date">
-  <time datetime="2022-07-11T10:57:03.000Z" itemprop="datePublished">07/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/11/kali%E5%AE%9E%E7%8E%B0%E5%B1%80%E5%9F%9F%E7%BD%91arp%E6%AC%BA%E9%AA%97/"
-    >kali实现局域网arp欺骗</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/" class="archive-article-date">
-  <time datetime="2022-07-11T10:42:03.000Z" itemprop="datePublished">07/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/11/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/"
-    >ssh远程登录</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/" class="archive-article-date">
-  <time datetime="2022-07-11T10:31:36.000Z" itemprop="datePublished">07/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/"
-    >kali登录ftp服务</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-  
-  </div>
-  </div>
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2021" class="archive-year">2021</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/11/23/kali%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5/" class="archive-article-date">
-  <time datetime="2021-11-23T13:38:24.000Z" itemprop="datePublished">11/23</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/11/23/kali%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5/"
-    >kali网络连接失败</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/11/23/xshell%E8%BF%9E%E6%8E%A5%E5%88%B0kali/" class="archive-article-date">
-  <time datetime="2021-11-23T12:53:52.000Z" itemprop="datePublished">11/23</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/11/23/xshell%E8%BF%9E%E6%8E%A5%E5%88%B0kali/"
-    >xshell连接到kali(桥接模式）</a> 
-</h2>
- 
-
-    </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    
-  </div>
-</article>
-      
+      <!-- reward -->
       
     </div>
-  </div>
-  
-  
+    
 
-  
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/08/26/msf%E8%81%94%E5%8A%A8cs/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2022/08/16/vulnhub--freshly/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">vulnhub--freshly</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -412,6 +394,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link

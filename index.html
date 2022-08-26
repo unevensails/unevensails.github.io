@@ -155,6 +155,60 @@
     
     
     <article
+  id="post-msf联动cs"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/08/26/msf%E8%81%94%E5%8A%A8cs/"
+    >msf联动cs</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/08/26/msf%E8%81%94%E5%8A%A8cs/" class="article-date">
+  <time datetime="2022-08-26T12:11:36.000Z" itemprop="datePublished">2022-08-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kali%E6%B8%97%E9%80%8F/">kali渗透</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>环境：win7，kali<br>ip:192.168.168.129(win7)，192.168.43.191(kali)<br>先用msfvenom生成后门<br><img src="https://image.3001.net/images/20220826/1661513829_6308b0651daa0ea6efe7b.png!small"><br>启动metaspliot<br><img src="https://image.3001.net/images/20220826/1661513950_6308b0de3955a2884f989.png!small"><br>metaspliot设置侦听<br><img src="https://image.3001.net/images/20220826/1661514105_6308b179d4094e2fa0d07.png!small"><br>将木马传至win7，双击运行<br><img src="https://image.3001.net/images/20220826/1661514225_6308b1f1ef65e265d0832.png!small"><br>成功拿到shell<br><img src="https://image.3001.net/images/20220826/1661514342_6308b266f0d940070a71c.png!small"><br>接下来就是上线cs了<br>先在服务端kali开启cs服务<br><img src="https://image.3001.net/images/20220826/1661514562_6308b342e967f9e292213.png!small"><br>在win7打开cs的exe文件，输入服务端ip，端口，用户名，密码，点击连接<br><img src="https://image.3001.net/images/20220826/1661514674_6308b3b2a7478e1100c1e.png!small"><br>成功登录cs<br><img src="https://image.3001.net/images/20220826/1661514808_6308b438a9ed09905db1c.png!small"><br>接下来生成监听器，点击左上角的cobalt strike，选择listen<br><img src="https://image.3001.net/images/20220826/1661514915_6308b4a30e8e259bf0ada.png!small"><br>生成木马，点击左上角的attacks，选择packages-&gt;windows executable<br><img src="https://image.3001.net/images/20220826/1661515057_6308b53140d8d0f5517c4.png!small"><br>选择监听器<br><img src="https://image.3001.net/images/20220826/1661515201_6308b5c1a2bd42d24e59b.png!small"><br>选择木马生成位置<br><img src="https://image.3001.net/images/20220826/1661515264_6308b60043c4292e299de.png!small"><br>将木马传到靶机，双击运行，发现成功上线<br><img src="https://image.3001.net/images/20220826/1661515446_6308b6b65f2b15ffb4f88.png!small"><br><img src="https://image.3001.net/images/20220826/1661515635_6308b7731cdeb6fbf8ba7.png!small"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-vulnhub--freshly"
   class="article article-type-post"
   itemscope
@@ -981,340 +1035,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-linux用户管理"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/07/02/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
-    >linux用户管理</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/07/02/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="article-date">
-  <time datetime="2022-07-02T05:59:01.000Z" itemprop="datePublished">2022-07-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/kali/">kali</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h4 id="用户和组账号概述"><a href="#用户和组账号概述" class="headerlink" title="用户和组账号概述"></a>用户和组账号概述</h4><table>
-<thead>
-<tr>
-<th>用户账号</th>
-<th>组账号</th>
-<th>UID和GID</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>超级用户root</td>
-<td>基本组（私有组）</td>
-<td>UID（用户标识号）</td>
-</tr>
-<tr>
-<td>普通用户</td>
-<td>附加组（公共组）</td>
-<td>GID（组标识号）</td>
-</tr>
-<tr>
-<td>程序用户</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<!--linxu系统只有系统用户和普通用户-->
-
-<!--UID范围：root用户（0） 系统用户（1~499） 普通用户（500~65535）外部应用程序用户（65535以后）-->
-
-<!--登录shell为/sbin/nologin的linux系统大多数是不能登录的-->
-
-<h4 id="用户账号文件–passwd"><a href="#用户账号文件–passwd" class="headerlink" title="用户账号文件–passwd"></a>用户账号文件–passwd</h4><p>文件位置：/etc/passwd</p>
-<p>格式：<u>lifan(</u>登录名): <u>x</u>(口令):<u>1000</u>(UID):<u>1000</u>(GID):<u>lifan</u>(注释):<u>/home/lifan</u>(主目录):<u>/bin/bash</u>(登录shell)</p>
-<h4 id="用户账号文件–shadow"><a href="#用户账号文件–shadow" class="headerlink" title="用户账号文件–shadow"></a>用户账号文件–shadow</h4><p>文件位置：/etc/shadow</p>
-<p>格式：<u>lifan</u>(用户账号的名称):<u>$6$fqD3P4oEiS4Evv9Y$zVVsaz0PMbP8T6ZFX/TQIp/aDG9jViZwTvTiYuwI5lnQpahbKJM/B4QZbviEZBCEjrgyIKUQ1gLFAusJyOT.w.</u>(加密密码):<u>19174</u>(最后一次修改时间):<u>0</u>(最小修改时间间隔):<u>99999</u>(密码有效期):<u>7</u>(密码需要变更前的警告天数): (密码过期后的宽限时间):   (账号失效时间): (保留字段)</p>
-<p>&lt;–加密密码不能手工修改，否则系统会无法识别密码导致密码失效–&gt;</p>
-<p>&lt;–最后一次修改时间的数值代表的是天–&gt;</p>
-<p>&lt;–密码失效期默认值为99999，密码过期后的宽限时间、账号失效时间、一般默认为空、保留字段目前未使用–&gt;</p>
-<h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><h5 id="useradd"><a href="#useradd" class="headerlink" title="useradd"></a>useradd</h5><p>格式：useradd [参数] 用户名</p>
-<table>
-<thead>
-<tr>
-<th align="left">参数</th>
-<th align="left">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">-u</td>
-<td align="left">指定UID</td>
-</tr>
-<tr>
-<td align="left">-d</td>
-<td align="left">指定宿主目录，默认为/home/用户名</td>
-</tr>
-<tr>
-<td align="left">-e</td>
-<td align="left">指定账号失效时间</td>
-</tr>
-<tr>
-<td align="left">-g</td>
-<td align="left">指定用户的基本组</td>
-</tr>
-<tr>
-<td align="left">-G</td>
-<td align="left">指定用户的附加组</td>
-</tr>
-<tr>
-<td align="left">-m</td>
-<td align="left">自动建立用户的登入目录(-M反之)</td>
-</tr>
-<tr>
-<td align="left">-s</td>
-<td align="left">指定用户是登录shell</td>
-</tr>
-</tbody></table>
-<h5 id="userdel"><a href="#userdel" class="headerlink" title="userdel"></a>userdel</h5><p>格式：userdel [参数] 用户名</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-f</td>
-<td>强制删除用户，即使用户当前已登录</td>
-</tr>
-<tr>
-<td>-r</td>
-<td>删除用户的同时，删除与用户相关的所有文件</td>
-</tr>
-</tbody></table>
-<h5 id="usermod"><a href="#usermod" class="headerlink" title="usermod"></a>usermod</h5><p>格式：usermod [参数] 用户名</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-l</td>
-<td>更改用户账号的登录名称</td>
-</tr>
-<tr>
-<td>-L</td>
-<td>锁定用户账户</td>
-</tr>
-<tr>
-<td>-U</td>
-<td>解锁用户账户</td>
-</tr>
-</tbody></table>
-<!--以下选项与useradd命令中的含义相同：-->
-
-<!---u、-d、-e、-g、-G、-s-->
-
-<h5 id="groupadd"><a href="#groupadd" class="headerlink" title="groupadd"></a>groupadd</h5><p>格式：groupadd [参数] 用户组名</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-g</td>
-<td>指定新用户组的GID</td>
-</tr>
-<tr>
-<td>-o</td>
-<td>一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。</td>
-</tr>
-</tbody></table>
-<h5 id="groupdel"><a href="#groupdel" class="headerlink" title="groupdel"></a>groupdel</h5><p>格式：group 用户组名</p>
-<h5 id="groupmod"><a href="#groupmod" class="headerlink" title="groupmod"></a>groupmod</h5><p>格式：groupmod [参数] 用户组名</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-g</td>
-<td>给群组指定一个新的GID，即修改组ID</td>
-</tr>
-<tr>
-<td>-n</td>
-<td>指定要更改的组名</td>
-</tr>
-</tbody></table>
-<p>&lt;–修改用户组名字的前提是拥有该名字的组存在–&gt;</p>
-<h4 id="设置-更改用户口令–passwd"><a href="#设置-更改用户口令–passwd" class="headerlink" title="设置/更改用户口令–passwd"></a>设置/更改用户口令–passwd</h4><p>格式：passwd [参数] 用户名</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-d</td>
-<td>清空用户的密码，无需密码即可登录</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>锁定用户账号</td>
-</tr>
-<tr>
-<td>-S</td>
-<td>查看用户账号状态(是否被锁定)</td>
-</tr>
-<tr>
-<td>-u</td>
-<td>解锁用户账号</td>
-</tr>
-</tbody></table>
-<h4 id="添加-删除组成员–gpasswd"><a href="#添加-删除组成员–gpasswd" class="headerlink" title="添加/删除组成员–gpasswd"></a>添加/删除组成员–gpasswd</h4><p>格式：gpasswd [参数] 用户组名</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-a</td>
-<td>向组内添加一个用户</td>
-</tr>
-<tr>
-<td>-d</td>
-<td>从组内删除一个用户</td>
-</tr>
-<tr>
-<td>-M</td>
-<td>定义组成员列表，以逗号分离</td>
-</tr>
-</tbody></table>
-<h4 id="用户和组账号查询"><a href="#用户和组账号查询" class="headerlink" title="用户和组账号查询"></a>用户和组账号查询</h4><h5 id="查询用户身份标识–id"><a href="#查询用户身份标识–id" class="headerlink" title="查询用户身份标识–id"></a>查询用户身份标识–id</h5><p>格式：id [用户名]</p>
-<h5 id="查询用户所属组–groups"><a href="#查询用户所属组–groups" class="headerlink" title="查询用户所属组–groups"></a>查询用户所属组–groups</h5><p>格式：groups [用户名]</p>
-<h5 id="查询用户账号的详细信息–finger"><a href="#查询用户账号的详细信息–finger" class="headerlink" title="查询用户账号的详细信息–finger"></a>查询用户账号的详细信息–finger</h5><p>格式：finger [-l] [用户名]</p>
-<h5 id="查询已登录到主机的用户信息–users、w、who"><a href="#查询已登录到主机的用户信息–users、w、who" class="headerlink" title="查询已登录到主机的用户信息–users、w、who"></a>查询已登录到主机的用户信息–users、w、who</h5><h4 id="图形化用户与组管理工具"><a href="#图形化用户与组管理工具" class="headerlink" title="图形化用户与组管理工具"></a>图形化用户与组管理工具</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system-config-users</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="文件-目录的权限和归属"><a href="#文件-目录的权限和归属" class="headerlink" title="文件/目录的权限和归属"></a>文件/目录的权限和归属</h4><table>
-<thead>
-<tr>
-<th>访问权限</th>
-<th>字符代表</th>
-<th>数字代表</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>读取</td>
-<td>r</td>
-<td>4</td>
-</tr>
-<tr>
-<td>写入</td>
-<td>w</td>
-<td>2</td>
-</tr>
-<tr>
-<td>可执行</td>
-<td>x</td>
-<td>1</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>归属(所有权)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>属主</td>
-<td>拥有该文件或目录的用户账号</td>
-</tr>
-<tr>
-<td>属组</td>
-<td>拥有该文件或目录的组账号</td>
-</tr>
-</tbody></table>
-<h4 id="设置文件-目录的权限–chmod"><a href="#设置文件-目录的权限–chmod" class="headerlink" title="设置文件/目录的权限–chmod"></a>设置文件/目录的权限–chmod</h4><p>格式1：chmod [ugoa] [+-=] [rwx] 文件或目录</p>
-<p>&lt;–u、g、o、a分别表示属主、属组、其他用户、所有用户–&gt;</p>
-<p>&lt;–+、-、=分别表示增加、去除、设置权限–&gt;</p>
-<p>&lt;–r、w、x分别表示读取、写入、可执行–&gt;</p>
-<p>格式2：chmod [三位八进制数] 文件或目录</p>
-<h4 id="设置文件-目录的归属–chown"><a href="#设置文件-目录的归属–chown" class="headerlink" title="设置文件/目录的归属–chown"></a>设置文件/目录的归属–chown</h4><p>格式1：chown [属主] [文件或目录]</p>
-<p>格式2：chown[:属组] [文件或目录]</p>
-<p>格式3：chown [属主:属组] [文件或目录]</p>
-<p>&lt;–chmod和chown都可以用-R参数递归修改指定目录下所有文件、子目录的权限–&gt;</p>
-<h4 id="特殊权限访问"><a href="#特殊权限访问" class="headerlink" title="特殊权限访问"></a>特殊权限访问</h4><p>SUID：设定时，文件执行将以文件拥有者身份执行，而非普通用户的身份</p>
-<p>SGID：与前者相同，当文件被执行时，将以文件的组的身份来执行，而不是一般的用户身份</p>
-<p>设置SUID：chmod u+s [文件]</p>
-<p>​                     chmod 4551 [文件]</p>
-<p>设置SGID：chmod g+s [文件]</p>
-<p>​                      chmod 2551 [文件]</p>
-<h4 id="用户账号的初始配置文件"><a href="#用户账号的初始配置文件" class="headerlink" title="用户账号的初始配置文件"></a>用户账号的初始配置文件</h4><p>文件来源：新建用户账号是，从/etc/skel目录中复制而来</p>
-<table>
-<thead>
-<tr>
-<th>常见的用户初始配置文件</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>~/.bash_profile</td>
-<td>用户每次登录时执行</td>
-</tr>
-<tr>
-<td>~/.bashrc</td>
-<td>每次进入新的bash环境时执行</td>
-</tr>
-<tr>
-<td>~/.bash_logout</td>
-<td>用户每次退出登录时执行</td>
-</tr>
-</tbody></table>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali%E5%91%BD%E4%BB%A4/" rel="tag">kali命令</a></li></ul>
 
     </footer>
   </div>
