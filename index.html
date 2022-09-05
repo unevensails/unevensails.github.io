@@ -155,6 +155,61 @@
     
     
     <article
+  id="post-vulnhub--shiro"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/09/05/vulnhub--shiro/"
+    >vulnhub--shiro</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/09/05/vulnhub--shiro/" class="article-date">
+  <time datetime="2022-09-05T13:23:05.000Z" itemprop="datePublished">2022-09-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vulnhub/">vulnhub</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h5 id="CVE-2016-4437-反序列化"><a href="#CVE-2016-4437-反序列化" class="headerlink" title="CVE-2016-4437 反序列化"></a>CVE-2016-4437 反序列化</h5><p>猜测：<br>进入靶场之后发现是个登录框，bp抓包，在历史记录中发现了rememberMe，怀疑存在shiro反序列化漏洞<br><img src="https://image.3001.net/images/20220905/1662376550_6315da6630132f0c8fc6c.png!small"><br>验证猜测：<br>先在bp项目选项处设置使用默认的burp collaborator服务器<br><img src="https://image.3001.net/images/20220905/1662376745_6315db29990aefa7fb978.png!small"><br>接下来点击bp左上角的burp-&gt;burp collaborator客户端<br><img src="https://image.3001.net/images/20220905/1662376910_6315dbce3b7b1d74a9829.png!small"><br>复制生成的dnslog的url<br><img src="https://image.3001.net/images/20220905/1662377014_6315dc366575dade76469.png!small"><br>用python脚本生成dnslog记录的payload<br><img src="https://image.3001.net/images/20220905/1662377215_6315dcffbc6bd70b35327.png!small"><br>复制payload，构造cookie，发至重发模块点击发送<br><img src="https://image.3001.net/images/20220905/1662377378_6315dda22087cfb7b7112.png!small"><br>成功接收到dnslog记录，猜测正确<br><img src="https://image.3001.net/images/20220905/1662377657_6315deb9ee3a364bff3f9.png!small"><br>利用漏洞：<br>打开反序列化漏洞利用工具，输入url，点击爆破密钥和爆破利用链及回显<br><img src="https://image.3001.net/images/20220905/1662377945_6315dfd932fac5be599c0.png!small"><br>点击命令执行，输入whoami，成功执行<br><img src="https://image.3001.net/images/20220905/1662378015_6315e01f5835a4a8e8939.png!small"></p>
+<h5 id="CVE-2020-1957-未授权访问"><a href="#CVE-2020-1957-未授权访问" class="headerlink" title="CVE-2020-1957 未授权访问"></a>CVE-2020-1957 未授权访问</h5><p>进入靶场，随便点了一下就302跳转到登录页面了<br><img src="https://image.3001.net/images/20220905/1662383261_6315f49d4da6cdafd11fa.png!small"><br>bp抓包，在响应包中发现rememberMe<br><img src="https://image.3001.net/images/20220905/1662383489_6315f581d4c7a91188720.png!small"><br>构造url，成功登录到管理界面<br><img src="https://image.3001.net/images/20220905/1662384047_6315f7afc15090399b115.png!small"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" rel="tag">内网渗透</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-msf联动cs"
   class="article article-type-post"
   itemscope
@@ -955,75 +1010,6 @@
 <p><img src="https://image.3001.net/images/20220709/1657348097_62c92001d1e2698385f02.png!small"></p>
 <p>免密登录成功</p>
 <p><img src="https://image.3001.net/images/20220709/1657348141_62c9202d2f7a6b96ac68b.png!small"></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-kali登录ftp服务"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/"
-    >kali登录ftp服务</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/07/11/kali%E7%99%BB%E5%BD%95ftp%E6%9C%8D%E5%8A%A1/" class="article-date">
-  <time datetime="2022-07-11T10:31:36.000Z" itemprop="datePublished">2022-07-11</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/kali%E6%B8%97%E9%80%8F/">kali渗透</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>ftp服务器：centos7</p>
-<p>主机：kali</p>
-<p>登录ftp服务器</p>
-<p><img src="https://img-blog.csdnimg.cn/bae8ab4b7fac46fc962538455827a4d7.png"><br>ftp上传文件</p>
-<p>查看当前路径文件<br><img src="https://img-blog.csdnimg.cn/116d8c507bc84704b1c82587cd7c6bb4.png"><br>切换到该路径<br><img src="https://img-blog.csdnimg.cn/d1bce3cab1724792a78105b164647f00.png"><br>上传文件<br><img src="https://img-blog.csdnimg.cn/5ac696623a90426ea59ece304d23dd33.png"><br>发现成功上传<br><img src="https://img-blog.csdnimg.cn/d8f9fc39391d459e8a2198d7a25ca120.png"><br>下载文件，成功下载<br><img src="https://img-blog.csdnimg.cn/c8b37eb3df9f4fe090f39e1dca644851.png"><br>实操时遇到的问题<br><img src="https://img-blog.csdnimg.cn/c1a4a05ae5ae4a50b04a773d649d098a.png"><br>解决方法：把selinux关掉(setenforce 0)</p>
-<p><img src="https://img-blog.csdnimg.cn/c714cb1393e04bd0beff266a6c10afea.png"><br>解决方法：</p>
-<p>先查看FTP状态命令:<br>service vsftpd status</p>
-<p>如果FTP未开启，需要开启FTP，开启FTP命令：<br>service vsftpd start</p>
-<p><img src="https://img-blog.csdnimg.cn/72792fa493f446b49d1d2ab1d8e8c1e9.png"></p>
-<p>解决方法：</p>
-<p>先查看该路径有没有该文件，如果有，则提权</p>
-<p>chmod 777 /2.txt</p>
-<p><img src="https://img-blog.csdnimg.cn/8428e886fdd045d895e82937a0792a32.png"><br>解决方法：</p>
-<p>修改vsftpd.conf文件<br>local_enable=YES</p>
-<p>重启服务</p>
-<p>service vsftpd restart</p>
  
       <!-- reward -->
       
