@@ -155,6 +155,142 @@
     
     
     <article
+  id="post-xshell连接到kali"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/11/23/xshell%E8%BF%9E%E6%8E%A5%E5%88%B0kali/"
+    >xshell连接到kali(桥接模式）</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/11/23/xshell%E8%BF%9E%E6%8E%A5%E5%88%B0kali/" class="article-date">
+  <time datetime="2021-11-23T12:53:52.000Z" itemprop="datePublished">2021-11-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kali%E6%B8%97%E9%80%8F/">kali渗透</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="修改ssh配置文件"><a href="#修改ssh配置文件" class="headerlink" title="修改ssh配置文件"></a>修改ssh配置文件</h3><blockquote>
+<p> vi /etc/ssh/sshd_config</p>
+</blockquote>
+<p>将PermitRootLogin后面的without-password修改为：yes</p>
+<p>找到#PubkeyAuthentication yes 把#的注释去掉<br><img src="https://img-blog.csdnimg.cn/bede0b9736de464e91705d0ff00511a5.png" alt="在这里插入图片描述"></p>
+<p>启动ssh服务</p>
+<blockquote>
+<p>/etc/init.d/ssh start</p>
+</blockquote>
+<p>设置开机启动</p>
+<blockquote>
+<p>update-rc.d ssh enable</p>
+</blockquote>
+<p>重启kali之后就可以用xshell连接kali了</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-vulnhub--DC4"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/10/15/vulnhub--DC4/"
+    >vulnhub--DC4</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/10/15/vulnhub--DC4/" class="article-date">
+  <time datetime="2021-10-15T01:23:27.000Z" itemprop="datePublished">2021-10-15</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>老规矩，先arp扫存活主机</p>
+<p><img src="https://img-blog.csdnimg.cn/e3badf646c904c53bcf7867d9a758084.png"><br>nmap扫端口</p>
+<p><img src="https://img-blog.csdnimg.cn/d9b46eebe3c34ce7bb81df78461ab38a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>发现开放80，浏览器尝试访问</p>
+<p><img src="https://img-blog.csdnimg.cn/fff6cc03dd6c4938b24e116fe00c35d2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>看样子应该要bp爆破密码，网上搜了一下，在kali的/usr/share/john/password.lst里面存在一些适合爆破的密码，可以把它当作bp字典</p>
+<p><img src="https://img-blog.csdnimg.cn/664470d5c0604d6da330b9d0f832115c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>跑了半天，得到密码happy,成功登录</p>
+<p><img src="https://img-blog.csdnimg.cn/6c24d7723d2d4503847f6dc628fa0d86.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>有个command，点进去发现能查询一些用户信息，尝试用bp截获修改</p>
+<p><img src="https://img-blog.csdnimg.cn/de108f76914449de8c7148c1571e6aa4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>果然有命令注入漏洞,在jim的backups目录中发现一个字典</p>
+<p><img src="https://img-blog.csdnimg.cn/3cb550b9a2cf496d994ca9e6240131fa.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><img src="https://img-blog.csdnimg.cn/b5901c7bbab042a185ee74e42c52c565.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<p>加上前面nmap扫到的ssh端口，让我们联想到了刷dc-2的时候用过的hydra爆破<br>先将用户和字典写入kali新创建的usr.txt和pass.txt中,用hydra爆破,获得jim密码</p>
+<blockquote>
+<p>hydra -L usr.txt -P pass.txt ssh://192.168.111.135 -vV -o hydra.sh</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/343cb436ef394bba9fb08935e6b18b78.png"><br>用ssh登录jim登录成功</p>
+<p><img src="https://img-blog.csdnimg.cn/c10d5526cd7a4b94a99ecfb3f873a696.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16"><br>找了半天，只找到一封root写给jim的信</p>
+<p><img src="https://img-blog.csdnimg.cn/c0aecd7175d44c4bbd370eeadbd42836.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_14,color_FFFFFF,t_70,g_se,x_16"><br>发现无法使用sudo命令，接下来就没有思路了，看了其他师傅的wp才知道线索在/var/mail里</p>
+<p><img src="https://img-blog.csdnimg.cn/9a7b3e993f3f408ab89f40c59e1a3d40.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>找到charles的密码，ssh登录成功</p>
+<p><img src="https://img-blog.csdnimg.cn/66bd9d51ab5041c38be111dbbb25c3a1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16"><br>使用sudo命令试试<img src="https://img-blog.csdnimg.cn/112bd25fa4e84180b4b77ba9861d6cec.png"><br>发现/usr/bin/teehee可以使用root权限，使用teehee提权</p>
+<blockquote>
+<p>echo “john::0:0:::/bin/bash” | sudo teehee -a /etc/passwd</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/8c2d336b73b944b3a4f7a6d99810fa42.png">提权成功，在root目录找到flag</p>
+<p><img src="https://img-blog.csdnimg.cn/2c7822d2abba4ead974b0289b24158f4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-vulnhub--DC3"
   class="article article-type-post"
   itemscope
@@ -802,153 +938,13 @@
 </article>
 
     
-    <article
-  id="post-命令执行"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/10/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"
-    >命令执行</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/10/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
-  <time datetime="2021-09-10T08:53:02.000Z" itemprop="datePublished">2021-09-10</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><strong>分隔符</strong></p>
-<blockquote>
-<p>;     前面的执行完执行后面的<br>|     管道符，上一条命令的输出，作为下一条命令的参数（显示后面的执行结果）<br>||    当前面的执行出错时（为假）执行后面的<br>&amp;     将任务置于后台执行<br>&amp;&amp;    前面的语句为假则直接出错，后面的也不执行，前面只能为真<br>%0a  （换行） %0d  （回车）</p>
-</blockquote>
-<p><strong>linux常见绕过姿势</strong><br>空格过滤</p>
-<blockquote>
-<p>  &lt; 、&lt;&gt;、%20(space)、%09(tab)、$IFS$9、 ${IFS}、$IFS、</p>
-</blockquote>
-<p>命令分隔符</p>
-<blockquote>
-<pre><code>linux中：%0a(换行) 、%0d（回车） 、; 、&amp; 、| 、&amp;&amp;、||
-
-windows中：%0a、&amp;、|、%1a
-</code></pre>
-</blockquote>
-<p>花括号</p>
-<blockquote>
-<pre><code>&#123;cat,flag&#125; 逗号代替空格
-</code></pre>
-</blockquote>
-<p>黑名单绕过</p>
-<blockquote>
-<p>拼接绕过:a=l;b=s;$a$b</p>
-</blockquote>
-<p>单引号和双引号绕过</p>
-<blockquote>
-<p>比如：ca’ ‘t flag 或ca” “t flag</p>
-</blockquote>
-<p>反斜杠绕过</p>
-<blockquote>
-<p>比如：ca\t fl\ag</p>
-</blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag">命令执行</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-反序列化"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/07/14/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"
-    >反序列化</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/07/14/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="article-date">
-  <time datetime="2021-07-14T14:08:28.063Z" itemprop="datePublished">2021-07-14</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>一、基本概念</p>
-<p>1、序列化和反序列化的定义：</p>
-<pre><code>(1)Java序列化就是指把Java对象转换为字节序列的过程
-    Java反序列化就是指把字节序列恢复为Java对象的过程。
-</code></pre>
-<p>   (2)序列化最重要的作用：在传递和保存对象时.保证对象的完整性和可传递性。对象转换为有序字节流,以便在网络上传输或者保存在本地文件中。<br>       反序列化的最重要的作用：根据字节流中保存的对象状态及描述信息，通过反序列化重建对象。<br>   总结：核心作用就是对象状态的保存和重建。（整个过程核心点就是字节流中所保存的对象状态及描述信息）</p>
-<p>反序列化中magic 方法     功能<br>__construct()     类构造器<br>__destruct()     类的析构器<br>__sleep()                     执行 serialize() 时，先会调用这个函数<br>__wakeup()     执行 unserialize() 时，先会调用这个函数<br>__toString()     类被当成字符串时的回应方法</p>
-<p>参考文章链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/tree_ifconfig/article/details/82766587">https://blog.csdn.net/tree_ifconfig/article/details/82766587</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
   </nav>
   
 </section>

