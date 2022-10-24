@@ -155,6 +155,84 @@
     
     
     <article
+  id="post-常见webshell工具流量特征分析"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/10/24/%E5%B8%B8%E8%A7%81webshell%E5%B7%A5%E5%85%B7%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90/"
+    >常见webshell工具流量特征分析</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/10/24/%E5%B8%B8%E8%A7%81webshell%E5%B7%A5%E5%85%B7%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2022-10-24T08:35:49.000Z" itemprop="datePublished">2022-10-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="中国菜刀"><a href="#中国菜刀" class="headerlink" title="中国菜刀"></a>中国菜刀</h3><p>菜刀使用的webshell为一句话木马，特征非常明显</p>
+<h5 id="常用一句话"><a href="#常用一句话" class="headerlink" title="常用一句话"></a>常用一句话</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PHP:    &lt;?php @eval($_POST[&#x27;zopo&#x27;]);?&gt;</span><br><span class="line">ASP:    &lt;%eval request(&quot;zopo&quot;)%&gt;</span><br><span class="line">ASP.NET:  &lt;%@ Page Language=&quot;Jscript&quot;%&gt;&lt;%eval(Request.Item[&quot;zopo&quot;],&quot;unsafe&quot;);%&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="流量特征："><a href="#流量特征：" class="headerlink" title="流量特征："></a>流量特征：</h5><p>请求包中：ua头为百度爬虫</p>
+<p>请求体中存在<em>eval，base64</em>等特征字符，且传递的payload为base64编码，并且存在固定的<em>QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtpZihQSFBfVkVSU0lPTjwnNS4zLjAnKXtAc2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO307ZWNobygiWEBZIik7J</em></p>
+<p>请求体中执行结果响应为明文，格式为<em>X@Y，数据，X@Y</em></p>
+<h3 id="蚁剑"><a href="#蚁剑" class="headerlink" title="蚁剑"></a>蚁剑</h3><p>蚁剑的核心代码是由菜刀修改而来的，因此菜刀能用的一句话木马蚁剑也能用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_POST[&#x27;zopo&#x27;]);?&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="在使用默认编码器连接时"><a href="#在使用默认编码器连接时" class="headerlink" title="在使用默认编码器连接时"></a>在使用默认编码器连接时</h5><p><img src="https://img-blog.csdnimg.cn/bb1b190d8b324b1b8499613daf7c9e1e.png"><br>请求包的每个请求体都是*@ini_set(“display_errors”, “0”);@set_time_limit(0)*开头，且都存在base64等字符</p>
+<p>响应包的返回格式都为随机数，数据，随机数</p>
+<h5 id="在使用base编码和解码器连接时"><a href="#在使用base编码和解码器连接时" class="headerlink" title="在使用base编码和解码器连接时"></a>在使用base编码和解码器连接时</h5><p><img src="https://img-blog.csdnimg.cn/6de658d49e1f41a9939d799ff83b0df8.png"><br>请求包存在base64加密的eval命令执行</p>
+<p>响应包的返回格式都为随机数，base64加密的数据，随机数</p>
+<h3 id="冰蝎"><a href="#冰蝎" class="headerlink" title="冰蝎"></a>冰蝎</h3><p>冰蝎有自带的冰蝎马，在server文件夹里<br><img src="https://img-blog.csdnimg.cn/eba1ec96a7154c72b90b358c47e2e1e4.png"></p>
+<h4 id="冰蝎2-0"><a href="#冰蝎2-0" class="headerlink" title="冰蝎2.0"></a>冰蝎2.0</h4><p>我的冰蝎2.0找不到了，这里就简单概括一下，2.0中采用的是协商密钥机制。</p>
+<h5 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h5><p>请求中返回包状态码为200，返回内容必定是16位的密钥</p>
+<p>请求体中存在<em>Accept: text/html, image/gif, image/jpeg, *; q=.2, */</em>; q=.2*</p>
+<h5 id="建立连接后"><a href="#建立连接后" class="headerlink" title="建立连接后"></a>建立连接后</h5><p>请求包的coockie格式格式都为<em>Cookie: PHPSESSID=; path=/；</em></p>
+<h4 id="冰蝎3-0"><a href="#冰蝎3-0" class="headerlink" title="冰蝎3.0"></a>冰蝎3.0</h4><h5 id="在使用命令执行功能时"><a href="#在使用命令执行功能时" class="headerlink" title="在使用命令执行功能时"></a>在使用命令执行功能时</h5><p><img src="https://img-blog.csdnimg.cn/558862aa00f346e8838a9604bc8f0956.png"><br>请求包中Content-Length都为5720或5740(不知道为啥我抓的包是5780，可能是java版本问题)存在，且都存在</p>
+<p><em>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/</em>;q=0.8,application/signed-exchange;v=b3;q=0.9*</p>
+<p><em>Cache-Control: no-cache</em></p>
+<p><em>Pragma: no-cache</em></p>
+<h3 id="哥斯拉"><a href="#哥斯拉" class="headerlink" title="哥斯拉"></a>哥斯拉</h3><p>哥斯拉的webshell可以自动生成<br><img src="https://img-blog.csdnimg.cn/2b5dc422e0d94229a693b2bbd6c31c17.png"><br>生成后的PHP木马为普通的一句话木马<br><img src="https://img-blog.csdnimg.cn/ee451b37cf394c3a9e50895aa99496ef.png"></p>
+<h5 id="建立连接后-1"><a href="#建立连接后-1" class="headerlink" title="建立连接后"></a>建立连接后</h5><p><img src="https://img-blog.csdnimg.cn/88af8a8594274db69f354d8d3738af8a.png"><br>请求包中的cookie末尾都有;特征，且都存在<em>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/</em>;q=0.8*</p>
+<p>响应包中都存在<em>Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0</em></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag">文件上传</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-通达OA漏洞复现"
   class="article article-type-post"
   itemscope
@@ -167,7 +245,7 @@
        
 <h2 itemprop="name">
   <a class="article-title" href="/2022/09/29/%E9%80%9A%E8%BE%BEOA%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"
-    >通达OA漏洞复现</a> 
+    >通达OA漏洞</a> 
 </h2>
  
 
@@ -892,104 +970,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL%E5%91%BD%E4%BB%A4/" rel="tag">MySQL命令</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-http协议"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/07/12/http%E5%8D%8F%E8%AE%AE/"
-    >http协议</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/07/12/http%E5%8D%8F%E8%AE%AE/" class="article-date">
-  <time datetime="2022-07-12T11:44:50.000Z" itemprop="datePublished">2022-07-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web/">web</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h4 id="web服务"><a href="#web服务" class="headerlink" title="web服务"></a>web服务</h4><p>C/S模型(客户/服务器模型)</p>
-<h4 id="http——超文本传输协议"><a href="#http——超文本传输协议" class="headerlink" title="http——超文本传输协议"></a>http——超文本传输协议</h4><p>端口：80</p>
-<p>http允许传输任意类型的数据对象</p>
-<h5 id="无连接"><a href="#无连接" class="headerlink" title="无连接"></a>无连接</h5><p>限制每次连接只处理一个请求,处理完客户请求并收到客户的应答就断开连接</p>
-<h5 id="单向性"><a href="#单向性" class="headerlink" title="单向性"></a>单向性</h5><p>服务端永远被动等待客户端的请求</p>
-<h5 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h5><p>协议对事务处理没有记忆能力</p>
-<p>注：为了解决无状态，出现了cookie和session</p>
-<h4 id="uri-url-urn之间的区别"><a href="#uri-url-urn之间的区别" class="headerlink" title="uri,url,urn之间的区别"></a>uri,url,urn之间的区别</h4><h5 id="uri"><a href="#uri" class="headerlink" title="uri"></a>uri</h5><p>统一资源标识符</p>
-<p>纯粹的句式结构</p>
-<h5 id="url"><a href="#url" class="headerlink" title="url"></a>url</h5><p>统一资源定位符</p>
-<p>由传送协议，服务器(ip或者域名)，端口号，请求资源路径，传递数据五个元素</p>
-<h5 id="urn"><a href="#urn" class="headerlink" title="urn"></a>urn</h5><p>统一资源名称</p>
-<p>对比url，少了最前面的协议</p>
-<p>urn是uri的子集</p>
-<h4 id="http请求方式"><a href="#http请求方式" class="headerlink" title="http请求方式"></a>http请求方式</h4><p>post,get,head,put,delete,trace</p>
-<p>get只用于读取数据</p>
-<p>head和get方法一样，不过服务器不传回资源的文本部分</p>
-<p>post向指定资源提交数据</p>
-<p>put向指定资源位置上传内容<br>delete请求服务器删除request-rui所标识的资源</p>
-<h5 id="get和post的区别"><a href="#get和post的区别" class="headerlink" title="get和post的区别"></a>get和post的区别</h5><p>get请求只能进行url编码，post支持多种编码方式</p>
-<p>get请求参数会被保留在浏览器历史记录，post参数不会被保留</p>
-<p>get请求在url中传送的参数有长度限制，post没有</p>
-<p>get比post更不安全，但get速度比post快</p>
-<h4 id="http请求报文"><a href="#http请求报文" class="headerlink" title="http请求报文"></a>http请求报文</h4><p>HTTP 请求报文由3部分组成：请求行+请求头+请求体</p>
-<h5 id="常见的HTTP报文头属性"><a href="#常见的HTTP报文头属性" class="headerlink" title="常见的HTTP报文头属性"></a>常见的HTTP报文头属性</h5><p>请求方式</p>
-<p>host 目标主机地址和端口</p>
-<p>connection 维护客户端和服务端的连接关系</p>
-<p>content-length http消息内容的传输长度</p>
-<p>accept 发送端希望接受的数据类型</p>
-<p>content-type 请求实体文档类型</p>
-<p>referer 源地址</p>
-<p>cookie</p>
-<p>当客户端访问服务器的时候，服务器都会生成一份cookie传输给客户端，客户端会自动把cookie保存，以后客户端每次访问服务器，都会</p>
-<p>自动的携带这份cookie</p>
-<p>session比cookie安全，都是标识用户身份</p>
-<h4 id="http响应报文"><a href="#http响应报文" class="headerlink" title="http响应报文"></a>http响应报文</h4><p>响应报文与请求报文一样,由三个部分组成：响应行,响应头,响应体</p>
-<h5 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h5><p>200 OK 表示成功</p>
-<p>303 重定向,把你重定向到其他页面</p>
-<p>304 资源并未修改,可以直接使用本地的缓存</p>
-<p>404 找不到页面(页面被删除或其他)</p>
-<p>500 服务端错误</p>
-<h5 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h5><p>Cache-Control 响应输出到客户端后,服务端通过该属性告诉客户端该怎么控制响应内容的缓存</p>
-<p>ETag 表示你请求资源的版本,如果该资源发生了变化,那么这个属性也会跟着变</p>
-<p>Location 在重定向中或者创建新资源时使用</p>
-<p>Set-Cookie 服务端可以设置客户端的cookie</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li></ul>
 
     </footer>
   </div>

