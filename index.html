@@ -155,6 +155,96 @@
     
     
     <article
+  id="post-渗透测试流程"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/10/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/"
+    >渗透测试流程</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/10/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/" class="article-date">
+  <time datetime="2022-10-25T06:59:28.000Z" itemprop="datePublished">2022-10-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h4 id="渗透测试流程"><a href="#渗透测试流程" class="headerlink" title="渗透测试流程"></a>渗透测试流程</h4><p>明确目标–&gt;信息收集–&gt;漏洞检测–&gt;漏洞利用–&gt;权限提升–&gt;权限维持–&gt;信息整理–&gt;清理日志–&gt;形成报告</p>
+<h5 id="明确目标"><a href="#明确目标" class="headerlink" title="明确目标"></a>明确目标</h5><p>在确认目标有授权的情况下才开始渗透</p>
+<h5 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h5><p>1.服务器的相关信息（真实ip，系统类型，版本，开放端口，WAF等）</p>
+<p>2.网站指纹识别（cms，cdn，证书等），dns记录</p>
+<p>3.whois信息，姓名，备案，邮箱，电话反查（邮箱丢社工库，社工准备等）</p>
+<p>4.子域名收集，旁站，C段等</p>
+<p>5.google hacking针对化搜索，pdf文件，中间件版本，弱口令扫描等</p>
+<p>6.扫描网站目录结构，爆后台，网站banner，测试文件，备份等敏感文件泄漏等</p>
+<h5 id="漏洞检测"><a href="#漏洞检测" class="headerlink" title="漏洞检测"></a>漏洞检测</h5><p>1.浏览网站，打开burpsuite，依次点击网站功能点，查看请求包，进行XSS、SQL注入、命令注入、CSRF、cookie安全检测、敏感信息、通信数据传输、暴力破解、任意文件上传、越权访问、未授权访问、目录遍历、文件 包含、重放攻击（短信轰炸）等漏洞检测</p>
+<p>2.扫描端口、目录，对响应的端口进行漏洞探测，比如 rsync，心脏出血，mysql，ftp，ssh弱口令等</p>
+<p>3.使用漏扫工具等</p>
+<h5 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h5><p>利用检测到的漏洞尝试拿到webshell，或者其他权限</p>
+<h5 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h5><p><img src="https://img-blog.csdnimg.cn/d4dbcfe04b1b4b55ad5160856aff5427.png"><br><img src="https://img-blog.csdnimg.cn/f6e25edd5ce84178bbd6d4fab3bcd329.png"></p>
+<h5 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h5><p>Windows创建隐藏用户，粘滞键漏洞等</p>
+<p>Linux修改/etc/passwd文件添加超级用户，ssh公钥免账密登录等</p>
+<h5 id="信息整理"><a href="#信息整理" class="headerlink" title="信息整理"></a>信息整理</h5><p>用迪哥的话就是翻垃圾，寻找有用的信息并整理</p>
+<h5 id="清理日志"><a href="#清理日志" class="headerlink" title="清理日志"></a>清理日志</h5><p>Windows有远程桌面权限时手动删除日志：</p>
+<p>开始-程序-管理工具-计算机管理-系统工具-事件查看器-清除日志</p>
+<p>linux麻烦些，这里简单说几种方法</p>
+<h6 id="清除history历史命令记录"><a href="#清除history历史命令记录" class="headerlink" title="清除history历史命令记录"></a>清除history历史命令记录</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">history -r 删除当前会话历史记录</span><br><span class="line"></span><br><span class="line">history -c 删除内存中的所有命令历史</span><br><span class="line"></span><br><span class="line">rm .bash_history 删除历史文件中的内容</span><br></pre></td></tr></table></figure>
+
+<h6 id="清理系统日志痕迹"><a href="#清理系统日志痕迹" class="headerlink" title="清理系统日志痕迹"></a>清理系统日志痕迹</h6><p>Linux 系统存在多种日志文件，来记录系统运行过程中产生的日志。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/var/log/btmp   记录所有登录失败信息，使用lastb命令查看</span><br><span class="line">/var/log/lastlog 记录系统中所有用户最后一次登录时间的日志，使用lastlog命令查看</span><br><span class="line">/var/log/wtmp    记录所有用户的登录、注销信息，使用last命令查看</span><br><span class="line">/var/log/utmp    记录当前已经登录的用户信息，使用w,who,users等命令查看</span><br><span class="line">/var/log/secure   记录与安全相关的日志信息</span><br><span class="line">/var/log/message  记录系统启动后的信息和错误日志</span><br></pre></td></tr></table></figure>
+
+<p>删除所有匹配到字符串的行,比如以当天日期或者自己的登录ip</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed  -i &#x27;/自己的ip/&#x27;d  /var/log/messages</span><br></pre></td></tr></table></figure>
+
+<p>全局替换登录IP地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/192.168.166.85/192.168.1.1/g&#x27; secure</span><br></pre></td></tr></table></figure>
+
+<h6 id="清理web入侵痕迹"><a href="#清理web入侵痕迹" class="headerlink" title="清理web入侵痕迹"></a>清理web入侵痕迹</h6><p>直接替换日志 ip 地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/192.168.166.85/192.168.1.1/g&#x27; access.log</span><br></pre></td></tr></table></figure>
+
+<p>清除部分相关日志</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat tmp.log &gt; /var/log/nginx/access.log/</span><br></pre></td></tr></table></figure>
+
+<h5 id="形成报告"><a href="#形成报告" class="headerlink" title="形成报告"></a>形成报告</h5><p>总结报告及修复方案</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-常见webshell工具流量特征分析"
   class="article article-type-post"
   itemscope
@@ -869,107 +959,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" rel="tag">文件包含</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-MySQL"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2022/07/13/MySQL/"
-    >MySQL</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2022/07/13/MySQL/" class="article-date">
-  <time datetime="2022-07-13T12:27:00.000Z" itemprop="datePublished">2022-07-13</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="MySQL通用语法"><a href="#MySQL通用语法" class="headerlink" title="MySQL通用语法"></a>MySQL通用语法</h3><p>SQL语句可以单行或者多行书写，以分号结尾<br>可以用缩进和空格来增加语句的可读性<br>MySQL的SQL语句不分大小写</p>
-<h3 id="MySQL常用的数据类型"><a href="#MySQL常用的数据类型" class="headerlink" title="MySQL常用的数据类型"></a>MySQL常用的数据类型</h3><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>int</td>
-<td>整型</td>
-</tr>
-<tr>
-<td>double</td>
-<td>浮点型</td>
-</tr>
-<tr>
-<td>varchar</td>
-<td>字符串型</td>
-</tr>
-<tr>
-<td>date</td>
-<td>日期类型</td>
-</tr>
-</tbody></table>
-<h3 id="对数据库的增删改查"><a href="#对数据库的增删改查" class="headerlink" title="对数据库的增删改查"></a>对数据库的增删改查</h3><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p><img src="https://img-blog.csdnimg.cn/9318bc51bd4c463abad786b44ced9e3d.png"></p>
-<h4 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h4><p><img src="https://img-blog.csdnimg.cn/b391ebfb108d49338272f2d635ca3843.png"></p>
-<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p><img src="https://img-blog.csdnimg.cn/70598e8191494857af74b4802fe02084.png"></p>
-<h4 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h4><p><img src="https://img-blog.csdnimg.cn/a44d10f266764951b6f544a47ea91d95.png"></p>
-<h4 id="查看正在使用的数据库"><a href="#查看正在使用的数据库" class="headerlink" title="查看正在使用的数据库"></a>查看正在使用的数据库</h4><p><img src="https://img-blog.csdnimg.cn/5a736007687d427fa41ecdac592d277c.png"></p>
-<h3 id="对数据表的增删改查"><a href="#对数据表的增删改查" class="headerlink" title="对数据表的增删改查"></a>对数据表的增删改查</h3><h4 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h4><p><img src="https://img-blog.csdnimg.cn/05a216c816484c1eb026d9fc8a936f48.png"></p>
-<h4 id="查看当前数据库中的所有表"><a href="#查看当前数据库中的所有表" class="headerlink" title="查看当前数据库中的所有表"></a>查看当前数据库中的所有表</h4><p><img src="https://img-blog.csdnimg.cn/9169bf392d4843859f75fef388d3f6eb.png"></p>
-<h4 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构<img src="https://img-blog.csdnimg.cn/389668b94da04c1b983eb03e764fcc5a.png"></h4><p><img src="https://img-blog.csdnimg.cn/073452b183da471a9b948f4f9c4a824c.png"></p>
-<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><p><img src="https://img-blog.csdnimg.cn/6663aa56ce994af8a166136abf5dfd4f.png"></p>
-<h4 id="修改表添加列"><a href="#修改表添加列" class="headerlink" title="修改表添加列"></a>修改表添加列</h4><p><img src="https://img-blog.csdnimg.cn/e83174d97fd64250923f50f26ce0d4c1.png"></p>
-<h4 id="数据表插入数据"><a href="#数据表插入数据" class="headerlink" title="数据表插入数据"></a>数据表插入数据</h4><p><img src="https://img-blog.csdnimg.cn/bb540666606d4c31a04a5b815acf38ef.png"></p>
-<h4 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h4><p><img src="https://img-blog.csdnimg.cn/42e4950a34a94ae0910cdb695c6e931d.png"></p>
-<h3 id="查询方法"><a href="#查询方法" class="headerlink" title="查询方法"></a>查询方法</h3><h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><p>最基础的查询语句就是由select和from组成<br><img src="https://img-blog.csdnimg.cn/e9193b856119464aacdd947dc51e897a.png"></p>
-<h5 id="字段别命名"><a href="#字段别命名" class="headerlink" title="字段别命名"></a>字段别命名</h5><p><img src="https://img-blog.csdnimg.cn/e7ee8832e641422ea7a539b254bfce8b.png"></p>
-<h5 id="where"><a href="#where" class="headerlink" title="where"></a>where</h5><p>用来判断数据,筛选数据（返回结果是1为true，0为false）<br><img src="https://img-blog.csdnimg.cn/313536d8738d48ebb8d33a8b61d90b58.png"></p>
-<h5 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h5><p>排序，根据某个字段进行升序或者降序排序(asc是升序,desc是降序)</p>
-<p><img src="https://img-blog.csdnimg.cn/522906873b7a4c4fa423a9f2d996d023.png"></p>
-<h5 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h5><p>limit子句是一种限制结果的语句，用来做数据分页的</p>
-<h6 id="限制长度"><a href="#限制长度" class="headerlink" title="限制长度"></a>限制长度</h6><p><img src="https://img-blog.csdnimg.cn/28dc8da294e245e0819cbaf5b873beba.png"></p>
-<h6 id="限制起始位置和长度-主要用来实现数据的分页"><a href="#限制起始位置和长度-主要用来实现数据的分页" class="headerlink" title="限制起始位置和长度(主要用来实现数据的分页)"></a>限制起始位置和长度(主要用来实现数据的分页)</h6><p>limit  起始位置,长度</p>
-<p><img src="https://img-blog.csdnimg.cn/336b37f525f14ecaae490920da756406.png"></p>
-<h5 id="select语句中各关键字的先后顺序"><a href="#select语句中各关键字的先后顺序" class="headerlink" title="select语句中各关键字的先后顺序"></a>select语句中各关键字的先后顺序</h5><p><u>from&gt;on&gt;join</u>(table部分——形成表)&gt;<u>where&gt;group by&gt;having + 聚合函数</u>(filter部分——过滤条件)&gt;<u>select&gt;distinct&gt;&gt;order by&gt;limit</u>(查询语句部分——展示)</p>
-<h4 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h4><p>去重，将查询出来重复结果去除<br><img src="https://img-blog.csdnimg.cn/98c449d46fe14fe884dbb1bcecf63f41.png"><br>注：distinct关键字只能写在select子句的第一个字段前面，否则报错，若有多个字段，则只有多个字段的值都相同的情况才会被认为是重复记录，distinct才会生效</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL%E5%91%BD%E4%BB%A4/" rel="tag">MySQL命令</a></li></ul>
 
     </footer>
   </div>
