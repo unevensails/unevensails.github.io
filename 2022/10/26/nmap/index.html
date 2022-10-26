@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>渗透测试流程 |  unevensails&#39;s blog</title>
+      <title>nmap |  unevensails&#39;s blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-渗透测试流程"
+  id="post-nmap"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  渗透测试流程
+  nmap
 </h1>
  
 
@@ -73,11 +73,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/10/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time datetime="2022-10-25T06:59:28.000Z" itemprop="datePublished">2022-10-25</time>
+      <a href="/2022/10/26/nmap/" class="article-date">
+  <time datetime="2022-10-26T06:17:13.000Z" itemprop="datePublished">2022-10-26</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
+    <a class="article-category-link" href="/categories/%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F/">端口扫描</a>
   </div>
   
 <div class="word_count">
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">820</span>
+            <span class="post-count">533</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">3 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -109,43 +109,108 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h4 id="渗透测试流程"><a href="#渗透测试流程" class="headerlink" title="渗透测试流程"></a>渗透测试流程</h4><p>明确目标–&gt;信息收集–&gt;漏洞检测–&gt;漏洞利用–&gt;权限提升–&gt;权限维持–&gt;信息整理–&gt;清理日志–&gt;形成报告</p>
-<h5 id="明确目标"><a href="#明确目标" class="headerlink" title="明确目标"></a>明确目标</h5><p>在确认目标有授权的情况下才开始渗透</p>
-<h5 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h5><p>1.服务器的相关信息（真实ip，系统类型，版本，开放端口，WAF等）</p>
-<p>2.网站指纹识别（cms，cdn，证书等），dns记录</p>
-<p>3.whois信息，姓名，备案，邮箱，电话反查（邮箱丢社工库，社工准备等）</p>
-<p>4.子域名收集，旁站，C段等</p>
-<p>5.google hacking针对化搜索，pdf文件，中间件版本，弱口令扫描等</p>
-<p>6.扫描网站目录结构，爆后台，网站banner，测试文件，备份等敏感文件泄漏等</p>
-<h5 id="漏洞检测"><a href="#漏洞检测" class="headerlink" title="漏洞检测"></a>漏洞检测</h5><p>1.浏览网站，打开burpsuite，依次点击网站功能点，查看请求包，进行XSS、SQL注入、命令注入、CSRF、cookie安全检测、敏感信息、通信数据传输、暴力破解、任意文件上传、越权访问、未授权访问、目录遍历、文件 包含、重放攻击（短信轰炸）等漏洞检测</p>
-<p>2.扫描端口、目录，对响应的端口进行漏洞探测，比如 rsync，心脏出血，mysql，ftp，ssh弱口令等</p>
-<p>3.使用漏扫工具等</p>
-<h5 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h5><p>利用检测到的漏洞尝试拿到webshell，或者其他权限</p>
-<h5 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h5><p><img src="https://img-blog.csdnimg.cn/d4dbcfe04b1b4b55ad5160856aff5427.png"><br><img src="https://img-blog.csdnimg.cn/f6e25edd5ce84178bbd6d4fab3bcd329.png"></p>
-<h5 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h5><p>Windows创建隐藏用户，粘滞键漏洞等</p>
-<p>Linux修改/etc/passwd文件添加超级用户，ssh公钥免账密登录等</p>
-<h5 id="信息整理"><a href="#信息整理" class="headerlink" title="信息整理"></a>信息整理</h5><p>用迪哥的话就是翻垃圾，寻找有用的信息并整理</p>
-<h5 id="清理日志"><a href="#清理日志" class="headerlink" title="清理日志"></a>清理日志</h5><p>Windows有远程桌面权限时手动删除日志：</p>
-<p>开始-程序-管理工具-计算机管理-系统工具-事件查看器-清除日志</p>
-<p>linux麻烦些，这里简单说几种方法</p>
-<h6 id="清除history历史命令记录"><a href="#清除history历史命令记录" class="headerlink" title="清除history历史命令记录"></a>清除history历史命令记录</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">history -r 删除当前会话历史记录</span><br><span class="line"></span><br><span class="line">history -c 删除内存中的所有命令历史</span><br><span class="line"></span><br><span class="line">rm .bash_history 删除历史文件中的内容</span><br></pre></td></tr></table></figure>
+  <h4 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h4><h5 id="nmap常用参数"><a href="#nmap常用参数" class="headerlink" title="nmap常用参数"></a>nmap常用参数</h5><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-sS</td>
+<td>syn半开扫描，隐蔽性强，很少有系统能把它记入系统日志</td>
+</tr>
+<tr>
+<td>-sY</td>
+<td>全开扫描，比较准确</td>
+</tr>
+<tr>
+<td>-sT</td>
+<td>会大量记录日志，慎用</td>
+</tr>
+<tr>
+<td>-sU</td>
+<td>UDP扫描，但UDP是不可靠的</td>
+</tr>
+<tr>
+<td>-sP</td>
+<td>ping扫描存活主机</td>
+</tr>
+<tr>
+<td>-sA</td>
+<td>高级扫描，检测目标主机哪些端口被防火墙屏蔽</td>
+</tr>
+<tr>
+<td>-sV</td>
+<td>版本探针扫描</td>
+</tr>
+<tr>
+<td>-Pn</td>
+<td>被禁ping扫描方法</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>全面扫描</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>指定端口扫描</td>
+</tr>
+<tr>
+<td>-p-</td>
+<td>全站端口扫描</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>显示扫描过程</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>启用远程操作系统检测，存在误报</td>
+</tr>
+<tr>
+<td>-oN/-oX/-oG</td>
+<td>输出文件，格式为正常/XML/grepable</td>
+</tr>
+<tr>
+<td>-T4</td>
+<td>针对TCP端口禁止动态扫描延迟超过10ms</td>
+</tr>
+<tr>
+<td>-iL</td>
+<td>读取主机列表</td>
+</tr>
+</tbody></table>
+<h5 id="nmap常用命令"><a href="#nmap常用命令" class="headerlink" title="nmap常用命令"></a>nmap常用命令</h5><h6 id="扫描多个IP"><a href="#扫描多个IP" class="headerlink" title="扫描多个IP"></a>扫描多个IP</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nmap 192.168.1.1,192.168.1.2</span><br><span class="line">nmap 192.168.1.1-10</span><br><span class="line">nmap 192.168.1.1/24</span><br><span class="line">nmap 192.168.1.*</span><br></pre></td></tr></table></figure>
 
-<h6 id="清理系统日志痕迹"><a href="#清理系统日志痕迹" class="headerlink" title="清理系统日志痕迹"></a>清理系统日志痕迹</h6><p>Linux 系统存在多种日志文件，来记录系统运行过程中产生的日志。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/var/log/btmp   记录所有登录失败信息，使用lastb命令查看</span><br><span class="line">/var/log/lastlog 记录系统中所有用户最后一次登录时间的日志，使用lastlog命令查看</span><br><span class="line">/var/log/wtmp    记录所有用户的登录、注销信息，使用last命令查看</span><br><span class="line">/var/log/utmp    记录当前已经登录的用户信息，使用w,who,users等命令查看</span><br><span class="line">/var/log/secure   记录与安全相关的日志信息</span><br><span class="line">/var/log/message  记录系统启动后的信息和错误日志</span><br></pre></td></tr></table></figure>
+<h6 id="排除某个IP扫描"><a href="#排除某个IP扫描" class="headerlink" title="排除某个IP扫描"></a>排除某个IP扫描</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap 192.168.1.1/24 --exclude 192.168.1.5</span><br><span class="line">nmap 192.168.1.1/24 --excludefile “1.txt”   //不想扫描到的地址可以做成文件</span><br></pre></td></tr></table></figure>
 
-<p>删除所有匹配到字符串的行,比如以当天日期或者自己的登录ip</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed  -i &#x27;/自己的ip/&#x27;d  /var/log/messages</span><br></pre></td></tr></table></figure>
+<h6 id="扫描指定IP所开放的端口"><a href="#扫描指定IP所开放的端口" class="headerlink" title="扫描指定IP所开放的端口"></a>扫描指定IP所开放的端口</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -p 1-65535 -v 192.168.1.1</span><br></pre></td></tr></table></figure>
 
-<p>全局替换登录IP地址：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/192.168.166.85/192.168.1.1/g&#x27; secure</span><br></pre></td></tr></table></figure>
+<h6 id="扫描C段存活主机"><a href="#扫描C段存活主机" class="headerlink" title="扫描C段存活主机"></a>扫描C段存活主机</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sP 192.168.1.1/24</span><br></pre></td></tr></table></figure>
 
-<h6 id="清理web入侵痕迹"><a href="#清理web入侵痕迹" class="headerlink" title="清理web入侵痕迹"></a>清理web入侵痕迹</h6><p>直接替换日志 ip 地址</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/192.168.166.85/192.168.1.1/g&#x27; access.log</span><br></pre></td></tr></table></figure>
+<h6 id="指定端口扫描"><a href="#指定端口扫描" class="headerlink" title="指定端口扫描"></a>指定端口扫描</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 80,1433,22,1521 192.168.1.1</span><br></pre></td></tr></table></figure>
 
-<p>清除部分相关日志</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat tmp.log &gt; /var/log/nginx/access.log/</span><br></pre></td></tr></table></figure>
+<h6 id="探测主机操作系统"><a href="#探测主机操作系统" class="headerlink" title="探测主机操作系统"></a>探测主机操作系统</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -o 192.168.1.1</span><br></pre></td></tr></table></figure>
 
-<h5 id="形成报告"><a href="#形成报告" class="headerlink" title="形成报告"></a>形成报告</h5><p>总结报告及修复方案</p>
+<h6 id="全面的系统探测"><a href="#全面的系统探测" class="headerlink" title="全面的系统探测"></a>全面的系统探测</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -v -A 192.168.1.1（Nmap默认扫描主机1000个高危端口）</span><br></pre></td></tr></table></figure>
+
+<h6 id="穿透防火墙进行扫描"><a href="#穿透防火墙进行扫描" class="headerlink" title="穿透防火墙进行扫描"></a>穿透防火墙进行扫描</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -Pn -A 192.168.1.1（192.168.1.1禁止用ping的）</span><br></pre></td></tr></table></figure>
+
+<h6 id="使用脚本，扫描Web敏感目录"><a href="#使用脚本，扫描Web敏感目录" class="headerlink" title="使用脚本，扫描Web敏感目录"></a>使用脚本，扫描Web敏感目录</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 80 --script=http-enum.nse 192.168.1.1</span><br></pre></td></tr></table></figure>
+
+<h6 id="扫面列表文件IP地址"><a href="#扫面列表文件IP地址" class="headerlink" title="扫面列表文件IP地址"></a>扫面列表文件IP地址</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -iL &quot;1.txt&quot;</span><br></pre></td></tr></table></figure>
+
+<h6 id="随机选择IP扫描"><a href="#随机选择IP扫描" class="headerlink" title="随机选择IP扫描"></a>随机选择IP扫描</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -iR 5 -p3306   //随机选择五个IP扫描3306端口</span><br></pre></td></tr></table></figure>
+
+<h6 id="列出扫描IP"><a href="#列出扫描IP" class="headerlink" title="列出扫描IP"></a>列出扫描IP</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sL 192.168.1.1/24</span><br></pre></td></tr></table></figure>
+
+<h6 id="隐藏源IP扫描"><a href="#隐藏源IP扫描" class="headerlink" title="隐藏源IP扫描"></a>隐藏源IP扫描</h6><p>nmap -D 伪造原地址 ，不是改变自己的原地址，而是增加噪声IP</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -D 192.168.21.41,192.168.2.1.192.46.33.5 192.168.1.1   //发送参杂着假ip的数据包检测</span><br></pre></td></tr></table></figure>
+
+<p>nmap -S 欺骗地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -S 192.168.72.1 -e eth0 192.168.1.1   //用前面的IP，然后指定网卡etho 进行探测后面的ip</span><br></pre></td></tr></table></figure>
+
  
       <!-- reward -->
       
@@ -210,12 +275,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/10/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://unevensails.github.io/2022/10/26/nmap/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F/" rel="tag">渗透</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">信息收集</a></li></ul>
 
     </footer>
   </div>
@@ -223,19 +288,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/10/26/nmap/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            nmap
-          
-        </div>
-      </a>
     
-    
-      <a href="/2022/10/24/%E5%B8%B8%E8%A7%81webshell%E5%B7%A5%E5%85%B7%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90/" class="article-nav-link">
+      <a href="/2022/10/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">常见webshell工具流量特征分析</div>
+        <div class="article-nav-title">渗透测试流程</div>
       </a>
     
   </nav>
